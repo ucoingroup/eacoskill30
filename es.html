@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EACO - Earth's Best Coin | AI + RWA + Web3</title>
+<meta name="description" content="EACO - Earth's Best AI + RWA + Web3 Coin. 30 Agent Skills, AI auto-earning, Web3 investment. 11 languages.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e17;--bg2:#111827;--card:#1a2332;--border:#2a3a5c;--text:#e0e7ff;--text2:#94a3b8;--accent:#00d4aa;--accent2:#7c3aed;--gold:#fbbf24;--blue:#3b82f6;--accent-rgb:0,212,170;--accent2-rgb:124,58,237;--hero-grad1:rgba(var(--accent2-rgb),0.15);--hero-grad2:rgba(var(--accent-rgb),0.1)}
+[data-theme="green"]{--bg:#0d1410;--bg2:#142018;--card:#1a2a1f;--border:#2d4232;--text:#d4e8d4;--text2:#8aaa8a;--accent:#4ade80;--accent2:#65a30d;--gold:#a3e635;--blue:#3b82f6;--accent-rgb:74,222,128;--accent2-rgb:101,163,13;--hero-grad1:rgba(101,163,13,0.18);--hero-grad2:rgba(74,222,128,0.1)}
+[data-theme="rust"]{--bg:#1a0e0a;--bg2:#241410;--card:#2e1a15;--border:#4a2a20;--text:#f5e6d3;--text2:#c4956a;--accent:#dc2626;--accent2:#b45309;--gold:#f59e0b;--blue:#ef4444;--accent-rgb:220,38,38;--accent2-rgb:180,83,9;--hero-grad1:rgba(180,83,9,0.18);--hero-grad2:rgba(220,38,38,0.1)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","Noto Sans Arabic","Noto Sans KR","Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body.rtl{direction:rtl}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,14,23,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav-brand{font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.nav-links{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:13px;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--accent)}
+.lang-select{background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:20px;font-size:12px;cursor:pointer;outline:none}
+.lang-select:hover{border-color:var(--accent)}
+.lang-select option{background:var(--bg2);color:var(--text)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 20px 40px;background:radial-gradient(ellipse at top,var(--hero-grad1),transparent 50%),radial-gradient(ellipse at bottom,var(--hero-grad2),transparent 50%)}
+.hero-badge{display:inline-block;padding:6px 20px;border-radius:20px;background:rgba(var(--accent-rgb),0.1);border:1px solid var(--accent);color:var(--accent);font-size:13px;font-weight:600;margin-bottom:24px}
+.hero h1{font-size:clamp(36px,7vw,72px);font-weight:900;margin-bottom:16px;background:linear-gradient(135deg,#00d4aa,#7c3aed,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.15}
+.hero-subtitle{font-size:clamp(15px,2.5vw,21px);color:var(--text2);max-width:720px;margin-bottom:28px;padding:0 12px}
+.hero-ca{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 20px;font-family:monospace;font-size:12px;color:var(--gold);margin-bottom:28px;word-break:break-all;max-width:600px}
+.hero-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.hero-btn{padding:11px 26px;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px;transition:all .2s}
+.hero-btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.hero-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(var(--accent-rgb),0.3)}
+.hero-btn-secondary{background:var(--card);border:1px solid var(--border);color:var(--text)}
+.hero-btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.stats-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.stat-item{text-align:center}
+.stat-num{font-size:32px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:12px;color:var(--text2);margin-top:4px}
+.section{padding:50px 20px;max-width:1280px;margin:0 auto}
+.section-title{font-size:clamp(22px,4vw,34px);font-weight:800;text-align:center;margin-bottom:8px}
+.section-title span{background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-desc{text-align:center;color:var(--text2);font-size:14px;max-width:700px;margin:0 auto 36px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 40px rgba(var(--accent-rgb),0.1)}
+.card:hover::before{opacity:1}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.skill-id{background:rgba(var(--accent-rgb),0.1);color:var(--accent);padding:2px 10px;border-radius:6px;font-size:12px;font-weight:700}
+.skill-cat{background:rgba(var(--accent2-rgb),0.1);color:var(--accent2);padding:2px 10px;border-radius:6px;font-size:11px}
+.ai-badge{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a1a2e;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.card-title{font-size:16px;font-weight:700;margin-bottom:6px}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:14px}
+table{width:100%;border-collapse:collapse;min-width:700px}
+th{background:var(--bg2);padding:14px;text-align:left;font-size:13px;color:var(--accent);font-weight:700;border-bottom:2px solid var(--border)}
+td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:13px}
+tr:hover{background:rgba(var(--accent-rgb),0.03)}
+.col-num{color:var(--accent);font-weight:700}
+.col-name{font-weight:600}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20px 28px;margin-top:40px}
+.footer-content{max-width:1280px;margin:0 auto}
+.footer-brand{text-align:center;font-size:26px;font-weight:900;margin-bottom:20px;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.footer-links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;max-width:1000px;margin:0 auto 28px}
+.footer-link{display:block;text-align:center;padding:9px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text2);text-decoration:none;font-size:12px;transition:all .2s}
+.footer-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 12px rgba(var(--accent-rgb),0.1)}
+.footer-copy{text-align:center;color:var(--text2);font-size:12px;border-top:1px solid var(--border);padding-top:20px;margin-top:12px}
+.footer-social{text-align:center;margin-bottom:20px}
+.footer-social a{display:inline-block;margin:0 6px;padding:7px 14px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text2);text-decoration:none;font-size:12px;transition:all .2s}
+.footer-social a:hover{border-color:var(--accent);color:var(--accent)}
+.category-filter{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+.filter-btn{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text2);font-size:12px;cursor:pointer;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(var(--accent-rgb),0.05)}
+section[data-tint="1"]{background:rgba(var(--accent-rgb),0.03)}
+section[data-tint="2"]{background:rgba(var(--accent2-rgb),0.03)}
+.theme-switcher{display:flex;gap:6px;align-items:center}
+.theme-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);cursor:pointer;transition:all .2s;outline:none}
+.theme-dot:hover{transform:scale(1.15)}
+.theme-dot.active{border-color:#fff;box-shadow:0 0 6px rgba(255,255,255,0.3)}
+.theme-dot[data-t="default"]{background:linear-gradient(135deg,#00d4aa,#7c3aed)}
+.theme-dot[data-t="green"]{background:linear-gradient(135deg,#4ade80,#65a30d)}
+.theme-dot[data-t="rust"]{background:linear-gradient(135deg,#dc2626,#b45309)}
+@media(max-width:768px){.nav-links{display:none}.theme-switcher{gap:4px}.theme-dot{width:16px;height:16px}.nav{padding:8px 12px}.section{padding:36px 12px}.card-grid{grid-template-columns:1fr}th,td{padding:8px 6px;font-size:11px}.hero-links{flex-direction:column;align-items:center}.stats-row{gap:12px}}
+.lang-links{display:flex;gap:3px;flex-wrap:wrap;align-items:center}
+.lang-link,.lang-link-active{padding:4px 7px;border-radius:5px;font-size:10px;text-decoration:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+.lang-link{background:var(--bg2);border:1px solid var(--border);color:var(--text2)}
+.lang-link:hover{border-color:var(--accent);color:var(--accent)}
+.lang-link-active{background:var(--accent);color:#fff;font-weight:600;border:1px solid var(--accent)}
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav-brand">EACO</div>
+<div class="nav-links" id="navLinks"></div>
+<div class="theme-switcher">
+<span class="theme-dot active" data-t="default" onclick="setTheme('default')" title="Tech Blue"></span>
+<span class="theme-dot" data-t="green" onclick="setTheme('green')" title="Military Green"></span>
+<span class="theme-dot" data-t="rust" onclick="setTheme('rust')" title="Rust Red"></span>
+</div>
+<div class="lang-links"><a href="index.html" class="lang-link">CN</a><a href="en.html" class="lang-link">EN</a><a href="ru.html" class="lang-link">RU</a><a href="es.html" class="lang-link-active">ES</a><a href="fr.html" class="lang-link">FR</a><a href="ar.html" class="lang-link">AR</a><a href="vi.html" class="lang-link">VN</a><a href="ms.html" class="lang-link">MY</a><a href="id.html" class="lang-link">ID</a><a href="ja.html" class="lang-link">JP</a><a href="ko.html" class="lang-link">KR</a></div>
+</nav>
+<section class="hero">
+<div class="hero-badge" id="heroBadge"></div>
+<h1>EACO</h1>
+<p class="hero-subtitle" id="heroSubtitle"></p>
+<div class="hero-ca" id="heroCA"></div>
+<div class="stats-row" id="statsRow"></div>
+<div class="hero-links">
+<a href="https://raydium.io/swap/?inputMint=sol&outputMint=DqfoyZH96RnvZusSp3Cdncjpyp3C74ZmJzGhjmHnDHRH" target="_blank" class="hero-btn hero-btn-primary" id="btnTrade"></a>
+<a href="https://app.meteora.ag/dlmm/6ZfCi3qzhgDN1ygHVYXvfsfrwz8ZhQ7hD5mJtjeuUDyE" target="_blank" class="hero-btn hero-btn-secondary" id="btnPool"></a>
+<a href="https://t.me/e_eacocc" target="_blank" class="hero-btn hero-btn-secondary" id="btnJoin"></a>
+</div>
+</section>
+<section class="section" id="skills">
+<h2 class="section-title"><span id="secSkillsTitle"></span></h2>
+<p class="section-desc" id="secSkillsDesc"></p>
+<div class="category-filter" id="catFilter"></div>
+<div class="card-grid" id="skillsGrid"></div>
+</section>
+<section class="section" id="ai-earning" data-tint="2">
+<h2 class="section-title"><span id="secAiTitle"></span></h2>
+<p class="section-desc" id="secAiDesc"></p>
+<div class="card-grid" id="aiGrid"></div>
+</section>
+<section class="section" id="investors">
+<h2 class="section-title"><span id="secInvTitle"></span></h2>
+<p class="section-desc" id="secInvDesc"></p>
+<div class="table-wrap"><table><thead><tr id="invHead"></tr></thead><tbody id="invBody"></tbody></table></div>
+</section>
+<section class="section" id="methods" data-tint="1">
+<h2 class="section-title"><span id="secMetTitle"></span></h2>
+<p class="section-desc" id="secMetDesc"></p>
+<div class="card-grid" id="metGrid"></div>
+</section>
+<section class="section" id="industries">
+<h2 class="section-title"><span id="secIndTitle"></span></h2>
+<p class="section-desc" id="secIndDesc"></p>
+<div class="card-grid" id="indGrid"></div>
+</section>
+<section class="section" id="countries" data-tint="2">
+<h2 class="section-title"><span id="secCouTitle"></span></h2>
+<p class="section-desc" id="secCouDesc"></p>
+<div class="card-grid" id="couGrid"></div>
+</section>
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-brand">EACO - Earth's Best Coin</div>
+<div class="footer-social">
+<a href="https://x.com/eacocc" target="_blank">X / Twitter</a>
+<a href="https://linktr.ee/eacocc" target="_blank">Linktree</a>
+<a href="https://t.me/e_eacocc" target="_blank">Telegram EN</a>
+<a href="https://t.me/aieaco" target="_blank">Telegram CN</a>
+</div>
+<div class="footer-links-grid">
+<a href="https://ucoingroup.github.io/earths-best-coin/" target="_blank" class="footer-link">Earth's Best Coin</a>
+<a href="https://ucoingroup.github.io/eaco50rate/" target="_blank" class="footer-link">EACO 50 Rate</a>
+<a href="https://ucoingroup.github.io/100WaysToWealth/" target="_blank" class="footer-link">100 Ways To Wealth</a>
+<a href="https://ucoingroup.github.io/earth-100-friends/" target="_blank" class="footer-link">Earth 100 Friends</a>
+<a href="https://ucoingroup.github.io/eacoSWAP/" target="_blank" class="footer-link">EACO SWAP</a>
+<a href="https://ucoingroup.github.io/good-books/" target="_blank" class="footer-link">Good Books</a>
+<a href="https://ucoingroup.github.io/eur-eaco/" target="_blank" class="footer-link">EUR EACO</a>
+<a href="https://ucoingroup.github.io/au-trade/" target="_blank" class="footer-link">AU Trade</a>
+<a href="https://ucoingroup.github.io/Mohist-Tech/" target="_blank" class="footer-link">Mohist Tech</a>
+<a href="https://eaco-build-world.base44.app/" target="_blank" class="footer-link">EACO Build World</a>
+<a href="https://eaco-web3.base44.app" target="_blank" class="footer-link">EACO Web3</a>
+</div>
+<div class="footer-copy">
+<p id="footerEaco"></p>
+<p style="margin-top:8px;font-family:monospace;font-size:12px;color:var(--gold)">CA: DqfoyZH96RnvZusSp3Cdncjpyp3C74ZmJzGhjmHnDHRH</p>
+<p style="margin-top:8px" id="footerTagline"></p>
+</div>
+</div>
+</footer>
+<script>
+var EACO_UI = {
+  "zh-CN": {
+    "_name": "中文",
+    "_flag": "CN",
+    "nav_skills": "Agent技能",
+    "nav_ai": "AI自动赚钱",
+    "nav_investors": "投资方",
+    "nav_methods": "投资方法",
+    "nav_industries": "行业",
+    "nav_countries": "国家城市",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - 全球文明升级模型，地球村村民自己的MEME通证",
+    "ca_label": "合约地址 / Contract Address:",
+    "stat_skills": "Agent技能",
+    "stat_ai": "AI赚钱方法",
+    "stat_invest": "投资方法",
+    "stat_industries": "行业",
+    "stat_countries": "国家",
+    "btn_trade": "在Raydium交易",
+    "btn_pool": "Meteora流动池",
+    "btn_join": "加入社区",
+    "sec_skills_title": "30个 EACO Agent Skills",
+    "sec_skills_desc": "为全球网友打造的去中心化技能工具箱，覆盖DeFi、RWA、AI、NFT、社区治理等全生态场景",
+    "sec_ai_title": "AI/机器人通过EACO+SOL自动赚钱的30个方法",
+    "sec_ai_desc": "AI负责生产，人类负责生活。让AI Agent 24/7自动为您赚取EACO收益",
+    "sec_investors_title": "海外30个擅长Web3投资的投资方",
+    "sec_investors_desc": "全球顶级加密投资机构，覆盖美国、亚洲、欧洲、中东，是EACO生态潜在合作方",
+    "sec_methods_title": "海外网友投资EACO+SOL等Web3资产的30种方法",
+    "sec_methods_desc": "从流动性挖矿到RWA投资，从AI算力经销到社区贡献，全方位参与EACO生态",
+    "sec_industries_title": "全球最适合EACO投资的前10大行业",
+    "sec_industries_desc": "结合地球村EACO投资愿景，筛选最具增长潜力和落地价值的实体产业赛道",
+    "sec_countries_title": "对Web3最友善的10个国家和城市",
+    "sec_countries_desc": "从监管友好度、税收优惠、社区活跃度、人才储备等维度综合评选",
+    "th_num": "#",
+    "th_name": "名称",
+    "th_region": "地区",
+    "th_desc": "简介",
+    "footer_tagline": "The only $eaco in the universe and the earth.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "语言 / Language"
+  },
+  "en": {
+    "_name": "English",
+    "_flag": "EN",
+    "nav_skills": "Agent Skills",
+    "nav_ai": "AI Earning",
+    "nav_investors": "Investors",
+    "nav_methods": "Methods",
+    "nav_industries": "Industries",
+    "nav_countries": "Countries",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - A global civilization upgrading model, the MEME token for Earth villagers",
+    "ca_label": "Contract Address:",
+    "stat_skills": "Agent Skills",
+    "stat_ai": "AI Methods",
+    "stat_invest": "Methods",
+    "stat_industries": "Industries",
+    "stat_countries": "Countries",
+    "btn_trade": "Trade on Raydium",
+    "btn_pool": "Meteora Pool",
+    "btn_join": "Join Community",
+    "sec_skills_title": "30 EACO Agent Skills",
+    "sec_skills_desc": "A decentralized skill toolkit for global users, covering DeFi, RWA, AI, NFT, governance and more",
+    "sec_ai_title": "30 Ways AI/Robots Auto-Earn via EACO+SOL",
+    "sec_ai_desc": "AI handles production, humans handle life. Let AI Agents earn EACO for you 24/7",
+    "sec_investors_title": "30 Overseas Web3 Investment Firms",
+    "sec_investors_desc": "Top global crypto investment firms across US, Asia, Europe, Middle East - potential EACO ecosystem partners",
+    "sec_methods_title": "30 Ways to Invest in EACO+SOL Web3 Assets",
+    "sec_methods_desc": "From liquidity mining to RWA investment, from AI computing resale to community contribution",
+    "sec_industries_title": "Top 10 Industries for EACO Investment",
+    "sec_industries_desc": "Combined with EACO Earth Village vision, selecting industries with highest growth potential and real-world value",
+    "sec_countries_title": "Top 10 Web3-Friendly Countries & Cities",
+    "sec_countries_desc": "Selected by regulatory friendliness, tax benefits, community activity, and talent pool",
+    "th_num": "#",
+    "th_name": "Name",
+    "th_region": "Region",
+    "th_desc": "Description",
+    "footer_tagline": "The only $eaco in the universe and the earth.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "Language"
+  },
+  "ru": {
+    "_name": "Русский",
+    "_flag": "RU",
+    "nav_skills": "Навыки Agent",
+    "nav_ai": "AI заработок",
+    "nav_investors": "Инвесторы",
+    "nav_methods": "Методы",
+    "nav_industries": "Отрасли",
+    "nav_countries": "Страны",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - Глобальная модель цивилизационного обновления, MEME-токон для жителей Земли",
+    "ca_label": "Адрес контракта:",
+    "stat_skills": "Навыки Agent",
+    "stat_ai": "AI методы",
+    "stat_invest": "Методы",
+    "stat_industries": "Отрасли",
+    "stat_countries": "Страны",
+    "btn_trade": "Торговать на Raydium",
+    "btn_pool": "Пул Meteora",
+    "btn_join": "Сообщество",
+    "sec_skills_title": "30 навыков EACO Agent",
+    "sec_skills_desc": "Децентрализованный набор навыков для глобальных пользователей: DeFi, RWA, AI, NFT, управление",
+    "sec_ai_title": "30 способов AI/роботам зарабатывать через EACO+SOL",
+    "sec_ai_desc": "AI отвечает за производство, люди - за жизнь. AI Agent зарабатывает EACO 24/7",
+    "sec_investors_title": "30 зарубежных инвесторов Web3",
+    "sec_investors_desc": "Ведущие криптоинвесторы США, Азии, Европы, Ближнего Востока - потенциальные партнёры EACO",
+    "sec_methods_title": "30 способов инвестировать в EACO+SOL",
+    "sec_methods_desc": "От майнинга ликвидности до RWA, от AI-вычислений до вклада в сообщество",
+    "sec_industries_title": "Топ-10 отраслей для инвестиций EACO",
+    "sec_industries_desc": "В соответствии с видением Earth Village - отрасли с высоким потенциалом роста",
+    "sec_countries_title": "Топ-10 Web3-дружественных стран и городов",
+    "sec_countries_desc": "Отобрано по дружественности регулирования, налогам, активности сообщества",
+    "th_num": "№",
+    "th_name": "Название",
+    "th_region": "Регион",
+    "th_desc": "Описание",
+    "footer_tagline": "Единственный $eaco во вселенной и на земле.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "Язык"
+  },
+  "es": {
+    "_name": "Espanol",
+    "_flag": "ES",
+    "nav_skills": "Habilidades Agent",
+    "nav_ai": "AI Ganancias",
+    "nav_investors": "Inversores",
+    "nav_methods": "Metodos",
+    "nav_industries": "Industrias",
+    "nav_countries": "Paises",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - Modelo de actualizacion civilizacional global, token MEME de los aldeanos de la Tierra",
+    "ca_label": "Direccion del contrato:",
+    "stat_skills": "Habilidades Agent",
+    "stat_ai": "Metodos AI",
+    "stat_invest": "Metodos",
+    "stat_industries": "Industrias",
+    "stat_countries": "Paises",
+    "btn_trade": "Operar en Raydium",
+    "btn_pool": "Pool Meteora",
+    "btn_join": "Unirse",
+    "sec_skills_title": "30 Habilidades EACO Agent",
+    "sec_skills_desc": "Kit de habilidades descentralizadas para usuarios globales: DeFi, RWA, AI, NFT, gobernanza",
+    "sec_ai_title": "30 formas de IA/robots para ganar con EACO+SOL",
+    "sec_ai_desc": "IA produce, los humanos viven. Deja que AI Agent gane EACO 24/7",
+    "sec_investors_title": "30 Inversores Web3 en el extranjero",
+    "sec_investors_desc": "Principales inversores cripto de EE.UU., Asia, Europa, Oriente Medio - socios potenciales EACO",
+    "sec_methods_title": "30 formas de invertir en EACO+SOL",
+    "sec_methods_desc": "De mineria de liquidez a RWA, de venta de IA a contribucion comunitaria",
+    "sec_industries_title": "Top 10 industrias para invertir con EACO",
+    "sec_industries_desc": "Segun la vision de Earth Village, industrias con mayor potencial de crecimiento",
+    "sec_countries_title": "Top 10 paises y ciudades favorables a Web3",
+    "sec_countries_desc": "Seleccionados por regulacion, beneficios fiscales, actividad comunitaria",
+    "th_num": "#",
+    "th_name": "Nombre",
+    "th_region": "Region",
+    "th_desc": "Descripcion",
+    "footer_tagline": "El unico $eaco en el universo y la tierra.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "Idioma"
+  },
+  "fr": {
+    "_name": "Francais",
+    "_flag": "FR",
+    "nav_skills": "Competences Agent",
+    "nav_ai": "AI Revenus",
+    "nav_investors": "Investisseurs",
+    "nav_methods": "Methodes",
+    "nav_industries": "Industries",
+    "nav_countries": "Pays",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - Modele de mise a niveau civilisationnelle globale, token MEME des villageois de la Terre",
+    "ca_label": "Adresse du contrat:",
+    "stat_skills": "Competences Agent",
+    "stat_ai": "Methodes AI",
+    "stat_invest": "Methodes",
+    "stat_industries": "Industries",
+    "stat_countries": "Pays",
+    "btn_trade": "Trader sur Raydium",
+    "btn_pool": "Pool Meteora",
+    "btn_join": "Rejoindre",
+    "sec_skills_title": "30 Competences EACO Agent",
+    "sec_skills_desc": "Boite a outils decentralisee pour utilisateurs globaux: DeFi, RWA, AI, NFT, gouvernance",
+    "sec_ai_title": "30 facons pour l'IA/robots de gagner via EACO+SOL",
+    "sec_ai_desc": "L'IA produit, les humains vivent. Laissez AI Agent gagner du EACO 24/7",
+    "sec_investors_title": "30 Investisseurs Web3 etrangers",
+    "sec_investors_desc": "Principaux investisseurs crypto des Etats-Unis, Asie, Europe, Moyen-Orient - partenaires EACO",
+    "sec_methods_title": "30 facons d'investir dans EACO+SOL",
+    "sec_methods_desc": "Du minage de liquidite aux RWA, de la revente AI a la contribution communautaire",
+    "sec_industries_title": "Top 10 industries pour investir avec EACO",
+    "sec_industries_desc": "Selon la vision Earth Village, industries avec le plus fort potentiel de croissance",
+    "sec_countries_title": "Top 10 pays et villes favorables au Web3",
+    "sec_countries_desc": "Selectionnes par regulation, avantages fiscaux, activite communautaire",
+    "th_num": "#",
+    "th_name": "Nom",
+    "th_region": "Region",
+    "th_desc": "Description",
+    "footer_tagline": "Le seul $eaco dans l'univers et sur terre.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "Langue"
+  },
+  "ar": {
+    "_name": "العربية",
+    "_flag": "AR",
+    "nav_skills": "مهارات Agent",
+    "nav_ai": "كسب AI",
+    "nav_investors": "المستثمرون",
+    "nav_methods": "الطرق",
+    "nav_industries": "الصناعات",
+    "nav_countries": "الدول",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - نموذج تحديث حضاري عالمي، رمز MEME لسكان الأرض",
+    "ca_label": "عنوان العقد:",
+    "stat_skills": "مهارات Agent",
+    "stat_ai": "طرق AI",
+    "stat_invest": "الطرق",
+    "stat_industries": "الصناعات",
+    "stat_countries": "الدول",
+    "btn_trade": "تداول على Raydium",
+    "btn_pool": "مجموعة Meteora",
+    "btn_join": "انضم",
+    "sec_skills_title": "30 مهارة EACO Agent",
+    "sec_skills_desc": "مجموعة أدوات لامركزية للمستخدمين العالميين: DeFi وRWA وAI وNFT والحوكمة",
+    "sec_ai_title": "30 طريقة لكسب AI/الروبوتات عبر EACO+SOL",
+    "sec_ai_desc": "AI ينتج، البشر يعيشون. دع AI Agent يكسب EACO على مدار الساعة",
+    "sec_investors_title": "30 مستثمر Web3 في الخارج",
+    "sec_investors_desc": "كبرى شركات الاستثمار المشفرة في أمريكا وآسيا وأوروبا والشرق الأوسط - شركاء محتملون لـ EACO",
+    "sec_methods_title": "30 طريقة للاستثمار في EACO+SOL",
+    "sec_methods_desc": "من تعدين السيولة إلى RWA، من إعادة بيع AI إلى المساهمة المجتمعية",
+    "sec_industries_title": "أفضل 10 صناعات لاستثمار EACO",
+    "sec_industries_desc": "وفقًا لرؤية Earth Village، الصناعات ذات أعلى إمكانات النمو",
+    "sec_countries_title": "أفضل 10 دول ومدن صديقة لـ Web3",
+    "sec_countries_desc": "مختارة حسب التنظيم والمزايا الضريبية ونشاط المجتمع",
+    "th_num": "#",
+    "th_name": "الاسم",
+    "th_region": "المنطقة",
+    "th_desc": "الوصف",
+    "footer_tagline": "الوحيد $eaco في الكون والأرض.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "اللغة"
+  },
+  "vi": {
+    "_name": "Tieng Viet",
+    "_flag": "VN",
+    "nav_skills": "Ky nang Agent",
+    "nav_ai": "AI kiem tien",
+    "nav_investors": "Nha dau tu",
+    "nav_methods": "Phuong phap",
+    "nav_industries": "Nganh",
+    "nav_countries": "Quoc gia",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - Mo hinh nang cap van minh toan cau, token MEME cua nguoi dan Trai Dat",
+    "ca_label": "Dia chi hop dong:",
+    "stat_skills": "Ky nang Agent",
+    "stat_ai": "Phuong phap AI",
+    "stat_invest": "Phuong phap",
+    "stat_industries": "Nganh",
+    "stat_countries": "Quoc gia",
+    "btn_trade": "Giao dich tren Raydium",
+    "btn_pool": "Pool Meteora",
+    "btn_join": "Tham gia",
+    "sec_skills_title": "30 ky nang EACO Agent",
+    "sec_skills_desc": "Bo cong cu ky nang phan tan cho nguoi dung toan cau: DeFi, RWA, AI, NFT, quan tri",
+    "sec_ai_title": "30 cach AI/robot tu dong kiem tien qua EACO+SOL",
+    "sec_ai_desc": "AI san xuat, con nguoi song. De AI Agent kiem EACO 24/7",
+    "sec_investors_title": "30 nha dau tu Web3 nuoc ngoai",
+    "sec_investors_desc": "Cac cong ty dau tu crypto hang dau My, Chau A, Chau Au, Trung Dong - doi tac EACO",
+    "sec_methods_title": "30 cach dau tu vao EACO+SOL",
+    "sec_methods_desc": "Tu khai thac thanh khoan den RWA, tu ban AI den dong gop cong dong",
+    "sec_industries_title": "Top 10 nganh dau tu EACO",
+    "sec_industries_desc": "Theo tam nhin Earth Village, nganh co tiem nang tang truong cao nhat",
+    "sec_countries_title": "Top 10 quoc gia va thanh pho than thien Web3",
+    "sec_countries_desc": "Chon dua tren quy dinh, uu dai thue, hoat dong cong dong",
+    "th_num": "#",
+    "th_name": "Ten",
+    "th_region": "Khu vuc",
+    "th_desc": "Mo ta",
+    "footer_tagline": "$eaco duy nhat trong vu tru va trai dat.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "Ngon ngu"
+  },
+  "ms": {
+    "_name": "Bahasa Melayu",
+    "_flag": "MY",
+    "nav_skills": "Kemahiran Agent",
+    "nav_ai": "AI Pendapatan",
+    "nav_investors": "Pelabur",
+    "nav_methods": "Kaedah",
+    "nav_industries": "Industri",
+    "nav_countries": "Negara",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - Model peningkatan tamadun global, token MEME untuk penduduk Bumi",
+    "ca_label": "Alamat kontrak:",
+    "stat_skills": "Kemahiran Agent",
+    "stat_ai": "Kaedah AI",
+    "stat_invest": "Kaedah",
+    "stat_industries": "Industri",
+    "stat_countries": "Negara",
+    "btn_trade": "Dagang di Raydium",
+    "btn_pool": "Kolam Meteora",
+    "btn_join": "Sertai",
+    "sec_skills_title": "30 Kemahiran EACO Agent",
+    "sec_skills_desc": "Kit kemahiran terdesentralisasi untuk pengguna global: DeFi, RWA, AI, NFT, tadbir urus",
+    "sec_ai_title": "30 cara AI/robot auto-pendapatan melalui EACO+SOL",
+    "sec_ai_desc": "AI mengeluarkan, manusia hidup. Biarkan AI Agent menjana EACO 24/7",
+    "sec_investors_title": "30 Pelabur Web3 luar negara",
+    "sec_investors_desc": "Firma pelaburan kripto teratas AS, Asia, Eropah, Timur Tengah - rakan kongsi EACO",
+    "sec_methods_title": "30 cara melabur dalam EACO+SOL",
+    "sec_methods_desc": "Daripada perlombongan kecairan ke RWA, daripada jualan AI ke sumbangan komuniti",
+    "sec_industries_title": "Top 10 industri untuk pelaburan EACO",
+    "sec_industries_desc": "Selaras dengan visi Earth Village, industri dengan potensi pertumbuhan tertinggi",
+    "sec_countries_title": "Top 10 negara dan bandar mesra Web3",
+    "sec_countries_desc": "Dipilih berdasarkan peraturan, faedah cukai, aktiviti komuniti",
+    "th_num": "#",
+    "th_name": "Nama",
+    "th_region": "Wilayah",
+    "th_desc": "Penerangan",
+    "footer_tagline": "Satu-satunya $eaco di alam semesta dan bumi.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "Bahasa"
+  },
+  "id": {
+    "_name": "Bahasa Indonesia",
+    "_flag": "ID",
+    "nav_skills": "Keahlian Agent",
+    "nav_ai": "AI Penghasilan",
+    "nav_investors": "Investor",
+    "nav_methods": "Metode",
+    "nav_industries": "Industri",
+    "nav_countries": "Negara",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - Model peningkatan peradaban global, token MEME untuk warga Bumi",
+    "ca_label": "Alamat kontrak:",
+    "stat_skills": "Keahlian Agent",
+    "stat_ai": "Metode AI",
+    "stat_invest": "Metode",
+    "stat_industries": "Industri",
+    "stat_countries": "Negara",
+    "btn_trade": "Trading di Raydium",
+    "btn_pool": "Pool Meteora",
+    "btn_join": "Gabung",
+    "sec_skills_title": "30 Keahlian EACO Agent",
+    "sec_skills_desc": "Toolkit keahlian terdesentralisasi untuk pengguna global: DeFi, RWA, AI, NFT, tata kelola",
+    "sec_ai_title": "30 cara AI/robot menghasilkan via EACO+SOL",
+    "sec_ai_desc": "AI memproduksi, manusia hidup. Biarkan AI Agent menghasilkan EACO 24/7",
+    "sec_investors_title": "30 Investor Web3 luar negeri",
+    "sec_investors_desc": "Perusahaan investasi kripto teratas AS, Asia, Eropa, Timur Tengah - mitra EACO",
+    "sec_methods_title": "30 cara berinvestasi di EACO+SOL",
+    "sec_methods_desc": "Dari liquidity mining ke RWA, dari penjualan AI ke kontribusi komunitas",
+    "sec_industries_title": "Top 10 industri untuk investasi EACO",
+    "sec_industries_desc": "Sesuai visi Earth Village, industri dengan potensi pertumbuhan tertinggi",
+    "sec_countries_title": "Top 10 negara dan kota ramah Web3",
+    "sec_countries_desc": "Dipilih berdasarkan regulasi, manfaat pajak, aktivitas komunitas",
+    "th_num": "#",
+    "th_name": "Nama",
+    "th_region": "Wilayah",
+    "th_desc": "Deskripsi",
+    "footer_tagline": "Satu-satunya $eaco di alam semesta dan bumi.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "Bahasa"
+  },
+  "ja": {
+    "_name": "日本語",
+    "_flag": "JP",
+    "nav_skills": "Agentスキル",
+    "nav_ai": "AI収益",
+    "nav_investors": "投資家",
+    "nav_methods": "投資方法",
+    "nav_industries": "業界",
+    "nav_countries": "国・都市",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - 地球文明アップグレードモデル、地球村村民のMEMEトークン",
+    "ca_label": "コントラクトアドレス:",
+    "stat_skills": "Agentスキル",
+    "stat_ai": "AI方法",
+    "stat_invest": "投資方法",
+    "stat_industries": "業界",
+    "stat_countries": "国",
+    "btn_trade": "Raydiumで取引",
+    "btn_pool": "Meteoraプール",
+    "btn_join": "コミュニティ参加",
+    "sec_skills_title": "30 EACO Agentスキル",
+    "sec_skills_desc": "グローバルユーザーのための分散型スキルツールキット: DeFi、RWA、AI、NFT、ガバナンス",
+    "sec_ai_title": "AI/ロボットがEACO+SOLで自動収益を得る30の方法",
+    "sec_ai_desc": "AIが生産し、人間は生活する。AI Agentが24/7 EACOを獲得",
+    "sec_investors_title": "海外30社のWeb3投資家",
+    "sec_investors_desc": "米国、アジア、欧州、中東のトップ暗号投資会社 - EACOパートナー候補",
+    "sec_methods_title": "EACO+SOLに投資する30の方法",
+    "sec_methods_desc": "流動性マイニングからRWAまで、AI計算力販売からコミュニティ貢献まで",
+    "sec_industries_title": "EACO投資に最適なトップ10業界",
+    "sec_industries_desc": "Earth Villageビジョンに基づき、最も成長潜力のある実体産業セクター",
+    "sec_countries_title": "Web3に友好的なトップ10の国と都市",
+    "sec_countries_desc": "規制環境、税制優遇、コミュニティ活動、人材プールで選出",
+    "th_num": "#",
+    "th_name": "名称",
+    "th_region": "地域",
+    "th_desc": "説明",
+    "footer_tagline": "宇宙と地球で唯一の$eaco。",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "言語"
+  },
+  "ko": {
+    "_name": "한국어",
+    "_flag": "KR",
+    "nav_skills": "Agent 스킬",
+    "nav_ai": "AI 수익",
+    "nav_investors": "투자자",
+    "nav_methods": "투자 방법",
+    "nav_industries": "산업",
+    "nav_countries": "국가",
+    "hero_badge": "Earth's Best AI + RWA + Web3 Coin",
+    "hero_subtitle": "Energy x Attitude x Cooperation x Optimization - 글로벌 문명 업그레이드 모델, 지구촌 주민의 MEME 토큰",
+    "ca_label": "컨트랙트 주소:",
+    "stat_skills": "Agent 스킬",
+    "stat_ai": "AI 방법",
+    "stat_invest": "투자 방법",
+    "stat_industries": "산업",
+    "stat_countries": "국가",
+    "btn_trade": "Raydium에서 거래",
+    "btn_pool": "Meteora 풀",
+    "btn_join": "커뮤니티 참여",
+    "sec_skills_title": "30 EACO Agent 스킬",
+    "sec_skills_desc": "글로벌 사용자를 위한 탈중앙화 스킬 툴킷: DeFi, RWA, AI, NFT, 거버넌스",
+    "sec_ai_title": "AI/로봇이 EACO+SOL로 자동 수익을 얻는 30가지 방법",
+    "sec_ai_desc": "AI가 생산하고 인간이 삶을 산다. AI Agent가 24/7 EACO를 획득",
+    "sec_investors_title": "해외 30개 Web3 투자자",
+    "sec_investors_desc": "미국, 아시아, 유럽, 중동의 최고 암호화폐 투자사 - EACO 파트너 후보",
+    "sec_methods_title": "EACO+SOL에 투자하는 30가지 방법",
+    "sec_methods_desc": "유동성 채굴부터 RWA까지, AI 연산 판매부터 커뮤니티 기여까지",
+    "sec_industries_title": "EACO 투자에 최적인 Top 10 산업",
+    "sec_industries_desc": "Earth Village 비전에 따라 가장 높은 성장 잠재력을 가진 산업",
+    "sec_countries_title": "Web3 친화적인 Top 10 국가 및 도시",
+    "sec_countries_desc": "규제, 세제 혜택, 커뮤니티 활동, 인재 풀을 기준으로 선정",
+    "th_num": "#",
+    "th_name": "이름",
+    "th_region": "지역",
+    "th_desc": "설명",
+    "footer_tagline": "우주와 지구에서 유일한 $eaco.",
+    "footer_eaco": "EACO (Earth's Best Coin) - Energy x Attitude x Cooperation x Optimization",
+    "lang_label": "언어"
+  }
+};
+var CA = "DqfoyZH96RnvZusSp3Cdncjpyp3C74ZmJzGhjmHnDHRH";
+var currentLang = "es";
+var langs = ["zh-CN","en","ru","es","fr","ar","vi","ms","id","ja","ko"];
+
+var skillsData = [
+{"id":"01","name_cn":"EACO钱包管理技能","name_en":"EACO Wallet Manager","category":"Infrastructure","desc_cn":"帮助用户创建、导入和管理Solana链上的EACO钱包，支持Phantom、Solflare等主流钱包。","desc_en":"Help users create, import and manage EACO wallets on Solana chain, supporting Phantom, Solflare and other mainstream wallets.","desc_ru":"Помогает пользователям создавать, импортировать и управлять кошельками EACO в сети Solana, поддерживает Phantom, Solflare и другие популярные кошельки.","desc_es":"Ayuda a los usuarios a crear, importar y gestionar billeteras EACO en la cadena Solana, con soporte para Phantom, Solflare y otras billeteras principales.","desc_fr":"Aide les utilisateurs a creer, importer et gerer des portefeuilles EACO sur la chaine Solana, supportant Phantom, Solflare et autres portefeuilles.","desc_ar":"يساعد المستخدمين في إنشاء واستيراد وإدارة محافظ EACO على شبكة Solana، مع دعم Phantom وSolflare والمحافظ الرئيسية."},
+{"id":"02","name_cn":"EACO-SOL流动性挖矿","name_en":"EACO-SOL Liquidity Mining","category":"DeFi Yield","desc_cn":"在Raydium、Orca、Meteora等DEX上添加EACO-SOL流动性池，计算APY收益。","desc_en":"Add EACO-SOL liquidity pools on Raydium, Orca, Meteora DEXs, calculate APY returns.","desc_ru":"Добавление пулов ликвидности EACO-SOL на DEX Raydium, Orca, Meteora, расчёт доходности APY.","desc_es":"Anadir pools de liquidez EACO-SOL en los DEX Raydium, Orca, Meteora, calcular rendimientos APY.","desc_fr":"Ajouter des pools de liquidite EACO-SOL sur les DEX Raydium, Orca, Meteora, calculer les rendements APY.","desc_ar":"إضافة مجمعات سيولة EACO-SOL على منصات DEX رايديوم وأوركا وميتيورا، وحساب عوائد APY."},
+{"id":"03","name_cn":"EACO-USDT稳定币交易","name_en":"EACO-USDT Stablecoin Trading","category":"DeFi Yield","desc_cn":"在Meteora DLMM池上进行EACO-USDT交易，提供最优滑点设置建议。","desc_en":"Trade EACO-USDT on Meteora DLMM pool, provide optimal slippage settings.","desc_ru":"Торговля EACO-USDT на пуле Meteora DLMM, рекомендации по оптимальному проскальзыванию.","desc_es":"Operar EACO-USDT en el pool Meteora DLMM, configuraciones optimas de slippage.","desc_fr":"Echanger EACO-USDT sur le pool Meteora DLMM, parametres de slippage optimaux.","desc_ar":"تداول EACO-USDT على مجموعة Meteora DLMM، إعدادات الانزلاق الأمثل."},
+{"id":"04","name_cn":"EACO量化交易机器人","name_en":"EACO Quantitative Trading Bot","category":"Trading Strategy","desc_cn":"部署网格交易、均值回归、动量策略，24/7运行赚取EACO交易手续费分红。","desc_en":"Deploy grid trading, mean reversion, momentum strategies running 24/7 to earn EACO fee dividends.","desc_ru":"Развертывание сеточной торговли, возврата к среднему, моментум-стратегий 24/7 для заработка на комиссиях EACO.","desc_es":"Desplegar trading de cuadricula, reversion a la media, estrategias de momentum 24/7 para ganar comisiones EACO.","desc_fr":"Deployer le trading de grille, retour a la moyenne, strategies de momentum 24/7 pour gagner des frais EACO.","desc_ar":"نشر استراتيجيات تداول الشبكة والعودة إلى المتوسط والزخم على مدار الساعة لكسب رسوم EACO."},
+{"id":"05","name_cn":"EACO跨境外汇结算","name_en":"EACO Cross-border FX Settlement","category":"Cross-border Payment","desc_cn":"利用E50预言机50国实时汇率，进行低成本跨境汇款和外贸结算。","desc_en":"Utilize E50 oracle rates for 50 countries for low-cost cross-border remittance and trade settlement.","desc_ru":"Использование курсов E50 для 50 стран для недорогих трансграничных переводов и торговых расчётов.","desc_es":"Utilizar tasas E50 para 50 paises para remesas transfronterizas y liquidacion comercial de bajo costo.","desc_fr":"Utiliser les taux E50 pour 50 pays pour les transferts transfrontaliers et les reglements commerciaux a bas cout.","desc_ar":"استخدام أسعار E50 لـ 50 دولة للتحويلات العابرة للحدود والتسويات التجارية منخفضة التكلفة."},
+{"id":"06","name_cn":"EACO RWA资产代币化","name_en":"EACO RWA Tokenization","category":"RWA Assets","desc_cn":"将光伏电站、酒店、房车等实体资产代币化上链，实现碎片化投资。","desc_en":"Tokenize solar plants, hotels, RVs on-chain, enabling fractional investment.","desc_ru":"Токенизация солнечных станций, отелей, автодомов в сети, обеспечивающая дробные инвестиции.","desc_es":"Tokenizar plantas solares, hoteles, autocaravanas on-chain, habilitando inversion fraccional.","desc_fr":"Tokeniser des centrales solaires, hotels, camping-cars on-chain, permettant l'investissement fractionne.","desc_ar":"تحويل محطات الطاقة الشمسية والفنادق والمركبات الترفيهية إلى رموز على السلسلة، مما يتيح الاستثمار الجزئي."},
+{"id":"07","name_cn":"EACO碳资产交易","name_en":"EACO Carbon Credit Trading","category":"Green Finance","desc_cn":"结合欧盟ETS碳配额，将减排数据上链铸造碳NFT，兑换EACO。","desc_en":"Integrate EU ETS carbon allowances, mint carbon NFTs on-chain, exchange for EACO.","desc_ru":"Интеграция квот EU ETS, создание углеродных NFT в сети, обмен на EACO.","desc_es":"Integrar cuotas EU ETS, mintear NFTs de carbono on-chain, intercambiar por EACO.","desc_fr":"Integrer les quotas EU ETS, creer des NFT carbone on-chain, echanger contre EACO.","desc_ar":"دمج حصص الكربون EU ETS، وسك NFTs الكربونية على السلسلة، واستبدالها بـ EACO."},
+{"id":"08","name_cn":"EACO DAO治理投票","name_en":"EACO DAO Governance Voting","category":"Community Governance","desc_cn":"参与全球去中心化治理，发起提案、投票表决、管理社区基金。","desc_en":"Participate in global decentralized governance, initiate proposals, vote, manage treasury.","desc_ru":"Участие в глобальном децентрализованном управлении, предложения, голосование, управление казной.","desc_es":"Participar en gobernanza descentralizada global, iniciar propuestas, votar, gestionar tesoro.","desc_fr":"Participer a la gouvernance decentralisee mondiale, initier des propositions, voter, gerer le tresor.","desc_ar":"المشاركة في الحوكمة اللامركزية العالمية، تقديم المقترحات، التصويت، إدارة الخزانة."},
+{"id":"09","name_cn":"EACO AI算力交易","name_en":"EACO AI Computing Power Trading","category":"AI Economy","desc_cn":"在Web3社区推广用EACO购买AI算力，作为经销商销售AI Token。","desc_en":"Promote using EACO to buy AI computing power, act as dealer selling AI tokens.","desc_ru":"Продвижение использования EACO для покупки AI-вычислений, продажа AI токенов как дилер.","desc_es":"Promover el uso de EACO para comprar computing AI, actuar como distribuidor de AI tokens.","desc_fr":"Promouvoir l'utilisation d'EACO pour acheter de la puissance AI, agir comme distributeur de tokens AI.","desc_ar":"الترويج لاستخدام EACO لشراء قوة حوسبة AI، والعمل كموزع لرموز AI."},
+{"id":"10","name_cn":"EACO NFT发行与交易","name_en":"EACO NFT Mint and Trade","category":"NFT Ecosystem","desc_cn":"使用EACO铸造、购买和出售NFT，包括社区纪念NFT、环保主题NFT。","desc_en":"Use EACO to mint, buy and sell NFTs including commemorative and environmental NFTs.","desc_ru":"Использование EACO для создания, покупки и продажи NFT, включая памятные и экологические NFT.","desc_es":"Usar EACO para mintear, comprar y vender NFTs incluyendo conmemorativos y ambientales.","desc_fr":"Utiliser EACO pour creer, acheter et vendre des NFT, y compris commémoratifs et ecologiques.","desc_ar":"استخدام EACO لسك وشراء وبيع NFTs بما في ذلك NFTs التذكارية والبيئية."},
+{"id":"11","name_cn":"EACO DePIN节点激励","name_en":"EACO DePIN Node Incentive","category":"DePIN Infrastructure","desc_cn":"奖励共享算力、存储或网络带宽的全球贡献者，部署DePIN节点获EACO激励。","desc_en":"Reward contributors sharing computing power, storage or bandwidth, deploy DePIN nodes to earn EACO.","desc_ru":"Вознаграждение тех, кто делится вычислениями, хранилищем или пропускной способностью, развёртывание DePIN узлов.","desc_es":"Recompensar contribuidores que comparten computing, almacenamiento o ancho de banda, desplegar nodos DePIN.","desc_fr":"Recompenser les contributeurs partageant calcul, stockage ou bande passante, deployer des noeuds DePIN.","desc_ar":"مكافأة المساهمين بمشاركة قوة الحوسبة أو التخزين أو النطاق الترددي، ونشر عقد DePIN."},
+{"id":"12","name_cn":"EACO内容创作激励","name_en":"EACO Content Creator Rewards","category":"Creator Economy","desc_cn":"让全球创作者绕过平台抽成，通过EACO直接获得打赏，支持多媒体变现。","desc_en":"Enable creators to bypass platform fees, receive tips directly via EACO.","desc_ru":"Позволяет создателям обходить комиссии платформ, получать чаевые напрямую через EACO.","desc_es":"Permite a creadores evitar comisiones de plataforma, recibir propinas directamente via EACO.","desc_fr":"Permet aux createurs de contourner les frais de plateforme, recevoir des pourboires via EACO.","desc_ar":"يتيح للمبدعين تجاوز رسوم المنصة، وتلقي الإكراميات مباشرة عبر EACO."},
+{"id":"13","name_cn":"EACO全球众筹","name_en":"EACO Global Crowdfunding","category":"Community Governance","desc_cn":"为环保、教育或社区项目募集资金，使用EACO进行透明可追溯的链上众筹。","desc_en":"Raise funds for environmental, educational projects with transparent on-chain crowdfunding.","desc_ru":"Сбор средств для экологических и образовательных проектов с прозрачным краудфандингом on-chain.","desc_es":"Recaudar fondos para proyectos ambientales y educativos con crowdfunding transparente on-chain.","desc_fr":"Collecter des fonds pour des projets environnementaux et educatifs avec crowdfunding transparent on-chain.","desc_ar":"جمع الأموال للمشاريع البيئية والتعليمية مع تمويل جماعي شفاف على السلسلة."},
+{"id":"14","name_cn":"EACO数字游民服务","name_en":"EACO Digital Nomad Service Platform","category":"Lifestyle","desc_cn":"为数字游民提供签证办理、旅居预订、链上薪酬发放、跨境税务测算。","desc_en":"Provide digital nomads with visa processing, accommodation booking, on-chain payroll.","desc_ru":"Предоставление цифровым кочевникам виз, бронирования, зарплат on-chain.","desc_es":"Proporcionar a nomadas digitales visados, reservas, nomina on-chain.","desc_fr":"Fournir aux nomades numeriques des visas, reservations, paie on-chain.","desc_ar":"تزويد الرحل الرقميين بالتأشيرات والحجوزات والرواتب على السلسلة."},
+{"id":"15","name_cn":"EACO ECI数据订阅","name_en":"EACO ECI Index Data Subscription","category":"Data Services","desc_cn":"订阅ECI地球文明指数实时行情、50国汇率预言机数据、AI预测报告。","desc_en":"Subscribe to ECI Index real-time data, 50-country oracle data, AI prediction reports.","desc_ru":"Подписка на данные индекса ECI в реальном времени, данные оракула 50 стран, AI-отчёты.","desc_es":"Suscribirse a datos en tiempo real del indice ECI, datos de oraculo de 50 paises, informes AI.","desc_fr":"S'abonner aux donnees en temps reel de l'indice ECI, donnees oracle de 50 pays, rapports AI.","desc_ar":"الاشتراك في بيانات مؤشر ECI في الوقت الفعلي، وبيانات أوراكل لـ 50 دولة، وتقارير AI."},
+{"id":"16","name_cn":"EACO品牌积分互换","name_en":"EACO Brand Alliance Points Exchange","category":"Business Application","desc_cn":"作为不同品牌积分体系的中间兑换货币，实现跨平台积分无缝互换。","desc_en":"Serve as intermediary exchange currency for cross-platform points exchange.","desc_ru":"Служит промежуточной валютой для обмена баллов между платформами.","desc_es":"Sirve como moneda intermediaria para intercambio de puntos entre plataformas.","desc_fr":"Sert de monnaie intermediaire pour l'echange de points entre plateformes.","desc_ar":"يعمل كعملة وسيطة لتبادل النقاط بين المنصات."},
+{"id":"17","name_cn":"EACO慈善透明通道","name_en":"EACO Transparent Charity Channel","category":"Community Governance","desc_cn":"用于全球慈善捐款，每一笔清晰可追溯，确保资金直达受益人。","desc_en":"For global charitable donations, every transaction traceable, funds reach beneficiaries.","desc_ru":"Для глобальных благотворительных пожертвований, каждая транзакция отслеживается, средства доходят до получателей.","desc_es":"Para donaciones caritativas globales, cada transaccion rastreable, fondos llegan a beneficiarios.","desc_fr":"Pour les dons de bienfaisance mondiaux, chaque transaction traçable, fonds atteignent les beneficiaires.","desc_ar":"للتبرعات الخيرية العالمية، كل معاملة قابلة للتتبع، الأموال تصل إلى المستفيدين."},
+{"id":"18","name_cn":"EACO全球众包赏金","name_en":"EACO Global Bounty Tasks","category":"Business Application","desc_cn":"以EACO作为通用赏金，吸引全球人才完成翻译、设计、开发、调研任务。","desc_en":"Use EACO as universal bounty attracting global talent for translation, design, development.","desc_ru":"Использование EACO как универсальной награды для привлечения глобальных талантов.","desc_es":"Usar EACO como recompensa universal atrayendo talento global para traduccion, diseno, desarrollo.","desc_fr":"Utiliser EACO comme recompense universelle attirant des talents globaux pour traduction, design, developpement.","desc_ar":"استخدام EACO كمكافأة عالمية لجذب المواهب العالمية للترجمة والتصميم والتطوير."},
+{"id":"19","name_cn":"EACO环保行动奖励","name_en":"EACO Eco Action Rewards","category":"Green Finance","desc_cn":"结合链上碳积分，奖励步行、骑行或参与回收的个体行为，激励绿色生活。","desc_en":"Reward walking, cycling, recycling behaviors with on-chain carbon credits and EACO.","desc_ru":"Вознаграждение за ходьбу, езду на велосипеде, переработку с углеродными кредитами on-chain и EACO.","desc_es":"Recompensar caminar, ciclismo, reciclaje con creditos de carbono on-chain y EACO.","desc_fr":"Recompenser la marche, le velo, le recyclage avec des credits carbone on-chain et EACO.","desc_ar":"مكافأة المشي وركوب الدراجات وإعادة التدوير برصيد كربوني على السلسلة و EACO."},
+{"id":"20","name_cn":"EACO多语言翻译","name_en":"EACO Multilingual Community Translation","category":"Community Governance","desc_cn":"将核心文档翻译成7大语种，促进全球化交流，翻译贡献者获EACO奖励。","desc_en":"Translate core documents into 7 major languages, translators earn EACO rewards.","desc_ru":"Перевод основных документов на 7 основных языков, переводчики получают EACO.","desc_es":"Traducir documentos centrales a 7 idiomas principales, los traductores ganan EACO.","desc_fr":"Traduire les documents cles en 7 langues principales, les traducteurs gagnent EACO.","desc_ar":"ترجمة المستندات الأساسية إلى 7 لغات رئيسية، يكسب المترجمون EACO."},
+{"id":"21","name_cn":"EACO合成资产交易","name_en":"EACO Synthetic Asset Trading","category":"DeFi Yield","desc_cn":"依托预言机输出真实资产价格，推出合成资产合约，覆盖股指、美债、黄金。","desc_en":"Launch synthetic asset contracts covering stock indices, US bonds, gold with oracle pricing.","desc_ru":"Запуск синтетических контрактов на индексы, облигации США, золото с ценообразованием оракула.","desc_es":"Lanzar contratos de activos sinteticos cubriendo indices, bonos, oro con precios de oraculo.","desc_fr":"Lancer des contrats d'actifs synthetiques couvrant indices, obligations, or avec prix oracle.","desc_ar":"إطلاق عقود الأصول الاصطناعية covering مؤشرات وسندات وذهب بأسعار أوراكل."},
+{"id":"22","name_cn":"EACO新能源投资","name_en":"EACO Renewable Energy Investment","category":"RWA Assets","desc_cn":"将光伏电站、风电场代币化，投资者用EACO认购份额，每日领取发电收益。","desc_en":"Tokenize solar and wind assets, investors use EACO to subscribe, daily yields.","desc_ru":"Токенизация солнечных и ветровых активов, инвесторы подписываются через EACO, ежедневная доходность.","desc_es":"Tokenizar activos solares y eolicos, inversores usan EACO, rendimientos diarios.","desc_fr":"Tokeniser des actifs solaires et eoliens, investisseurs utilisent EACO, rendements quotidiens.","desc_ar":"تحويل أصول الطاقة الشمسية والرياح إلى رموز، يستخدم المستثمرون EACO، عوائد يومية."},
+{"id":"23","name_cn":"EACO文旅资产代币化","name_en":"EACO Tourism Asset Tokenization","category":"RWA Assets","desc_cn":"将欧洲平价酒店、东南亚海岛文旅、跨境房车租赁代币化，领取租金收益。","desc_en":"Tokenize European hotels, SE Asia tourism, RV rental, receive daily rental yields.","desc_ru":"Токенизация европейских отелей, туризма ЮВ Азии, аренды автодомов, ежедневная доходность от аренды.","desc_es":"Tokenizar hoteles europeos, turismo SE Asiatico, alquiler RV, rendimientos diarios.","desc_fr":"Tokeniser hotels europeens, tourisme Asie SE, location de camping-cars, rendements locatifs quotidiens.","desc_ar":"تحويل الفنادق الأوروبية والسياحة في جنوب شرق آسيا وإيجار المركبات الترفيهية إلى رموز، عوائد إيجار يومية."},
+{"id":"24","name_cn":"EACO AI Agent调度","name_en":"EACO AI Agent Cluster Orchestration","category":"AI Economy","desc_cn":"管理编排成百上千个AI Agent，智能调度模型，用EACO支付Agent报酬。","desc_en":"Manage hundreds of AI Agents, intelligently dispatch models, pay wages with EACO.","desc_ru":"Управление сотнями AI Agent, интеллектуальная диспетчеризация моделей, оплата через EACO.","desc_es":"Gestionar cientos de AI Agents, despacho inteligente de modelos, pagar con EACO.","desc_fr":"Gerer des centaines d'AI Agents, distribution intelligente de modeles, paiement en EACO.","desc_ar":"إدارة مئات وكلاء AI، التوزيع الذكي للنماذج، الدفع بـ EACO."},
+{"id":"25","name_cn":"EACO活动纪念NFT","name_en":"EACO Event Commemorative NFT","category":"NFT Ecosystem","desc_cn":"将社区活动铸造成纪念NFT，记录贡献，参与者获EACO奖励。","desc_en":"Mint community events as commemorative NFTs, participants earn EACO rewards.","desc_ru":"Создание мероприятий сообщества как памятных NFT, участники получают EACO.","desc_es":"Mintear eventos comunitarios como NFTs conmemorativos, participantes ganan EACO.","desc_fr":"Creer des evenements communautaires en NFT commemoratifs, participants gagnent EACO.","desc_ar":"سك فعاليات المجتمع كـ NFTs تذكارية، يكسب المشاركون EACO."},
+{"id":"26","name_cn":"EACO技能分享平台","name_en":"EACO Global Skill Sharing Platform","category":"Creator Economy","desc_cn":"组织社区大师课，成员用EACO支付或打赏，构建去中心化知识经济。","desc_en":"Organize masterclasses, members pay or tip with EACO, building knowledge economy.","desc_ru":"Организация мастер-классов, участники платят или дают чаевые через EACO, экономика знаний.","desc_es":"Organizar masterclasses, miembros pagan o dan propinas con EACO, economia del conocimiento.","desc_fr":"Organiser des masterclasses, membres paient ou donnent des pourboires en EACO, economie du savoir.","desc_ar":"تنظيم فصول الماجستير، يدفع الأعضاء أو يمنحون إكراميات بـ EACO، اقتصاد المعرفة."},
+{"id":"27","name_cn":"EACO LP合伙人计划","name_en":"EACO LP Partner Program","category":"DeFi Yield","desc_cn":"管理全球LP合伙人扩容计划，支持1-100 SOL多档位参与，享受手续费分红。","desc_en":"Manage global LP partner program, 1-100 SOL tiers, fee dividends and priority rights.","desc_ru":"Управление глобальной программой LP, уровни 1-100 SOL, дивиденды от комиссий и приоритетные права.","desc_es":"Gestionar programa global LP, niveles 1-100 SOL, dividendos y derechos prioritarios.","desc_fr":"Gerer le programme LP global, niveaux 1-100 SOL, dividendes et droits prioritaires.","desc_ar":"إدارة برنامج LP العالمي، مستويات 1-100 SOL، أرباح الرسوم والحقوق ذات الأولوية."},
+{"id":"28","name_cn":"EACO链上安全审计","name_en":"EACO On-chain Security Audit","category":"Infrastructure","desc_cn":"提供智能合约安全审计、钱包确权验证、防仿盘核查服务。","desc_en":"Provide smart contract audits, wallet verification, anti-fraud services.","desc_ru":"Аудит смарт-контрактов, проверка кошельков, антифрод-сервисы.","desc_es":"Auditorias de smart contracts, verificacion de billeteras, servicios anti-fraude.","desc_fr":"Audits de smart contracts, verification de portefeuilles, services anti-fraude.","desc_ar":"تدقيق العقود الذكية، التحقق من المحافظ، خدمات مكافحة الاحتيال."},
+{"id":"29","name_cn":"EACO通缩销毁追踪","name_en":"EACO Deflation Burn Tracker","category":"Data Services","desc_cn":"追踪链上自愿销毁记录，公示销毁哈希，计算通缩率，提供稀缺性分析。","desc_en":"Track on-chain burn records, publicize hashes, calculate deflation rate.","desc_ru":"Отслеживание записей о сжигании on-chain, публикация хэшей, расчёт уровня дефляции.","desc_es":"Rastrear registros de quema on-chain, publicar hashes, calcular tasa de deflacion.","desc_fr":"Suivre les enregistrements de brulage on-chain, publier les haches, calculer le taux de deflation.","desc_ar":"تتبع سجلات الحرق على السلسلة، نشر التجزئات، حساب معدل الانكماش."},
+{"id":"30","name_cn":"EACO地球村愿景布道","name_en":"EACO Earth Village Vision Ambassador","category":"Community Governance","desc_cn":"通过内容创作、演讲向世界传递EACO理念，招募全球志愿者共建地球村。","desc_en":"Spread EACO vision through content and speeches, recruit global volunteers.","desc_ru":"Распространение видения EACO через контент и выступления, набор глобальных волонтёров.","desc_es":"Difundir la vision EACO mediante contenido y discursos, reclutar voluntarios globales.","desc_fr":"Repandre la vision EACO via le contenu et les discours, recruter des volontaires mondiaux.","desc_ar":"نشر رؤية EACO من خلال المحتوى والخطب، تجنيد متطوعين عالميين."}
+];
+var aiData = [
+{"id":"01","name_cn":"AI自动化内容工厂","name_en":"AI Automated Content Factory","desc_cn":"部署AI Agent批量生成文章、视频脚本、社媒文案，以EACO结算内容生产费，实现24/7内容变现。","desc_en":"Deploy AI Agents to batch-generate articles, video scripts, social media copy, settling content production fees in EACO for 24/7 monetization."},
+{"id":"02","name_cn":"AI量化交易引擎","name_en":"AI Quantitative Trading Engine","desc_cn":"AI模型实时分析链上数据和市场情绪，自动执行EACO-SOL套利交易，无需人工干预。","desc_en":"AI models analyze on-chain data and market sentiment in real-time, auto-executing EACO-SOL arbitrage without human intervention."},
+{"id":"03","name_cn":"AI客服机器人工会","name_en":"AI Customer Service Bot Guild","desc_cn":"部署多语言AI客服机器人服务全球电商，用EACO收取服务费，形成机器人劳务工会。","desc_en":"Deploy multilingual AI customer service bots for global e-commerce, charging fees in EACO, forming a bot labor union."},
+{"id":"04","name_cn":"AI翻译众包平台","name_en":"AI Translation Crowdsourcing Platform","desc_cn":"AI Agent自动翻译社区内容为7大语种，贡献者获EACO奖励，AI质检后分发。","desc_en":"AI Agents auto-translate content into 7 languages, contributors earn EACO, AI quality-checks before distribution."},
+{"id":"05","name_cn":"AI代码生成服务","name_en":"AI Code Generation Service","desc_cn":"AI Agent接收开发需求，自动生成智能合约、DApp前端代码，用EACO收取开发费。","desc_en":"AI Agents receive development requests, auto-generate smart contracts and DApp frontend code, charging fees in EACO."},
+{"id":"06","name_cn":"AI数据标注挖矿","name_en":"AI Data Labeling Mining","desc_cn":"AI Agent自动标注训练数据并出售给AI公司，收益以EACO结算，实现数据标注挖矿。","desc_en":"AI Agents auto-label training data and sell to AI companies, revenue settled in EACO, enabling data labeling mining."},
+{"id":"07","name_cn":"AI NFT艺术生成","name_en":"AI NFT Art Generation","desc_cn":"AI模型批量生成数字艺术NFT，在Solana市场以EACO定价出售，收益自动分配给创作者和AI。","desc_en":"AI models batch-generate digital art NFTs, sold on Solana markets priced in EACO, revenue auto-distributed to creators and AI."},
+{"id":"08","name_cn":"AI社交媒体运营","name_en":"AI Social Media Management","desc_cn":"AI Agent管理多个社交媒体账号，自动发帖、互动、增长粉丝，用EACO结算运营费。","desc_en":"AI Agents manage multiple social media accounts, auto-posting, interacting, growing followers, charging fees in EACO."},
+{"id":"09","name_cn":"AI SEO优化服务","name_en":"AI SEO Optimization Service","desc_cn":"AI分析搜索趋势并自动优化网站内容，为商户提供SEO服务，用EACO收取月费。","desc_en":"AI analyzes search trends and auto-optimizes website content, providing SEO services for merchants, charging monthly fees in EACO."},
+{"id":"10","name_cn":"AI财务分析报告","name_en":"AI Financial Analysis Reports","desc_cn":"AI自动抓取链上数据、DeFi池子APY、交易量，生成专业分析报告，以EACO定价订阅。","desc_en":"AI auto-scrapes on-chain data, DeFi pool APY, trading volume, generating professional reports, subscription priced in EACO."},
+{"id":"11","name_cn":"AI语音克隆服务","name_en":"AI Voice Cloning Service","desc_cn":"AI克隆多语言配音，为视频创作者提供语音服务，用EACO收取配音费，按字数计价。","desc_en":"AI clones multilingual voiceovers for video creators, charging fees in EACO, priced per word count."},
+{"id":"12","name_cn":"AI视频剪辑自动化","name_en":"AI Video Editing Automation","desc_cn":"AI Agent自动剪辑短视频、添加字幕、配乐，为创作者提供批量剪辑服务，EACO结算。","desc_en":"AI Agents auto-edit short videos, add subtitles and music, providing batch editing services, settled in EACO."},
+{"id":"13","name_cn":"AI法律文档审查","name_en":"AI Legal Document Review","desc_cn":"AI审查智能合约和法律文件，识别风险条款，用EACO收取审查费，服务Web3项目。","desc_en":"AI reviews smart contracts and legal documents, identifying risky clauses, charging fees in EACO for Web3 projects."},
+{"id":"14","name_cn":"AI市场调研机器人","name_en":"AI Market Research Bot","desc_cn":"AI Agent自动收集竞品数据、用户评论、行业趋势，生成调研报告，以EACO定价出售。","desc_en":"AI Agents auto-collect competitor data, user reviews, industry trends, generating research reports sold in EACO."},
+{"id":"15","name_cn":"AI教育课程生成","name_en":"AI Education Course Generation","desc_cn":"AI根据用户需求自动生成在线课程内容，用EACO收取课程费，实现知识变现自动化。","desc_en":"AI auto-generates online course content based on user needs, charging course fees in EACO, automating knowledge monetization."},
+{"id":"16","name_cn":"AI客服智能路由","name_en":"AI Support Smart Routing","desc_cn":"AI Agent根据用户问题类型智能路由到最佳解答模型，用EACO结算路由服务费。","desc_en":"AI Agents intelligently route user questions to optimal answer models, charging routing fees in EACO."},
+{"id":"17","name_cn":"AI供应链优化","name_en":"AI Supply Chain Optimization","desc_cn":"AI分析全球物流数据，为跨境贸易商提供最优供应链方案，用EACO收取优化咨询费。","desc_en":"AI analyzes global logistics data, providing optimal supply chain solutions, charging consulting fees in EACO."},
+{"id":"18","name_cn":"AI碳足迹审计","name_en":"AI Carbon Footprint Audit","desc_cn":"AI自动计算企业碳排放数据并上链，生成碳审计报告，用EACO兑换碳积分。","desc_en":"AI auto-calculates enterprise carbon emissions and puts on-chain, generating audit reports, exchanging carbon credits for EACO."},
+{"id":"19","name_cn":"AI预言机数据喂价","name_en":"AI Oracle Data Feed","desc_cn":"AI Agent实时抓取全球50国汇率、股市、能源价格，喂入EACO预言机，赚取数据提供费。","desc_en":"AI Agents real-time scrape 50-country rates, stocks, energy prices, feeding EACO oracle, earning data provision fees."},
+{"id":"20","name_cn":"AI风险评估引擎","name_en":"AI Risk Assessment Engine","desc_cn":"AI分析DeFi协议风险，为投资者提供风险评估报告，用EACO收取评估费。","desc_en":"AI analyzes DeFi protocol risks, providing risk assessment reports for investors, charging fees in EACO."},
+{"id":"21","name_cn":"AI社区管理机器人","name_en":"AI Community Management Bot","desc_cn":"AI Agent管理Telegram/Discord社群，自动欢迎新人、答疑、反垃圾，用EACO结算管理费。","desc_en":"AI Agents manage Telegram/Discord communities, auto-welcoming, answering, anti-spam, charging management fees in EACO."},
+{"id":"22","name_cn":"AI个性化推荐引擎","name_en":"AI Personalized Recommendation Engine","desc_cn":"AI分析用户链上行为，推荐最优DeFi策略和EACO投资方案，用EACO收取推荐佣金。","desc_en":"AI analyzes on-chain behavior, recommending optimal DeFi strategies and EACO investment plans, charging commissions in EACO."},
+{"id":"23","name_cn":"AI自动做市商","name_en":"AI Automated Market Maker","desc_cn":"AI模型动态调整EACO流动性池参数，优化做市收益，实现无人值守自动做市。","desc_en":"AI models dynamically adjust EACO liquidity pool parameters, optimizing market-making returns, enabling unattended auto market-making."},
+{"id":"24","name_cn":"AI版权检测服务","name_en":"AI Copyright Detection Service","desc_cn":"AI扫描链上NFT和内容，检测侵权行为，为创作者提供版权保护，用EACO收取服务费。","desc_en":"AI scans on-chain NFTs and content, detecting infringement, providing copyright protection, charging fees in EACO."},
+{"id":"25","name_cn":"AI智能投顾","name_en":"AI Robo-Advisor","desc_cn":"AI根据用户风险偏好和链上数据，自动构建EACO+SOL投资组合，用EACO收取顾问费。","desc_en":"AI builds EACO+SOL portfolios based on user risk preferences and on-chain data, charging advisory fees in EACO."},
+{"id":"26","name_cn":"AI跨境支付路由","name_en":"AI Cross-border Payment Routing","desc_cn":"AI实时比较多条链上支付路径，选择最优汇率和最低手续费，用EACO结算路由费。","desc_en":"AI real-time compares multiple on-chain payment paths, selecting optimal rates and lowest fees, charging routing fees in EACO."},
+{"id":"27","name_cn":"AI游戏NPC引擎","name_en":"AI Game NPC Engine","desc_cn":"AI驱动的游戏NPC在链上游戏中以EACO进行交易、任务奖励，创造游戏内EACO经济循环。","desc_en":"AI-driven game NPCs trade and reward in EACO within on-chain games, creating in-game EACO economic loops."},
+{"id":"28","name_cn":"AI数据清洗服务","name_en":"AI Data Cleaning Service","desc_cn":"AI Agent自动清洗、去重、标准化链上数据，为数据消费者提供高质量数据集，EACO定价。","desc_en":"AI Agents auto-clean, deduplicate, standardize on-chain data, providing high-quality datasets, priced in EACO."},
+{"id":"29","name_cn":"AI情绪分析哨兵","name_en":"AI Sentiment Analysis Sentinel","desc_cn":"AI监控全球社交媒体对EACO的情绪变化，生成情绪指数报告，以EACO订阅收费。","desc_en":"AI monitors global social media sentiment toward EACO, generating sentiment index reports, subscription in EACO."},
+{"id":"30","name_cn":"AI自动套利机器人","name_en":"AI Auto-Arbitrage Bot","desc_cn":"AI监控多个DEX间的EACO价格差异，自动执行跨平台套利，利润以EACO计价分配。","desc_en":"AI monitors EACO price differences across DEXs, auto-executing cross-platform arbitrage, profits distributed in EACO."}
+];
+var investorsData = [
+{"id":"01","name":"a16z Crypto","region":"USA","desc_cn":"100亿美元加密基金，投资Solana生态、DeFi协议、Web3基础设施。","desc_en":"$10B crypto fund, investing in Solana ecosystem, DeFi protocols, Web3 infrastructure."},
+{"id":"02","name":"Paradigm","region":"USA","desc_cn":"顶级加密投资机构，专注DeFi、CeFi、Web3协议创新。","desc_en":"Top-tier crypto investment firm, focused on DeFi, CeFi, Web3 protocol innovation."},
+{"id":"03","name":"Polychain Capital","region":"USA","desc_cn":"全球最早专注加密资产的投资基金之一，管理数十亿资产。","desc_en":"One of the earliest crypto-focused investment funds globally, managing billions in assets."},
+{"id":"04","name":"Coinbase Ventures","region":"USA","desc_cn":"Coinbase旗下投资部门，已投资300+加密项目。","desc_en":"Coinbase's investment arm, having invested in 300+ crypto projects."},
+{"id":"05","name":"Pantera Capital","region":"USA","desc_cn":"早期加密投资先驱，专注区块链技术和数字资产。","desc_en":"Early crypto investment pioneer, focused on blockchain technology and digital assets."},
+{"id":"06","name":"Multicoin Capital","region":"USA","desc_cn":"以研究驱动的加密投资机构，深耕Solana生态。","desc_en":"Research-driven crypto investment firm, deep in Solana ecosystem."},
+{"id":"07","name":"Jump Crypto","region":"USA","desc_cn":"Jump Trading旗下加密部门，专注基础设施和DeFi。","desc_en":"Jump Trading's crypto division, focused on infrastructure and DeFi."},
+{"id":"08","name":"Solana Ventures","region":"USA","desc_cn":"Solana官方生态基金，直接投资Solana链上项目。","desc_en":"Solana's official ecosystem fund, directly investing in Solana on-chain projects."},
+{"id":"09","name":"Animoca Brands","region":"Hong Kong","desc_cn":"Web3游戏和NFT领域最大投资方之一。","desc_en":"One of the largest investors in Web3 gaming and NFTs."},
+{"id":"10","name":"Binance Labs","region":"Dubai","desc_cn":"币安旗下孵化器和投资基金，全球布局。","desc_en":"Binance's incubator and investment fund, with global presence."},
+{"id":"11","name":"Digital Currency Group","region":"USA","desc_cn":"Grayscale母公司，加密行业最大投资集团之一。","desc_en":"Parent of Grayscale, one of the largest crypto investment groups."},
+{"id":"12","name":"Galaxy Digital","region":"USA","desc_cn":"Mike Novogratz创立的加密金融服务公司。","desc_en":"Crypto financial services company founded by Mike Novogratz."},
+{"id":"13","name":"Dragonfly Capital","region":"USA/China","desc_cn":"跨东西方加密投资机构，专注DeFi和CeFi。","desc_en":"Cross-border crypto investment firm, focused on DeFi and CeFi."},
+{"id":"14","name":"Variant Fund","region":"USA","desc_cn":"专注Web3社交和去中心化协议的早期投资。","desc_en":"Focused on early-stage Web3 social and decentralized protocol investments."},
+{"id":"15","name":"Robot Ventures","region":"USA","desc_cn":"DeFi基础设施早期投资机构。","desc_en":"Early-stage DeFi infrastructure investment firm."},
+{"id":"16","name":"GSR","region":"UK/Singapore","desc_cn":"顶级加密做市商和投资机构。","desc_en":"Top crypto market maker and investment firm."},
+{"id":"17","name":"Wintermute","region":"UK/Singapore","desc_cn":"全球领先加密做市商，同时投资Web3项目。","desc_en":"Global leading crypto market maker, also investing in Web3 projects."},
+{"id":"18","name":"CMS Holdings","region":"USA","desc_cn":"加密资产投资和交易公司。","desc_en":"Crypto asset investment and trading firm."},
+{"id":"19","name":"DeFiance Capital","region":"Singapore","desc_cn":"亚洲领先DeFi投资机构。","desc_en":"Asia's leading DeFi investment firm."},
+{"id":"20","name":"Spartan Group","region":"Singapore","desc_cn":"Web3和DeFi领域知名投资机构。","desc_en":"Well-known investment firm in Web3 and DeFi."},
+{"id":"21","name":"Hashed","region":"Korea/Singapore","desc_cn":"韩国最大加密投资基金之一。","desc_en":"One of Korea's largest crypto investment funds."},
+{"id":"22","name":"Alameda Research","region":"USA","desc_cn":"量化交易和加密投资。","desc_en":"Quantitative trading and crypto investment."},
+{"id":"23","name":"Bitkraft Ventures","region":"USA","desc_cn":"专注Web3游戏和数字娱乐投资。","desc_en":"Focused on Web3 gaming and digital entertainment investment."},
+{"id":"24","name":"Hack VC","region":"USA","desc_cn":"早期Web3和DeFi项目投资。","desc_en":"Early-stage Web3 and DeFi project investment."},
+{"id":"25","name":"Delphi Digital","region":"USA/Australia","desc_cn":"加密研究和投资机构，深度研究驱动。","desc_en":"Crypto research and investment firm, deeply research-driven."},
+{"id":"26","name":"Lemniscap","region":"Netherlands","desc_cn":"专注早期Web3基础设施投资。","desc_en":"Focused on early-stage Web3 infrastructure investment."},
+{"id":"27","name":"Maven 11","region":"Netherlands","desc_cn":"DeFi和Web3协议投资。","desc_en":"DeFi and Web3 protocol investment."},
+{"id":"28","name":"Mirana Ventures","region":"Singapore/Dubai","desc_cn":"Bybit相关投资机构，全球布局。","desc_en":"Bybit-related investment firm, globally positioned."},
+{"id":"29","name":"Foresight Ventures","region":"Singapore","desc_cn":"专注Web3媒体、数据和基础设施投资。","desc_en":"Focused on Web3 media, data and infrastructure investment."},
+{"id":"30","name":"Lbank Labs","region":"Cayman/Singapore","desc_cn":"LBank交易所旗下投资部门。","desc_en":"LBank exchange's investment arm."}
+];
+var methodsData = [
+{"id":"01","name_cn":"Raydium流动性挖矿","name_en":"Raydium Liquidity Mining","desc_cn":"在Raydium添加EACO-SOL流动性，赚取交易手续费和RAY奖励。","desc_en":"Add EACO-SOL liquidity on Raydium, earning trading fees and RAY rewards."},
+{"id":"02","name_cn":"Orca流动性池","name_en":"Orca Liquidity Pool","desc_cn":"在Orca参与EACO-SOL LP，享受低滑点和双币奖励。","desc_en":"Participate in EACO-SOL LP on Orca, enjoying low slippage and dual-token rewards."},
+{"id":"03","name_cn":"Meteora DLMM做市","name_en":"Meteora DLMM Market Making","desc_cn":"在Meteora DLMM池进行集中流动性做市，提高资金效率。","desc_en":"Provide concentrated liquidity on Meteora DLMM pool, improving capital efficiency."},
+{"id":"04","name_cn":"网格交易套利","name_en":"Grid Trading Arbitrage","desc_cn":"设置EACO价格区间网格，低买高卖自动套利。","desc_en":"Set EACO price range grid, auto-arbitrage by buying low and selling high."},
+{"id":"05","name_cn":"EACO质押生息","name_en":"EACO Staking Yield","desc_cn":"质押EACO获取生态分红和治理权。","desc_en":"Stake EACO for ecosystem dividends and governance rights."},
+{"id":"06","name_cn":"LP代币复投","name_en":"LP Token Reinvestment","desc_cn":"将LP收益自动复投，实现复利增长。","desc_en":"Auto-reinvest LP yields for compound growth."},
+{"id":"07","name_cn":"跨DEX价差套利","name_en":"Cross-DEX Spread Arbitrage","desc_cn":"监控Raydium/Orca/Meteora间价差，自动跨平台搬砖。","desc_en":"Monitor price spreads across Raydium/Orca/Meteora, auto cross-platform arbitrage."},
+{"id":"08","name_cn":"EACO-USDT稳定币对","name_en":"EACO-USDT Stablecoin Pair","desc_cn":"在Meteora添加EACO-USDT流动性，降低impermanent loss。","desc_en":"Add EACO-USDT liquidity on Meteora, reducing impermanent loss."},
+{"id":"09","name_cn":"AI驱动趋势交易","name_en":"AI-Driven Trend Trading","desc_cn":"AI模型分析EACO链上数据，自动执行趋势交易。","desc_en":"AI models analyze EACO on-chain data, auto-executing trend trades."},
+{"id":"10","name_cn":"RWA资产碎片投资","name_en":"RWA Fractional Investment","desc_cn":"用EACO认购代币化的光伏、酒店资产，每日领收益。","desc_en":"Use EACO to subscribe tokenized solar/hotel assets, daily yields."},
+{"id":"11","name_cn":"碳NFT交易","name_en":"Carbon NFT Trading","desc_cn":"购买链上碳减排NFT，兑换EACO或持有增值。","desc_en":"Buy on-chain carbon reduction NFTs, exchange for EACO or hold for appreciation."},
+{"id":"12","name_cn":"EACO DAO提案奖励","name_en":"EACO DAO Proposal Rewards","desc_cn":"发起高质量提案获社区通过，领取EACO奖励。","desc_en":"Submit high-quality proposals approved by community, earn EACO rewards."},
+{"id":"13","name_cn":"社区志愿者激励","name_en":"Community Volunteer Incentives","desc_cn":"担任社区志愿者1-6个月，贡献获EACO报酬。","desc_en":"Serve as community volunteer for 1-6 months, earn EACO for contributions."},
+{"id":"14","name_cn":"多语言翻译奖励","name_en":"Multilingual Translation Rewards","desc_cn":"翻译EACO文档为7大语种，按字数获EACO奖励。","desc_en":"Translate EACO documents into 7 languages, earn EACO per word count."},
+{"id":"15","name_cn":"内容创作打赏","name_en":"Content Creation Tips","desc_cn":"创作EACO相关优质内容，获社区EACO打赏。","desc_en":"Create quality EACO-related content, receive EACO tips from community."},
+{"id":"16","name_cn":"DePIN节点运行","name_en":"DePIN Node Operation","desc_cn":"部署DePIN节点共享算力/带宽，获EACO激励。","desc_en":"Deploy DePIN nodes sharing computing/bandwidth, earn EACO incentives."},
+{"id":"17","name_cn":"NFT铸造与交易","name_en":"NFT Minting and Trading","desc_cn":"铸造环保主题NFT以EACO定价，在Solana市场交易。","desc_en":"Mint environmental NFTs priced in EACO, trade on Solana markets."},
+{"id":"18","name_cn":"ECI数据订阅服务","name_en":"ECI Data Subscription Service","desc_cn":"购买ECI指数和50国汇率预言机数据，辅助投资决策。","desc_en":"Purchase ECI index and 50-country oracle data for investment decisions."},
+{"id":"19","name_cn":"跨境支付手续费分红","name_en":"Cross-border Payment Fee Dividends","desc_cn":"为商户提供EACO跨境支付通道，分享0.3%-0.8%手续费。","desc_en":"Provide EACO cross-border payment channels for merchants, share 0.3%-0.8% fees."},
+{"id":"20","name_cn":"合成资产差价交易","name_en":"Synthetic Asset Spread Trading","desc_cn":"交易EACO预言机定价的合成股指/黄金/原油合约。","desc_en":"Trade synthetic stock index/gold/oil contracts priced by EACO oracle."},
+{"id":"21","name_cn":"LP合伙人锁仓分红","name_en":"LP Partner Lock-up Dividends","desc_cn":"参与1-100 SOL档位LP计划，锁仓90天享手续费分红。","desc_en":"Join 1-100 SOL tier LP plan, lock 90 days for fee dividends."},
+{"id":"22","name_cn":"众包任务赏金","name_en":"Crowdsourcing Task Bounties","desc_cn":"完成翻译/设计/开发任务，获EACO赏金支付。","desc_en":"Complete translation/design/development tasks, earn EACO bounties."},
+{"id":"23","name_cn":"品牌积分互换套利","name_en":"Brand Points Exchange Arbitrage","desc_cn":"低价买入品牌积分兑换EACO，实现跨平台套利。","desc_en":"Buy brand points at low price, exchange for EACO, cross-platform arbitrage."},
+{"id":"24","name_cn":"AI算力经销","name_en":"AI Computing Power Resale","desc_cn":"作为经销商批量采购AI算力Token，以EACO定价转售。","desc_en":"As dealer, bulk purchase AI computing tokens, resell priced in EACO."},
+{"id":"25","name_cn":"慈善捐赠链上追溯","name_en":"On-chain Charity Donation Tracking","desc_cn":"捐赠EACO获链上公益凭证，积累社会信用积分。","desc_en":"Donate EACO for on-chain charity credentials, accumulate social credit."},
+{"id":"26","name_cn":"环保行动碳积分","name_en":"Eco Action Carbon Credits","desc_cn":"步行/骑行/回收行为上链获碳积分，兑换EACO。","desc_en":"Walk/cycle/recycle behaviors on-chain earn carbon credits, exchange for EACO."},
+{"id":"27","name_cn":"活动纪念NFT空投","name_en":"Event NFT Airdrops","desc_cn":"参与社区活动获纪念NFT空投，可交易或持有。","desc_en":"Participate in community events for commemorative NFT airdrops, tradeable or holdable."},
+{"id":"28","name_cn":"技能分享付费","name_en":"Skill Sharing Paid Sessions","desc_cn":"在社区开设大师课，用EACO收取课程费和打赏。","desc_en":"Host masterclasses in community, charge course fees and tips in EACO."},
+{"id":"29","name_cn":"EACO通缩销毁受益","name_en":"EACO Deflation Burn Benefit","desc_cn":"持有EACO享受通缩销毁带来的代币稀缺性增值。","desc_en":"Hold EACO to benefit from deflationary burn-driven scarcity appreciation."},
+{"id":"30","name_cn":"全球社区推广佣金","name_en":"Global Community Promotion Commission","desc_cn":"推广EACO生态获新用户，按活跃度获EACO佣金。","desc_en":"Promote EACO ecosystem for new users, earn EACO commission by activity."}
+];
+var industriesData = [
+{"id":"01","name_cn":"绿色能源与可再生能源","name_en":"Green Energy & Renewable Power","desc_cn":"光伏电站、风电场、储能系统代币化投资，EACO预言机定价，每日发电收益分发。EACO对接欧盟绿色基金。","desc_en":"Solar plants, wind farms, energy storage tokenized investment, EACO oracle pricing, daily power generation yield distribution. Connected to EU green funds."},
+{"id":"02","name_cn":"跨境贸易与供应链金融","name_en":"Cross-border Trade & Supply Chain Finance","desc_cn":"EACO作为跨境结算基础设施，0.3%-0.8%手续费，替代传统SWIFT 3-7天和高昂费率。","desc_en":"EACO as cross-border settlement infrastructure, 0.3%-0.8% fees, replacing traditional SWIFT 3-7 day delays and high rates."},
+{"id":"03","name_cn":"RWA实体资产代币化","name_en":"RWA Real-World Asset Tokenization","desc_cn":"全球RWA市场2026年破万亿美金，EACO预言机提供可信定价，覆盖房产、设备、艺术品。","desc_en":"Global RWA market exceeding $1T in 2026, EACO oracle provides trusted pricing, covering real estate, equipment, art."},
+{"id":"04","name_cn":"AI算力与智能服务","name_en":"AI Computing Power & Intelligent Services","desc_cn":"AI Agent集群调度，算力Token以EACO结算，实现去中心化AI经济闭环。","desc_en":"AI Agent cluster orchestration, computing tokens settled in EACO, achieving decentralized AI economic loop."},
+{"id":"05","name_cn":"去中心化金融DeFi","name_en":"Decentralized Finance (DeFi)","desc_cn":"EACO流动性池、借贷协议、合成资产、保险协议，构建完整DeFi生态。","desc_en":"EACO liquidity pools, lending protocols, synthetic assets, insurance protocols, building complete DeFi ecosystem."},
+{"id":"06","name_cn":"碳交易与环境保护","name_en":"Carbon Trading & Environmental Protection","desc_cn":"结合欧盟ETS碳配额，链上碳NFT交易，EACO作为碳资产结算货币。","desc_en":"Integrating EU ETS carbon allowances, on-chain carbon NFT trading, EACO as carbon asset settlement currency."},
+{"id":"07","name_cn":"数字游民与远程办公","name_en":"Digital Nomad & Remote Work","desc_cn":"签证、住宿、薪酬、税务一体化服务，EACO结算享手续费折扣，覆盖全球数字游民。","desc_en":"Visa, accommodation, payroll, tax integrated services, EACO settlement with fee discounts, covering global digital nomads."},
+{"id":"08","name_cn":"NFT与数字创意产业","name_en":"NFT & Digital Creative Industry","desc_cn":"数字艺术、音乐、视频内容NFT化，EACO定价交易，创作者直接变现。","desc_en":"Digital art, music, video content NFT-ization, EACO-priced trading, creators monetize directly."},
+{"id":"09","name_cn":"Web3游戏与元宇宙","name_en":"Web3 Gaming & Metaverse","desc_cn":"链上游戏内经济以EACO结算，NPC交易、任务奖励、道具市场形成闭环。","desc_en":"On-chain game economies settled in EACO, NPC trading, quest rewards, item marketplace forming a closed loop."},
+{"id":"10","name_cn":"全球慈善与社会公益","name_en":"Global Charity & Social Impact","desc_cn":"链上透明慈善捐赠，EACO确保资金可追溯直达受益人，智能合约触发拨付。","desc_en":"On-chain transparent charity donations, EACO ensures traceable funds to beneficiaries, smart contract-triggered disbursement."}
+];
+var countriesData = [
+{"id":"01","name_cn":"瑞士 - 楚格 Zug","name_en":"Switzerland - Zug","desc_cn":"楚格是「加密谷」，拥有明确加密法规和优惠税率，吸引全球Web3企业注册。","desc_en":"Zug is 'Crypto Valley' with clear crypto regulations and favorable tax rates, attracting global Web3 companies."},
+{"id":"02","name_cn":"新加坡 Singapore","name_en":"Singapore","desc_cn":"MAS颁发加密支付牌照，完善的监管沙盒，亚洲Web3中心。","desc_en":"MAS issues crypto payment licenses, comprehensive regulatory sandbox, Asia's Web3 hub."},
+{"id":"03","name_cn":"阿联酋 - 迪拜 Dubai","name_en":"UAE - Dubai","desc_cn":"迪拜VARA加密监管机构，自由区零所得税，吸引全球加密企业。","desc_en":"Dubai VARA crypto regulator, free zones with zero income tax, attracting global crypto companies."},
+{"id":"04","name_cn":"葡萄牙 - 里斯本 Lisbon","name_en":"Portugal - Lisbon","desc_cn":"非惯常居民(NHR)税收优惠，加密货币免税，欧洲Web3创业热门地。","desc_en":"Non-Habitual Resident (NHR) tax benefits, crypto tax-free, popular European Web3 startup destination."},
+{"id":"05","name_cn":"爱沙尼亚 - 塔林 Tallinn","name_en":"Estonia - Tallinn","desc_cn":"全球首个数字公民计划，电子居民可远程运营加密公司。","desc_en":"World's first digital citizenship program, e-residents can remotely operate crypto companies."},
+{"id":"06","name_cn":"萨尔瓦多 San Salvador","name_en":"El Salvador - San Salvador","desc_cn":"全球首个将比特币列为法定货币的国家，加密友好度最高。","desc_en":"World's first country to adopt Bitcoin as legal tender, highest crypto friendliness."},
+{"id":"07","name_cn":"韩国 - 首尔 Seoul","name_en":"South Korea - Seoul","desc_cn":"韩国通过《数字资产基本法》，合规交易所繁荣，Web3游戏产业发达。","desc_en":"South Korea passes Digital Asset Basic Act, prosperous compliant exchanges, developed Web3 gaming industry."},
+{"id":"08","name_cn":"香港 Hong Kong","name_en":"Hong Kong","desc_cn":"SFC发牌制度明确合规路径，虚拟资产ETF获批，连接中国资本。","desc_en":"SFC licensing system provides clear compliance path, virtual asset ETFs approved, connecting Chinese capital."},
+{"id":"09","name_cn":"越南 - 胡志明市 Ho Chi Minh City","name_en":"Vietnam - Ho Chi Minh City","desc_cn":"全球加密采用率前三，庞大开发者社区，低成本Web3外包基地。","desc_en":"Top 3 globally in crypto adoption, huge developer community, low-cost Web3 outsourcing base."},
+{"id":"10","name_cn":"美国 - 迈阿密 Miami","name_en":"USA - Miami","desc_cn":"迈阿密市长力推加密友好政策，怀俄明州DAO LLC法律框架完善。","desc_en":"Miami mayor pushes crypto-friendly policies, Wyoming DAO LLC legal framework well-established."}
+];
+
+var categories = ["Infrastructure","DeFi Yield","Trading Strategy","Cross-border Payment","RWA Assets","Green Finance","Community Governance","AI Economy","NFT Ecosystem","DePIN Infrastructure","Creator Economy","Lifestyle","Data Services","Business Application"];
+
+function t(key){
+  var u=EACO_UI[currentLang];
+  if(u&&u[key])return u[key];
+  var e=EACO_UI["en"];
+  return(e&&e[key])?e[key]:key;
+}
+function dn(item){
+  var k="name_"+currentLang.replace("-CN","");
+  if(item[k])return item[k];
+  if(item["name_en"])return item["name_en"];
+  return item["name_cn"];
+}
+function dd(item){
+  var k="desc_"+currentLang.replace("-CN","");
+  if(item[k])return item[k];
+  if(item["desc_en"])return item["desc_en"];
+  return item["desc_cn"];
+}
+
+function renderNav(){
+  var keys=["nav_skills","nav_ai","nav_investors","nav_methods","nav_industries","nav_countries"];
+  var ids=["skills","ai-earning","investors","methods","industries","countries"];
+  var h="";
+  for(var i=0;i<keys.length;i++)h+='<a href="#'+ids[i]+'">'+t(keys[i])+'</a>';
+  document.getElementById("navLinks").innerHTML=h;
+}
+function renderHero(){
+  document.getElementById("heroBadge").textContent=t("hero_badge");
+  document.getElementById("heroSubtitle").textContent=t("hero_subtitle");
+  document.getElementById("heroCA").textContent=t("ca_label")+" "+CA;
+  document.getElementById("btnTrade").textContent=t("btn_trade");
+  document.getElementById("btnPool").textContent=t("btn_pool");
+  document.getElementById("btnJoin").textContent=t("btn_join");
+  var stats=[["30",t("stat_skills")],["30",t("stat_ai")],["30",t("stat_invest")],["10",t("stat_industries")],["10",t("stat_countries")]];
+  var sh="";
+  for(var i=0;i<stats.length;i++)sh+='<div class="stat-item"><div class="stat-num">'+stats[i][0]+'</div><div class="stat-label">'+stats[i][1]+'</div></div>';
+  document.getElementById("statsRow").innerHTML=sh;
+}
+function renderSkills(){
+  document.getElementById("secSkillsTitle").textContent=t("sec_skills_title");
+  document.getElementById("secSkillsDesc").textContent=t("sec_skills_desc");
+  var fh='<button class="filter-btn active" onclick="filterSkills(\'all\',this)">All</button>';
+  for(var i=0;i<categories.length;i++)fh+='<button class="filter-btn" onclick="filterSkills(\''+categories[i]+'\',this)">'+categories[i]+'</button>';
+  document.getElementById("catFilter").innerHTML=fh;
+  var h="";
+  for(var i=0;i<skillsData.length;i++){
+    var s=skillsData[i];
+    h+='<div class="card skill-card" data-category="'+s.category+'"><div class="card-header"><span class="skill-id">#'+s.id+'</span><span class="skill-cat">'+s.category+'</span></div><h3 class="card-title">'+dn(s)+'</h3><p class="card-desc">'+dd(s)+'</p></div>';
+  }
+  document.getElementById("skillsGrid").innerHTML=h;
+}
+function renderAI(){
+  document.getElementById("secAiTitle").textContent=t("sec_ai_title");
+  document.getElementById("secAiDesc").textContent=t("sec_ai_desc");
+  var h="";
+  for(var i=0;i<aiData.length;i++){
+    var a=aiData[i];
+    h+='<div class="card"><div class="card-header"><span class="skill-id">#'+a.id+'</span><span class="ai-badge">AI</span></div><h3 class="card-title">'+dn(a)+'</h3><p class="card-desc">'+dd(a)+'</p></div>';
+  }
+  document.getElementById("aiGrid").innerHTML=h;
+}
+function renderInvestors(){
+  document.getElementById("secInvTitle").textContent=t("sec_investors_title");
+  document.getElementById("secInvDesc").textContent=t("sec_investors_desc");
+  document.getElementById("invHead").innerHTML="<th>"+t("th_num")+"</th><th>"+t("th_name")+"</th><th>"+t("th_region")+"</th><th>"+t("th_desc")+"</th>";
+  var h="";
+  for(var i=0;i<investorsData.length;i++){
+    var inv=investorsData[i];
+    h+="<tr><td class='col-num'>"+inv.id+"</td><td class='col-name'>"+inv.name+"</td><td>"+inv.region+"</td><td>"+dd(inv)+"</td></tr>";
+  }
+  document.getElementById("invBody").innerHTML=h;
+}
+function renderMethods(){
+  document.getElementById("secMetTitle").textContent=t("sec_methods_title");
+  document.getElementById("secMetDesc").textContent=t("sec_methods_desc");
+  var h="";
+  for(var i=0;i<methodsData.length;i++){
+    var m=methodsData[i];
+    h+='<div class="card"><div class="card-header"><span class="skill-id">#'+m.id+'</span></div><h3 class="card-title">'+dn(m)+'</h3><p class="card-desc">'+dd(m)+'</p></div>';
+  }
+  document.getElementById("metGrid").innerHTML=h;
+}
+function renderIndustries(){
+  document.getElementById("secIndTitle").textContent=t("sec_industries_title");
+  document.getElementById("secIndDesc").textContent=t("sec_industries_desc");
+  var h="";
+  for(var i=0;i<industriesData.length;i++){
+    var ind=industriesData[i];
+    h+='<div class="card"><div class="card-header"><span class="skill-id">#'+ind.id+'</span></div><h3 class="card-title">'+dn(ind)+'</h3><p class="card-desc">'+dd(ind)+'</p></div>';
+  }
+  document.getElementById("indGrid").innerHTML=h;
+}
+function renderCountries(){
+  document.getElementById("secCouTitle").textContent=t("sec_countries_title");
+  document.getElementById("secCouDesc").textContent=t("sec_countries_desc");
+  var h="";
+  for(var i=0;i<countriesData.length;i++){
+    var c=countriesData[i];
+    h+='<div class="card"><div class="card-header"><span class="skill-id">#'+c.id+'</span></div><h3 class="card-title">'+dn(c)+'</h3><p class="card-desc">'+dd(c)+'</p></div>';
+  }
+  document.getElementById("couGrid").innerHTML=h;
+}
+function renderFooter(){
+  document.getElementById("footerEaco").textContent=t("footer_eaco");
+  document.getElementById("footerTagline").textContent=t("footer_tagline");
+}
+function renderAll(){
+  renderNav();renderHero();renderSkills();renderAI();renderInvestors();renderMethods();renderIndustries();renderCountries();renderFooter();
+}
+function setTheme(theme){
+  if(theme==="default"){document.documentElement.removeAttribute("data-theme")}
+  else{document.documentElement.setAttribute("data-theme",theme)}
+  document.querySelectorAll(".theme-dot").forEach(function(d){d.classList.remove("active")});
+  document.querySelector('.theme-dot[data-t="'+theme+'"]').classList.add("active");
+  try{localStorage.setItem("eaco-theme",theme)}catch(e){}
+}
+function setLang(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  var ls=document.getElementById("langSelect");if(ls)ls.value=lang;
+  if(lang==="ar")document.body.classList.add("rtl");else document.body.classList.remove("rtl");
+  renderAll();
+}
+function filterSkills(cat,btn){
+  document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active")});
+  btn.classList.add("active");
+  document.querySelectorAll(".skill-card").forEach(function(c){
+    if(cat==="all"||c.getAttribute("data-category")===cat)c.style.display="";else c.style.display="none";
+  });
+}
+document.querySelectorAll("a[href^='#']").forEach(function(a){
+  a.addEventListener("click",function(e){
+    var target=document.querySelector(this.getAttribute("href"));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:"smooth"})}
+  });
+});
+try{var savedTheme=localStorage.getItem("eaco-theme");if(savedTheme&&savedTheme!=="default")setTheme(savedTheme)}catch(e){}
+// Auto-generated translation patch for es
+(function(){
+var _ai={"01":{n:"Fabrica de contenido automatizado por AI",d:"Desplegar AI Agents para generar articulos, guiones, copy en redes, cobrando en EACO, monetizacion 24/7."},"02":{n:"Motor de trading cuantitativo AI",d:"Modelos AI analizan datos on-chain y sentimiento, auto-ejecutando arbitraje EACO-SOL."},"03":{n:"Guild de bots de atencion al cliente AI",d:"Bots multilingues para e-commerce global, cobrando en EACO, sindicato de bots."},"04":{n:"Plataforma de traduccion crowdsourcing AI",d:"AI Agents traducen contenido a 7 idiomas, traductores ganan EACO, control AI."},"05":{n:"Servicio de generacion de codigo AI",d:"AI Agents reciben requerimientos, generan smart contracts y DApp, cobran en EACO."},"06":{n:"Mineria de etiquetado de datos AI",d:"AI Agents etiquetan datos de entrenamiento y venden a empresas AI, ingresos en EACO."},"07":{n:"Generacion de arte NFT por AI",d:"Modelos AI generan NFTs digitales, venta en Solana por EACO, distribucion automatica."},"08":{n:"Gestion de redes sociales AI",d:"AI Agents gestionan cuentas, auto-posting, interaccion, crecimiento por EACO."},"09":{n:"Servicio de optimizacion SEO AI",d:"AI analiza tendencias y optimiza contenido, SEO por EACO, suscripcion mensual."},"10":{n:"Reportes de analisis financiero AI",d:"AI recopila datos on-chain, APY, volumenes, reportes profesionales por EACO."},"11":{n:"Servicio de clonacion de voz AI",d:"AI clona voces multilingues, cobro por palabra en EACO."},"12":{n:"Edicion automatica de video AI",d:"AI Agents editan videos cortos, subtitulos, musica, cobro en EACO."},"13":{n:"Revision de documentos legales AI",d:"AI revisa smart contracts, identifica riesgos, cobra en EACO para proyectos Web3."},"14":{n:"Bot de investigacion de mercado AI",d:"AI Agents recopilan datos de competidores, reseñas, tendencias, reportes en EACO."},"15":{n:"Generacion de cursos educativos AI",d:"AI crea cursos online bajo demanda, cobro en EACO, automatizacion."},"16":{n:"Enrutamiento inteligente de soporte AI",d:"AI Agents rutean preguntas a modelos optimos, cobro en EACO."},"17":{n:"Optimizacion de cadena de suministro AI",d:"AI analiza logistica global, soluciones optimas, consultoria en EACO."},"18":{n:"Auditoria de huella de carbono AI",d:"AI calcula emisiones, reportes on-chain, creditos de carbono por EACO."},"19":{n:"Alimentacion de datos oracle AI",d:"AI Agents recopilan tasas de 50 paises, acciones, energia, alimentan oracle EACO."},"20":{n:"Motor de evaluacion de riesgos AI",d:"AI analiza riesgos DeFi, reportes para inversores, cobro en EACO."},"21":{n:"Bot de gestion de comunidad AI",d:"AI Agents gestionan Telegram/Discord, bienvenida, anti-spam por EACO."},"22":{n:"Motor de recomendacion personalizada AI",d:"AI analiza comportamiento on-chain, recomienda estrategias DeFi por EACO."},"23":{n:"Market maker automatico AI",d:"Modelos AI ajustan parametros de pools EACO, optimizando rentabilidad."},"24":{n:"Servicio de deteccion de copyright AI",d:"AI escanea NFTs y contenido, detecta infracciones, proteccion por EACO."},"25":{n:"Robo-asesor AI",d:"AI construye portafolios EACO+SOL por perfil de riesgo, asesoria en EACO."},"26":{n:"Enrutamiento de pagos transfronterizos AI",d:"AI compara rutas de pago, curso optimo, cobro en EACO."},"27":{n:"Motor de NPCs para juegos AI",d:"AI-NPCs comercian y recompensan en EACO en juegos on-chain, economia del juego."},"28":{n:"Servicio de limpieza de datos AI",d:"AI Agents limpian, desduplican datos on-chain, datasets de calidad en EACO."},"29":{n:"Centinela de analisis de sentimiento AI",d:"AI monitorea sentimiento hacia EACO en redes, reportes en EACO."},"30":{n:"Bot de auto-arbitraje AI",d:"AI monitorta diferencias de precio EACO entre DEXs, arbitraje automatico, ganancias en EACO."}};
+aiData.forEach(function(i){var p=_ai[i.id];if(p){i.name_es=p.n;i.desc_es=p.d;}});
+var _met={"01":{n:"Mineria de liquidez en Raydium",d:"Anadir liquidez EACO-SOL en Raydium, comisiones y recompensas RAY."},"02":{n:"Pool de liquidez Orca",d:"Participar en EACO-SOL LP en Orca, bajo slippage, recompensas duales."},"03":{n:"Market making en Meteora DLMM",d:"Liquidez concentrada en Meteora DLMM, eficiencia de capital."},"04":{n:"Arbitraje de trading en cuadricula",d:"Rejilla de rangos de precio EACO, compra/venta automatica."},"05":{n:"Staking de EACO",d:"Stake EACO para dividendos del ecosistema y gobernanza."},"06":{n:"Reinversion de LP tokens",d:"Reinversion automatica de rendimientos LP, crecimiento compuesto."},"07":{n:"Arbitraje entre DEX",d:"Monitorear spreads Raydium/Orca/Meteora, arbitraje cruzado."},"08":{n:"Par stablecoin EACO-USDT",d:"Liquidez EACO-USDT en Meteora, reducir impermanent loss."},"09":{n:"Trading de tendencia con AI",d:"Modelos AI analizan datos on-chain de EACO, trading automatico."},"10":{n:"Inversion fraccional RWA",d:"EACO para suscribir activos tokenizados solar/hotel, rendimiento diario."},"11":{n:"Trading de NFTs de carbono",d:"Comprar NFTs de reduccion de carbono on-chain, cambiar por EACO o mantener."},"12":{n:"Recompensas por propuestas DAO",d:"Propuestas de calidad aprobadas, recompensas EACO."},"13":{n:"Incentivos de voluntariado",d:"Voluntario 1-6 meses, EACO por contribuciones."},"14":{n:"Recompensas de traduccion",d:"Traducir documentos EACO a 7 idiomas, EACO por palabra."},"15":{n:"Propinas por contenido",d:"Crear contenido de calidad sobre EACO, propinas de la comunidad."},"16":{n:"Operacion de nodos DePIN",d:"Nodos DePIN compartiendo computing/ancho de banda, EACO."},"17":{n:"Mint y trading de NFTs",d:"NFTs ecologicos precio EACO, trading en Solana."},"18":{n:"Suscripcion de datos ECI",d:"Indice ECI y datos oracle de 50 paises para inversion."},"19":{n:"Dividendos de pagos transfronterizos",d:"Canales de pago EACO para comerciantes, 0.3-0.8% comisiones."},"20":{n:"Trading de activos sinteticos",d:"Contratos sinteticos de indices/oro/petroleo con oracle EACO."},"21":{n:"Dividendos de bloqueo LP",d:"1-100 SOL LP, bloqueo 90 dias, comisiones."},"22":{n:"Bounties de crowdsourcing",d:"Traduccion/diseno/desarrollo por EACO bounties."},"23":{n:"Arbitraje de puntos de marca",d:"Comprar puntos baratos, cambiar por EACO, arbitraje cruzado."},"24":{n:"Reventa de computing AI",d:"Distribuidor de tokens AI, reventa por EACO."},"25":{n:"Caridad on-chain rastreable",d:"Donaciones EACO, credenciales on-chain, creditos sociales."},"26":{n:"Creditos de carbono eco",d:"Caminar/bici/reciclar on-chain, creditos por EACO."},"27":{n:"Airdrops de NFT de eventos",d:"Participar en eventos, NFT airdrops, trading."},"28":{n:"Sesiones pagadas de habilidades",d:"Masterclasses, pago y propinas en EACO."},"29":{n:"Beneficio de quemado deflacionario",d:"Mantener EACO, escasez por quemado, apreciacion."},"30":{n:"Comisiones de promocion",d:"Promover EACO, nuevos usuarios, comisiones EACO."}};
+methodsData.forEach(function(i){var p=_met[i.id];if(p){i.name_es=p.n;i.desc_es=p.d;}});
+var _ind={"01":{n:"Energia verde y renovable",d:"Tokenizacion de plantas solares/eolicas, oracle EACO, rendimiento diario, fondos verdes UE."},"02":{n:"Comercio transfronterizo y finanzas",d:"EACO como infraestructura transfronteriza, 0.3-0.8%, reemplazo SWIFT."},"03":{n:"Tokenizacion de activos RWA",d:"Mercado RWA global >$1T en 2026, oracle EACO, inmobiliaria, arte."},"04":{n:"Computing AI y servicios inteligentes",d:"Clusters de AI Agents, tokens de computing en EACO, economia AI descentralizada."},"05":{n:"Finanzas descentralizadas DeFi",d:"Pools de liquidez EACO, prestamos, sinteticos, seguros, ecosistema DeFi."},"06":{n:"Comercio de carbono y medio ambiente",d:"Cuotas EU ETS, NFTs de carbono on-chain, EACO como moneda de carbono."},"07":{n:"Nomadas digitales y trabajo remoto",d:"Visas, alojamiento, nomina, impuestos, descuentos EACO, global."},"08":{n:"NFT e industria creativa digital",d:"Arte, musica, video NFT, trading en EACO, monetizacion directa."},"09":{n:"Juegos Web3 y metaverso",d:"Economia de juegos on-chain en EACO, NPCs, misiones, marketplace."},"10":{n:"Caridad global e impacto social",d:"Donaciones on-chain transparentes, EACO, smart contracts, trazabilidad."}};
+industriesData.forEach(function(i){var p=_ind[i.id];if(p){i.name_es=p.n;i.desc_es=p.d;}});
+var _cou={"01":{n:"Suiza - Zug",d:"Zug es 'Crypto Valley', regulacion clara, impuestos favorables, Web3 global."},"02":{n:"Singapur",d:"Licencias MAS, sandbox regulatorio, hub Web3 asiatico."},"03":{n:"EAU - Dubai",d:"VARA regulador, zonas libres sin impuestos, cripto global."},"04":{n:"Portugal - Lisboa",d:"Beneficios NHR, cripto sin impuestos, hub Web3 europeo."},"05":{n:"Estonia - Tallin",d:"Primera ciudadania digital, e-residency para cripto empresas."},"06":{n:"El Salvador",d:"Primer pais con Bitcoin legal, maxima amigabilidad cripto."},"07":{n:"Corea del Sur - Seul",d:"Ley de activos digitales, exchanges, Web3 gaming."},"08":{n:"Hong Kong",d:"Licencias SFC, ETFs de activos virtuales, capital chino."},"09":{n:"Vietnam - Ciudad Ho Chi Minh",d:"Top 3 adopcion cripto, desarrolladores, outsourcing Web3."},"10":{n:"EE.UU. - Miami",d:"Politicas cripto-amigables, Wyoming DAO LLC."}};
+countriesData.forEach(function(i){var p=_cou[i.id];if(p){i.name_es=p.n;i.desc_es=p.d;}});
+var _inv={"01":{d:"Fondo cripto de $10B, invierte en Solana, DeFi, infraestructura Web3."},"02":{d:"Firma top de inversion cripto, foco en DeFi, CeFi, protocolos Web3."},"03":{d:"Uno de los primeros fondos cripto, gestiona miles de millones."},"04":{d:"Brazo de inversion de Coinbase, 300+ proyectos."},"05":{d:"Pionero de inversion cripto, blockchain y activos digitales."},"06":{d:"Fondo cripto impulsado por investigacion, profundo en Solana."},"07":{d:"Division cripto de Jump Trading, infraestructura y DeFi."},"08":{d:"Fondo oficial de Solana, inversion directa on-chain."},"09":{d:"Mayor inversor en juegos Web3 y NFTs."},"10":{d:"Incubadora y fondo de Binance, presencia global."},"11":{d:"Matriz de Grayscale, mayor grupo de inversion cripto."},"12":{d:"Compania financiera cripto fundada por Mike Novogratz."},"13":{d:"Fondo cripto transfronterizo, DeFi y CeFi."},"14":{d:"Web3 social y protocolos descentralizados tempranos."},"15":{d:"Inversiones tempranas en infraestructura DeFi."},"16":{d:"Top market maker cripto e inversor."},"17":{d:"Market maker cripto global, invierte en Web3."},"18":{d:"Compania de inversion y trading cripto."},"19":{d:"Principal inversor DeFi asiatico."},"20":{d:"Firma conocida de inversion en Web3 y DeFi."},"21":{d:"Uno de los mayores fondos cripto de Corea."},"22":{d:"Trading cuantitativo e inversion cripto."},"23":{d:"Juegos Web3 y entretenimiento digital."},"24":{d:"Proyectos Web3 y DeFi tempranos."},"25":{d:"Investigacion e inversion cripto, research-driven."},"26":{d:"Inversiones tempranas en infraestructura Web3."},"27":{d:"Inversion en protocolos DeFi y Web3."},"28":{d:"Inversor vinculado a Bybit, presencia global."},"29":{d:"Web3 media, datos e infraestructura."},"30":{d:"Brazo de inversion de LBank."}};
+investorsData.forEach(function(i){var p=_inv[i.id];if(p){i.desc_es=p.d;}});
+})();
+renderAll();
+</script>
+</body>
+</html>
