@@ -11,6 +11,21 @@
 
 制作支持 eaco机器人赚钱的30个eaco-skill,方便全球网友使用。
 
-30个 EACO Agent Skills
+#  30个 EACO Agent Skills website
 
+eacoskill30/
 
+├── index.html              ← 网站首页
+
+├── i18n.js                 ← 翻译数据
+
+└── eaco-agent-skills/
+
+    ├── eaco-skill01/SKILL.md
+    
+    ├── eaco-skill02/SKILL.md
+    
+    ├── ...
+    
+    └── eaco-skill30/SKILL.md
+    
