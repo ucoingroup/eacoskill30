@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-EACO Daily Agent v5.0 - 每日自动运行，监控Solana链上EACO资产数据，模拟每日赚钱过程。
+EACO Daily Agent v5.1 - 每日自动运行，监控Solana链上EACO资产数据，模拟每日赚钱过程。
 无需私钥，只读取链上公开数据。
+
+v5.1 新增:
+  - 8个Web赚钱策略(W01-W08): Upwork/Fiverr/UserTesting/Respondent/MTurk/Rev/Prolific/Honeygain
+  - 双轨赚钱: Web法币收入 + Web3/EACO生态收入
+  - 目标$600/天的多平台组合策略
+  - 每日工作流时间表优化
 
 v5.0 新增:
   - 每日赚钱模拟引擎：选择当日最优策略组合并模拟执行
@@ -834,6 +840,79 @@ STRATEGIES = [
         "apy_estimate": "10-60%", "risk_cn": "无", "risk_en": "None",
         "capital_type": "社交网络", "needs_private_key": False, "needs_capital": False,
         "daily_apr_range": (0.03, 0.16), "difficulty": "1", "auto_executable": True,
+    },
+    # v5.1: Web earning strategies (daily payment platforms)
+    {
+        "id": "W01", "name_cn": "Upwork自由职业", "name_en": "Upwork Freelance",
+        "skill_ref": "eaco-skill01",
+        "desc": "Upwork接单：编程/设计/写作/翻译，时薪$50-150",
+        "desc_en": "Upwork projects: coding/design/writing/translation, $50-150/h",
+        "apy_estimate": "200-500%", "risk_cn": "无", "risk_en": "None",
+        "capital_type": "技能+时间", "needs_private_key": False, "needs_capital": False,
+        "daily_apr_range": (0.5, 3.0), "difficulty": "2", "auto_executable": False,
+    },
+    {
+        "id": "W02", "name_cn": "Fiverr Gig经济", "name_en": "Fiverr Gig Economy",
+        "skill_ref": "eaco-skill01",
+        "desc": "Fiverr出售服务：设计/写作/AI工具，$5-500/gig",
+        "desc_en": "Fiverr services: design/writing/AI tools, $5-500/gig",
+        "apy_estimate": "100-300%", "risk_cn": "无", "risk_en": "None",
+        "capital_type": "技能+时间", "needs_private_key": False, "needs_capital": False,
+        "daily_apr_range": (0.3, 2.0), "difficulty": "1", "auto_executable": False,
+    },
+    {
+        "id": "W03", "name_cn": "UserTesting网站测试", "name_en": "UserTesting Website Testing",
+        "skill_ref": "eaco-skill11",
+        "desc": "测试网站/APP，20分钟$10，访谈$30-60",
+        "desc_en": "Test websites/apps, $10/20min, interviews $30-60",
+        "apy_estimate": "50-150%", "risk_cn": "无", "risk_en": "None",
+        "capital_type": "时间", "needs_private_key": False, "needs_capital": False,
+        "daily_apr_range": (0.2, 1.0), "difficulty": "1", "auto_executable": True,
+    },
+    {
+        "id": "W04", "name_cn": "Respondent B2B访谈", "name_en": "Respondent B2B Research",
+        "skill_ref": "eaco-skill01",
+        "desc": "B2B研究访谈，时薪$50-200，按职业匹配",
+        "desc_en": "B2B research interviews, $50-200/h, matched by profession",
+        "apy_estimate": "300-1000%", "risk_cn": "无", "risk_en": "None",
+        "capital_type": "职业背景+时间", "needs_private_key": False, "needs_capital": False,
+        "daily_apr_range": (1.0, 5.0), "difficulty": "2", "auto_executable": False,
+    },
+    {
+        "id": "W05", "name_cn": "MTurk微任务", "name_en": "MTurk Microtasks",
+        "skill_ref": "eaco-skill11",
+        "desc": "Amazon MTurk数据标注/分类/审核，多任务并行",
+        "desc_en": "Amazon MTurk data labeling/classification/review, parallel tasks",
+        "apy_estimate": "50-200%", "risk_cn": "无", "risk_en": "None",
+        "capital_type": "时间", "needs_private_key": False, "needs_capital": False,
+        "daily_apr_range": (0.15, 0.8), "difficulty": "1", "auto_executable": True,
+    },
+    {
+        "id": "W06", "name_cn": "Rev音频转录", "name_en": "Rev Transcription",
+        "skill_ref": "eaco-skill20",
+        "desc": "音频转文字$0.30-1.10/min，需通过英语测试",
+        "desc_en": "Audio to text $0.30-1.10/min, pass English test",
+        "apy_estimate": "80-200%", "risk_cn": "无", "risk_en": "None",
+        "capital_type": "英语+时间", "needs_private_key": False, "needs_capital": False,
+        "daily_apr_range": (0.2, 1.0), "difficulty": "2", "auto_executable": False,
+    },
+    {
+        "id": "W07", "name_cn": "Prolific学术研究", "name_en": "Prolific Academic Research",
+        "skill_ref": "eaco-skill11",
+        "desc": "参与大学研究问卷，时薪$8-15",
+        "desc_en": "Participate in university research, $8-15/h",
+        "apy_estimate": "40-100%", "risk_cn": "无", "risk_en": "None",
+        "capital_type": "时间", "needs_private_key": False, "needs_capital": False,
+        "daily_apr_range": (0.1, 0.5), "difficulty": "1", "auto_executable": True,
+    },
+    {
+        "id": "W08", "name_cn": "Honeygain被动带宽", "name_en": "Honeygain Passive Bandwidth",
+        "skill_ref": "eaco-skill11",
+        "desc": "分享闲置带宽，24/7被动收入$1-5/天",
+        "desc_en": "Share unused bandwidth, 24/7 passive $1-5/day",
+        "apy_estimate": "10-30%", "risk_cn": "无", "risk_en": "None",
+        "capital_type": "网络带宽", "needs_private_key": False, "needs_capital": False,
+        "daily_apr_range": (0.01, 0.05), "difficulty": "1", "auto_executable": True,
     },
 ]
 
