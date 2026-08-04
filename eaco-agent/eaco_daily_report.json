@@ -1,26 +1,26 @@
 {
-  "report_time": "2026-08-03 13:00:11 CST",
-  "agent_version": "4.0",
+  "report_time": "2026-08-04 08:17:29 CST",
+  "agent_version": "5.0",
   "network": "Solana Mainnet",
   "market_data": {
-    "eaco_price_usd": 0.001,
-    "sol_price_usd": 72.86,
-    "usdc_price_usd": 1.001,
-    "eaco_sol_rate": 1.3724951962668131e-05,
-    "eaco_total_supply": 1348368645.6283631,
-    "eaco_market_cap_usd": 1348368.65,
-    "total_liquidity_usd": 0.0,
-    "total_volume_24h_usd": 0.0,
-    "current_slot": 436906929,
-    "price_source": "Estimated (API unreachable)",
-    "sol_24h_change": -0.89,
+    "eaco_price_usd": 0.0012,
+    "sol_price_usd": 72.5,
+    "usdc_price_usd": 1.0,
+    "eaco_sol_rate": 1.6551724137931033e-05,
+    "eaco_total_supply": 1348368645.63,
+    "eaco_market_cap_usd": 1618042.37,
+    "total_liquidity_usd": 35000.0,
+    "total_volume_24h_usd": 5000.0,
+    "current_slot": 290000000,
+    "price_source": "Mock (test mode)",
+    "sol_24h_change": 3.5,
     "dex_pairs": []
   },
   "onchain": {
-    "supply": 1348368645.6283631,
-    "slot": 436906929,
-    "epoch": 1011,
-    "holders_estimated": 0
+    "supply": 1348368645.63,
+    "slot": 290000000,
+    "epoch": 720,
+    "holders_estimated": 1850
   },
   "meteora_pools": {
     "E-USDT": {
@@ -54,11 +54,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.06,
           "high_daily_usd": 0.16,
-          "low_daily_eaco": 58.0,
-          "high_daily_eaco": 160.0,
+          "low_daily_eaco": 48.0,
+          "high_daily_eaco": 133.0,
           "low_daily_sol": 0.0008,
           "high_daily_sol": 0.0022,
           "low_daily_usdt": 0.06,
@@ -69,32 +69,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.58,
-          "high_daily_usd": 1.6,
-          "low_daily_eaco": 583.0,
-          "high_daily_eaco": 1603.0,
+          "high_daily_usd": 1.59,
+          "low_daily_eaco": 483.0,
+          "high_daily_eaco": 1329.0,
           "low_daily_sol": 0.008,
           "high_daily_sol": 0.022,
           "low_daily_usdt": 0.58,
-          "high_daily_usdt": 1.6,
+          "high_daily_usdt": 1.59,
           "low_daily_usdc": 0.58,
-          "high_daily_usdc": 1.6
+          "high_daily_usdc": 1.59
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 5.83,
-          "high_daily_usd": 16.03,
-          "low_daily_eaco": 5829.0,
-          "high_daily_eaco": 16029.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 5.8,
+          "high_daily_usd": 15.95,
+          "low_daily_eaco": 4833.0,
+          "high_daily_eaco": 13292.0,
           "low_daily_sol": 0.08,
           "high_daily_sol": 0.22,
-          "low_daily_usdt": 5.83,
-          "high_daily_usdt": 16.03,
-          "low_daily_usdc": 5.83,
-          "high_daily_usdc": 16.03
+          "low_daily_usdt": 5.8,
+          "high_daily_usdt": 15.95,
+          "low_daily_usdc": 5.8,
+          "high_daily_usdc": 15.95
         }
       ]
     },
@@ -116,11 +116,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.1,
           "high_daily_usd": 0.3,
-          "low_daily_eaco": 102.0,
-          "high_daily_eaco": 299.0,
+          "low_daily_eaco": 85.0,
+          "high_daily_eaco": 248.0,
           "low_daily_sol": 0.0014,
           "high_daily_sol": 0.0041,
           "low_daily_usdt": 0.1,
@@ -131,32 +131,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 1.02,
-          "high_daily_usd": 2.99,
-          "low_daily_eaco": 1020.0,
-          "high_daily_eaco": 2987.0,
+          "high_daily_usd": 2.97,
+          "low_daily_eaco": 846.0,
+          "high_daily_eaco": 2477.0,
           "low_daily_sol": 0.014,
           "high_daily_sol": 0.041,
           "low_daily_usdt": 1.02,
-          "high_daily_usdt": 2.99,
+          "high_daily_usdt": 2.97,
           "low_daily_usdc": 1.02,
-          "high_daily_usdc": 2.99
+          "high_daily_usdc": 2.97
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 10.2,
-          "high_daily_usd": 29.87,
-          "low_daily_eaco": 10200.0,
-          "high_daily_eaco": 29873.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 10.15,
+          "high_daily_usd": 29.73,
+          "low_daily_eaco": 8458.0,
+          "high_daily_eaco": 24771.0,
           "low_daily_sol": 0.14,
           "high_daily_sol": 0.41,
-          "low_daily_usdt": 10.2,
-          "high_daily_usdt": 29.87,
-          "low_daily_usdc": 10.2,
-          "high_daily_usdc": 29.87
+          "low_daily_usdt": 10.15,
+          "high_daily_usdt": 29.73,
+          "low_daily_usdc": 10.15,
+          "high_daily_usdc": 29.73
         }
       ]
     },
@@ -178,11 +178,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.04,
           "high_daily_usd": 0.12,
-          "low_daily_eaco": 36.0,
-          "high_daily_eaco": 117.0,
+          "low_daily_eaco": 30.0,
+          "high_daily_eaco": 97.0,
           "low_daily_sol": 0.0005,
           "high_daily_sol": 0.0016,
           "low_daily_usdt": 0.04,
@@ -193,32 +193,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.36,
-          "high_daily_usd": 1.17,
-          "low_daily_eaco": 364.0,
-          "high_daily_eaco": 1166.0,
+          "high_daily_usd": 1.16,
+          "low_daily_eaco": 302.0,
+          "high_daily_eaco": 967.0,
           "low_daily_sol": 0.005,
           "high_daily_sol": 0.016,
           "low_daily_usdt": 0.36,
-          "high_daily_usdt": 1.17,
+          "high_daily_usdt": 1.16,
           "low_daily_usdc": 0.36,
-          "high_daily_usdc": 1.17
+          "high_daily_usdc": 1.16
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 3.64,
-          "high_daily_usd": 11.66,
-          "low_daily_eaco": 3643.0,
-          "high_daily_eaco": 11658.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 3.62,
+          "high_daily_usd": 11.6,
+          "low_daily_eaco": 3021.0,
+          "high_daily_eaco": 9667.0,
           "low_daily_sol": 0.05,
           "high_daily_sol": 0.16,
-          "low_daily_usdt": 3.64,
-          "high_daily_usdt": 11.66,
-          "low_daily_usdc": 3.64,
-          "high_daily_usdc": 11.66
+          "low_daily_usdt": 3.62,
+          "high_daily_usdt": 11.6,
+          "low_daily_usdc": 3.62,
+          "high_daily_usdc": 11.6
         }
       ]
     },
@@ -240,11 +240,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.02,
           "high_daily_usd": 0.05,
-          "low_daily_eaco": 22.0,
-          "high_daily_eaco": 51.0,
+          "low_daily_eaco": 18.0,
+          "high_daily_eaco": 42.0,
           "low_daily_sol": 0.0003,
           "high_daily_sol": 0.0007,
           "low_daily_usdt": 0.02,
@@ -255,11 +255,11 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.22,
           "high_daily_usd": 0.51,
-          "low_daily_eaco": 219.0,
-          "high_daily_eaco": 510.0,
+          "low_daily_eaco": 181.0,
+          "high_daily_eaco": 423.0,
           "low_daily_sol": 0.003,
           "high_daily_sol": 0.007,
           "low_daily_usdt": 0.22,
@@ -270,17 +270,17 @@
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 2.19,
-          "high_daily_usd": 5.1,
-          "low_daily_eaco": 2186.0,
-          "high_daily_eaco": 5100.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 2.17,
+          "high_daily_usd": 5.08,
+          "low_daily_eaco": 1812.0,
+          "high_daily_eaco": 4229.0,
           "low_daily_sol": 0.03,
           "high_daily_sol": 0.07,
-          "low_daily_usdt": 2.19,
-          "high_daily_usdt": 5.1,
-          "low_daily_usdc": 2.19,
-          "high_daily_usdc": 5.1
+          "low_daily_usdt": 2.17,
+          "high_daily_usdt": 5.08,
+          "low_daily_usdc": 2.17,
+          "high_daily_usdc": 5.08
         }
       ]
     },
@@ -302,11 +302,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.08,
           "high_daily_usd": 0.24,
-          "low_daily_eaco": 80.0,
-          "high_daily_eaco": 240.0,
+          "low_daily_eaco": 66.0,
+          "high_daily_eaco": 199.0,
           "low_daily_sol": 0.0011,
           "high_daily_sol": 0.0033,
           "low_daily_usdt": 0.08,
@@ -317,32 +317,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.8,
-          "high_daily_usd": 2.4,
-          "low_daily_eaco": 801.0,
-          "high_daily_eaco": 2404.0,
+          "high_daily_usd": 2.39,
+          "low_daily_eaco": 665.0,
+          "high_daily_eaco": 1994.0,
           "low_daily_sol": 0.011,
           "high_daily_sol": 0.033,
           "low_daily_usdt": 0.8,
-          "high_daily_usdt": 2.4,
+          "high_daily_usdt": 2.39,
           "low_daily_usdc": 0.8,
-          "high_daily_usdc": 2.4
+          "high_daily_usdc": 2.39
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 8.01,
-          "high_daily_usd": 24.04,
-          "low_daily_eaco": 8015.0,
-          "high_daily_eaco": 24044.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 7.97,
+          "high_daily_usd": 23.93,
+          "low_daily_eaco": 6646.0,
+          "high_daily_eaco": 19938.0,
           "low_daily_sol": 0.11,
           "high_daily_sol": 0.33,
-          "low_daily_usdt": 8.01,
-          "high_daily_usdt": 24.04,
-          "low_daily_usdc": 8.01,
-          "high_daily_usdc": 24.04
+          "low_daily_usdt": 7.97,
+          "high_daily_usdt": 23.93,
+          "low_daily_usdc": 7.97,
+          "high_daily_usdc": 23.93
         }
       ]
     },
@@ -364,11 +364,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.06,
           "high_daily_usd": 0.18,
-          "low_daily_eaco": 58.0,
-          "high_daily_eaco": 182.0,
+          "low_daily_eaco": 48.0,
+          "high_daily_eaco": 151.0,
           "low_daily_sol": 0.0008,
           "high_daily_sol": 0.0025,
           "low_daily_usdt": 0.06,
@@ -379,32 +379,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.58,
-          "high_daily_usd": 1.82,
-          "low_daily_eaco": 583.0,
-          "high_daily_eaco": 1822.0,
+          "high_daily_usd": 1.81,
+          "low_daily_eaco": 483.0,
+          "high_daily_eaco": 1510.0,
           "low_daily_sol": 0.008,
           "high_daily_sol": 0.025,
           "low_daily_usdt": 0.58,
-          "high_daily_usdt": 1.82,
+          "high_daily_usdt": 1.81,
           "low_daily_usdc": 0.58,
-          "high_daily_usdc": 1.82
+          "high_daily_usdc": 1.81
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 5.83,
-          "high_daily_usd": 18.21,
-          "low_daily_eaco": 5829.0,
-          "high_daily_eaco": 18215.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 5.8,
+          "high_daily_usd": 18.12,
+          "low_daily_eaco": 4833.0,
+          "high_daily_eaco": 15104.0,
           "low_daily_sol": 0.08,
           "high_daily_sol": 0.25,
-          "low_daily_usdt": 5.83,
-          "high_daily_usdt": 18.21,
-          "low_daily_usdc": 5.83,
-          "high_daily_usdc": 18.21
+          "low_daily_usdt": 5.8,
+          "high_daily_usdt": 18.12,
+          "low_daily_usdc": 5.8,
+          "high_daily_usdc": 18.12
         }
       ]
     },
@@ -426,11 +426,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.01,
           "high_daily_usd": 0.03,
-          "low_daily_eaco": 15.0,
-          "high_daily_eaco": 29.0,
+          "low_daily_eaco": 12.0,
+          "high_daily_eaco": 24.0,
           "low_daily_sol": 0.0002,
           "high_daily_sol": 0.0004,
           "low_daily_usdt": 0.01,
@@ -441,32 +441,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
-          "low_daily_usd": 0.15,
+          "capital_usd": 725.0,
+          "low_daily_usd": 0.14,
           "high_daily_usd": 0.29,
-          "low_daily_eaco": 146.0,
-          "high_daily_eaco": 291.0,
+          "low_daily_eaco": 121.0,
+          "high_daily_eaco": 242.0,
           "low_daily_sol": 0.002,
           "high_daily_sol": 0.004,
-          "low_daily_usdt": 0.15,
+          "low_daily_usdt": 0.14,
           "high_daily_usdt": 0.29,
-          "low_daily_usdc": 0.15,
+          "low_daily_usdc": 0.14,
           "high_daily_usdc": 0.29
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 1.46,
-          "high_daily_usd": 2.91,
-          "low_daily_eaco": 1457.0,
-          "high_daily_eaco": 2914.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 1.45,
+          "high_daily_usd": 2.9,
+          "low_daily_eaco": 1208.0,
+          "high_daily_eaco": 2417.0,
           "low_daily_sol": 0.02,
           "high_daily_sol": 0.04,
-          "low_daily_usdt": 1.46,
-          "high_daily_usdt": 2.91,
-          "low_daily_usdc": 1.46,
-          "high_daily_usdc": 2.91
+          "low_daily_usdt": 1.45,
+          "high_daily_usdt": 2.9,
+          "low_daily_usdc": 1.45,
+          "high_daily_usdc": 2.9
         }
       ]
     },
@@ -488,11 +488,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.05,
           "high_daily_usd": 0.12,
-          "low_daily_eaco": 51.0,
-          "high_daily_eaco": 117.0,
+          "low_daily_eaco": 42.0,
+          "high_daily_eaco": 97.0,
           "low_daily_sol": 0.0007,
           "high_daily_sol": 0.0016,
           "low_daily_usdt": 0.05,
@@ -503,32 +503,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.51,
-          "high_daily_usd": 1.17,
-          "low_daily_eaco": 510.0,
-          "high_daily_eaco": 1166.0,
+          "high_daily_usd": 1.16,
+          "low_daily_eaco": 423.0,
+          "high_daily_eaco": 967.0,
           "low_daily_sol": 0.007,
           "high_daily_sol": 0.016,
           "low_daily_usdt": 0.51,
-          "high_daily_usdt": 1.17,
+          "high_daily_usdt": 1.16,
           "low_daily_usdc": 0.51,
-          "high_daily_usdc": 1.17
+          "high_daily_usdc": 1.16
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 5.1,
-          "high_daily_usd": 11.66,
-          "low_daily_eaco": 5100.0,
-          "high_daily_eaco": 11658.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 5.08,
+          "high_daily_usd": 11.6,
+          "low_daily_eaco": 4229.0,
+          "high_daily_eaco": 9667.0,
           "low_daily_sol": 0.07,
           "high_daily_sol": 0.16,
-          "low_daily_usdt": 5.1,
-          "high_daily_usdt": 11.66,
-          "low_daily_usdc": 5.1,
-          "high_daily_usdc": 11.66
+          "low_daily_usdt": 5.08,
+          "high_daily_usdt": 11.6,
+          "low_daily_usdc": 5.08,
+          "high_daily_usdc": 11.6
         }
       ]
     },
@@ -550,11 +550,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.04,
           "high_daily_usd": 0.1,
-          "low_daily_eaco": 36.0,
-          "high_daily_eaco": 102.0,
+          "low_daily_eaco": 30.0,
+          "high_daily_eaco": 85.0,
           "low_daily_sol": 0.0005,
           "high_daily_sol": 0.0014,
           "low_daily_usdt": 0.04,
@@ -565,11 +565,11 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.36,
           "high_daily_usd": 1.02,
-          "low_daily_eaco": 364.0,
-          "high_daily_eaco": 1020.0,
+          "low_daily_eaco": 302.0,
+          "high_daily_eaco": 846.0,
           "low_daily_sol": 0.005,
           "high_daily_sol": 0.014,
           "low_daily_usdt": 0.36,
@@ -580,17 +580,17 @@
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 3.64,
-          "high_daily_usd": 10.2,
-          "low_daily_eaco": 3643.0,
-          "high_daily_eaco": 10200.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 3.62,
+          "high_daily_usd": 10.15,
+          "low_daily_eaco": 3021.0,
+          "high_daily_eaco": 8458.0,
           "low_daily_sol": 0.05,
           "high_daily_sol": 0.14,
-          "low_daily_usdt": 3.64,
-          "high_daily_usdt": 10.2,
-          "low_daily_usdc": 3.64,
-          "high_daily_usdc": 10.2
+          "low_daily_usdt": 3.62,
+          "high_daily_usdt": 10.15,
+          "low_daily_usdc": 3.62,
+          "high_daily_usdc": 10.15
         }
       ]
     },
@@ -612,11 +612,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.03,
           "high_daily_usd": 0.07,
-          "low_daily_eaco": 29.0,
-          "high_daily_eaco": 73.0,
+          "low_daily_eaco": 24.0,
+          "high_daily_eaco": 60.0,
           "low_daily_sol": 0.0004,
           "high_daily_sol": 0.001,
           "low_daily_usdt": 0.03,
@@ -627,32 +627,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.29,
-          "high_daily_usd": 0.73,
-          "low_daily_eaco": 291.0,
-          "high_daily_eaco": 729.0,
+          "high_daily_usd": 0.72,
+          "low_daily_eaco": 242.0,
+          "high_daily_eaco": 604.0,
           "low_daily_sol": 0.004,
           "high_daily_sol": 0.01,
           "low_daily_usdt": 0.29,
-          "high_daily_usdt": 0.73,
+          "high_daily_usdt": 0.72,
           "low_daily_usdc": 0.29,
-          "high_daily_usdc": 0.73
+          "high_daily_usdc": 0.72
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 2.91,
-          "high_daily_usd": 7.29,
-          "low_daily_eaco": 2914.0,
-          "high_daily_eaco": 7286.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 2.9,
+          "high_daily_usd": 7.25,
+          "low_daily_eaco": 2417.0,
+          "high_daily_eaco": 6042.0,
           "low_daily_sol": 0.04,
           "high_daily_sol": 0.1,
-          "low_daily_usdt": 2.91,
-          "high_daily_usdt": 7.29,
-          "low_daily_usdc": 2.91,
-          "high_daily_usdc": 7.29
+          "low_daily_usdt": 2.9,
+          "high_daily_usdt": 7.25,
+          "low_daily_usdc": 2.9,
+          "high_daily_usdc": 7.25
         }
       ]
     },
@@ -674,11 +674,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.1,
           "high_daily_usd": 0.4,
-          "low_daily_eaco": 102.0,
-          "high_daily_eaco": 401.0,
+          "low_daily_eaco": 85.0,
+          "high_daily_eaco": 332.0,
           "low_daily_sol": 0.0014,
           "high_daily_sol": 0.0055,
           "low_daily_usdt": 0.1,
@@ -689,32 +689,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 1.02,
-          "high_daily_usd": 4.01,
-          "low_daily_eaco": 1020.0,
-          "high_daily_eaco": 4007.0,
+          "high_daily_usd": 3.99,
+          "low_daily_eaco": 846.0,
+          "high_daily_eaco": 3323.0,
           "low_daily_sol": 0.014,
           "high_daily_sol": 0.055,
           "low_daily_usdt": 1.02,
-          "high_daily_usdt": 4.01,
+          "high_daily_usdt": 3.99,
           "low_daily_usdc": 1.02,
-          "high_daily_usdc": 4.01
+          "high_daily_usdc": 3.99
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 10.2,
-          "high_daily_usd": 40.07,
-          "low_daily_eaco": 10200.0,
-          "high_daily_eaco": 40073.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 10.15,
+          "high_daily_usd": 39.88,
+          "low_daily_eaco": 8458.0,
+          "high_daily_eaco": 33229.0,
           "low_daily_sol": 0.14,
           "high_daily_sol": 0.55,
-          "low_daily_usdt": 10.2,
-          "high_daily_usdt": 40.07,
-          "low_daily_usdc": 10.2,
-          "high_daily_usdc": 40.07
+          "low_daily_usdt": 10.15,
+          "high_daily_usdt": 39.88,
+          "low_daily_usdc": 10.15,
+          "high_daily_usdc": 39.88
         }
       ]
     },
@@ -736,11 +736,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.06,
           "high_daily_usd": 0.2,
-          "low_daily_eaco": 58.0,
-          "high_daily_eaco": 197.0,
+          "low_daily_eaco": 48.0,
+          "high_daily_eaco": 163.0,
           "low_daily_sol": 0.0008,
           "high_daily_sol": 0.0027,
           "low_daily_usdt": 0.06,
@@ -751,32 +751,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.58,
-          "high_daily_usd": 1.97,
-          "low_daily_eaco": 583.0,
-          "high_daily_eaco": 1967.0,
+          "high_daily_usd": 1.96,
+          "low_daily_eaco": 483.0,
+          "high_daily_eaco": 1631.0,
           "low_daily_sol": 0.008,
           "high_daily_sol": 0.027,
           "low_daily_usdt": 0.58,
-          "high_daily_usdt": 1.97,
+          "high_daily_usdt": 1.96,
           "low_daily_usdc": 0.58,
-          "high_daily_usdc": 1.97
+          "high_daily_usdc": 1.96
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 5.83,
-          "high_daily_usd": 19.67,
-          "low_daily_eaco": 5829.0,
-          "high_daily_eaco": 19672.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 5.8,
+          "high_daily_usd": 19.58,
+          "low_daily_eaco": 4833.0,
+          "high_daily_eaco": 16313.0,
           "low_daily_sol": 0.08,
           "high_daily_sol": 0.27,
-          "low_daily_usdt": 5.83,
-          "high_daily_usdt": 19.67,
-          "low_daily_usdc": 5.83,
-          "high_daily_usdc": 19.67
+          "low_daily_usdt": 5.8,
+          "high_daily_usdt": 19.58,
+          "low_daily_usdc": 5.8,
+          "high_daily_usdc": 19.58
         }
       ]
     },
@@ -798,11 +798,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.03,
           "high_daily_usd": 0.08,
-          "low_daily_eaco": 29.0,
-          "high_daily_eaco": 80.0,
+          "low_daily_eaco": 24.0,
+          "high_daily_eaco": 66.0,
           "low_daily_sol": 0.0004,
           "high_daily_sol": 0.0011,
           "low_daily_usdt": 0.03,
@@ -813,11 +813,11 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.29,
           "high_daily_usd": 0.8,
-          "low_daily_eaco": 291.0,
-          "high_daily_eaco": 801.0,
+          "low_daily_eaco": 242.0,
+          "high_daily_eaco": 665.0,
           "low_daily_sol": 0.004,
           "high_daily_sol": 0.011,
           "low_daily_usdt": 0.29,
@@ -828,17 +828,17 @@
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 2.91,
-          "high_daily_usd": 8.01,
-          "low_daily_eaco": 2914.0,
-          "high_daily_eaco": 8015.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 2.9,
+          "high_daily_usd": 7.97,
+          "low_daily_eaco": 2417.0,
+          "high_daily_eaco": 6646.0,
           "low_daily_sol": 0.04,
           "high_daily_sol": 0.11,
-          "low_daily_usdt": 2.91,
-          "high_daily_usdt": 8.01,
-          "low_daily_usdc": 2.91,
-          "high_daily_usdc": 8.01
+          "low_daily_usdt": 2.9,
+          "high_daily_usdt": 7.97,
+          "low_daily_usdc": 2.9,
+          "high_daily_usdc": 7.97
         }
       ]
     },
@@ -860,11 +860,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.04,
           "high_daily_usd": 0.1,
-          "low_daily_eaco": 36.0,
-          "high_daily_eaco": 102.0,
+          "low_daily_eaco": 30.0,
+          "high_daily_eaco": 85.0,
           "low_daily_sol": 0.0005,
           "high_daily_sol": 0.0014,
           "low_daily_usdt": 0.04,
@@ -875,11 +875,11 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.36,
           "high_daily_usd": 1.02,
-          "low_daily_eaco": 364.0,
-          "high_daily_eaco": 1020.0,
+          "low_daily_eaco": 302.0,
+          "high_daily_eaco": 846.0,
           "low_daily_sol": 0.005,
           "high_daily_sol": 0.014,
           "low_daily_usdt": 0.36,
@@ -890,17 +890,17 @@
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 3.64,
-          "high_daily_usd": 10.2,
-          "low_daily_eaco": 3643.0,
-          "high_daily_eaco": 10200.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 3.62,
+          "high_daily_usd": 10.15,
+          "low_daily_eaco": 3021.0,
+          "high_daily_eaco": 8458.0,
           "low_daily_sol": 0.05,
           "high_daily_sol": 0.14,
-          "low_daily_usdt": 3.64,
-          "high_daily_usdt": 10.2,
-          "low_daily_usdc": 3.64,
-          "high_daily_usdc": 10.2
+          "low_daily_usdt": 3.62,
+          "high_daily_usdt": 10.15,
+          "low_daily_usdc": 3.62,
+          "high_daily_usdc": 10.15
         }
       ]
     },
@@ -922,11 +922,11 @@
         {
           "tier": "1 SOL",
           "capital_sol": 1,
-          "capital_usd": 72.86,
+          "capital_usd": 72.5,
           "low_daily_usd": 0.02,
           "high_daily_usd": 0.12,
-          "low_daily_eaco": 22.0,
-          "high_daily_eaco": 117.0,
+          "low_daily_eaco": 18.0,
+          "high_daily_eaco": 97.0,
           "low_daily_sol": 0.0003,
           "high_daily_sol": 0.0016,
           "low_daily_usdt": 0.02,
@@ -937,32 +937,32 @@
         {
           "tier": "10 SOL",
           "capital_sol": 10,
-          "capital_usd": 728.6,
+          "capital_usd": 725.0,
           "low_daily_usd": 0.22,
-          "high_daily_usd": 1.17,
-          "low_daily_eaco": 219.0,
-          "high_daily_eaco": 1166.0,
+          "high_daily_usd": 1.16,
+          "low_daily_eaco": 181.0,
+          "high_daily_eaco": 967.0,
           "low_daily_sol": 0.003,
           "high_daily_sol": 0.016,
           "low_daily_usdt": 0.22,
-          "high_daily_usdt": 1.17,
+          "high_daily_usdt": 1.16,
           "low_daily_usdc": 0.22,
-          "high_daily_usdc": 1.17
+          "high_daily_usdc": 1.16
         },
         {
           "tier": "100 SOL",
           "capital_sol": 100,
-          "capital_usd": 7286.0,
-          "low_daily_usd": 2.19,
-          "high_daily_usd": 11.66,
-          "low_daily_eaco": 2186.0,
-          "high_daily_eaco": 11658.0,
+          "capital_usd": 7250.0,
+          "low_daily_usd": 2.17,
+          "high_daily_usd": 11.6,
+          "low_daily_eaco": 1812.0,
+          "high_daily_eaco": 9667.0,
           "low_daily_sol": 0.03,
           "high_daily_sol": 0.16,
-          "low_daily_usdt": 2.19,
-          "high_daily_usdt": 11.66,
-          "low_daily_usdc": 2.19,
-          "high_daily_usdc": 11.66
+          "low_daily_usdt": 2.17,
+          "high_daily_usdt": 11.6,
+          "low_daily_usdc": 2.17,
+          "high_daily_usdc": 11.6
         }
       ]
     }
@@ -970,13 +970,13 @@
   "summary": {
     "1 SOL": {
       "capital_sol": 1,
-      "capital_usd": 72.86,
-      "all_15_theoretical_low_usd": 0.74,
-      "all_15_theoretical_high_usd": 2.27,
+      "capital_usd": 72.5,
+      "all_15_theoretical_low_usd": 0.73,
+      "all_15_theoretical_high_usd": 2.25,
       "realistic_top3_low_usd": 0.09,
       "realistic_top3_high_usd": 0.31,
-      "realistic_top3_low_eaco": 95.0,
-      "realistic_top3_high_eaco": 313.0,
+      "realistic_top3_low_eaco": 79.0,
+      "realistic_top3_high_eaco": 260.0,
       "realistic_top3_low_sol": 0.0013,
       "realistic_top3_high_sol": 0.0043,
       "auto_strategies_low_usd": 0.05,
@@ -989,17 +989,17 @@
     },
     "10 SOL": {
       "capital_sol": 10,
-      "capital_usd": 728.6,
-      "all_15_theoretical_low_usd": 7.36,
-      "all_15_theoretical_high_usd": 22.66,
-      "realistic_top3_low_usd": 0.95,
-      "realistic_top3_high_usd": 3.13,
-      "realistic_top3_low_eaco": 947.0,
-      "realistic_top3_high_eaco": 3133.0,
+      "capital_usd": 725.0,
+      "all_15_theoretical_low_usd": 7.32,
+      "all_15_theoretical_high_usd": 22.55,
+      "realistic_top3_low_usd": 0.94,
+      "realistic_top3_high_usd": 3.12,
+      "realistic_top3_low_eaco": 785.0,
+      "realistic_top3_high_eaco": 2598.0,
       "realistic_top3_low_sol": 0.013,
       "realistic_top3_high_sol": 0.043,
       "auto_strategies_low_usd": 0.48,
-      "auto_strategies_high_usd": 1.6,
+      "auto_strategies_high_usd": 1.59,
       "top3_strategy_names": [
         "S11 AI Content Factory Auto-Earning",
         "S02 Meteora DLMM Concentrated Liquidity",
@@ -1008,17 +1008,17 @@
     },
     "100 SOL": {
       "capital_sol": 100,
-      "capital_usd": 7286.0,
-      "all_15_theoretical_low_usd": 73.59,
-      "all_15_theoretical_high_usd": 226.59,
-      "realistic_top3_low_usd": 9.47,
-      "realistic_top3_high_usd": 31.33,
-      "realistic_top3_low_eaco": 9472.0,
-      "realistic_top3_high_eaco": 31330.0,
+      "capital_usd": 7250.0,
+      "all_15_theoretical_low_usd": 73.22,
+      "all_15_theoretical_high_usd": 225.48,
+      "realistic_top3_low_usd": 9.42,
+      "realistic_top3_high_usd": 31.18,
+      "realistic_top3_low_eaco": 7854.0,
+      "realistic_top3_high_eaco": 25979.0,
       "realistic_top3_low_sol": 0.13,
       "realistic_top3_high_sol": 0.43,
-      "auto_strategies_low_usd": 4.83,
-      "auto_strategies_high_usd": 16.03,
+      "auto_strategies_low_usd": 4.8,
+      "auto_strategies_high_usd": 15.95,
       "top3_strategy_names": [
         "S11 AI Content Factory Auto-Earning",
         "S02 Meteora DLMM Concentrated Liquidity",
@@ -1026,5 +1026,556 @@
       ]
     }
   },
-  "disclaimer": "DISCLAIMER: This report is for informational purposes only. APY/APR estimates are based on industry benchmarks for similar Solana DeFi strategies, not actual on-chain measured returns for EACO. Actual earnings depend on: market conditions, gas costs, slippage, liquidity depth, competition, and execution speed. Strategies with needs_key=true require your private key and cannot be auto-executed by this agent. Strategies with auto_executable=true can potentially be automated with proper key management. EACO is a micro-cap token with high volatility and limited liquidity - invest only what you can afford to lose. Always do your own research (DYOR)."
+  "disclaimer": "DISCLAIMER: This report is for informational purposes only. APY/APR estimates are based on industry benchmarks for similar Solana DeFi strategies, not actual on-chain measured returns for EACO. Actual earnings depend on: market conditions, gas costs, slippage, liquidity depth, competition, and execution speed. Strategies with needs_key=true require your private key and cannot be auto-executed by this agent. Strategies with auto_executable=true can potentially be automated with proper key management. EACO is a micro-cap token with high volatility and limited liquidity - invest only what you can afford to lose. Always do your own research (DYOR).",
+  "simulation": {
+    "daily_result": {
+      "date": "2026-08-04",
+      "sol_price": 72.5,
+      "eaco_price": 0.0012,
+      "strategies_run": 6,
+      "earned_usd": 0.7698,
+      "earned_eaco": 641.0,
+      "earned_sol": 0.010618,
+      "portfolio_sol_after": 10.032,
+      "portfolio_eaco_after": 1934.0,
+      "portfolio_usd_after": 2.32,
+      "details": [
+        {
+          "id": "S11",
+          "name_cn": "AI内容工厂自动赚钱",
+          "name_en": "AI Content Factory Auto-Earning",
+          "skill_ref": "eaco-skill01",
+          "allocated_sol": 0,
+          "actual_apr_pct": 0.407,
+          "earned_usd": 0.2954,
+          "earned_eaco": 246.0,
+          "earned_sol": 0.004074,
+          "reason_cn": "AI内容工厂零成本24/7产出，每日必选",
+          "reason_en": "AI content factory zero-cost 24/7 output, daily must-run"
+        },
+        {
+          "id": "S14",
+          "name_cn": "多语言翻译奖励",
+          "name_en": "Multilingual Translation Rewards",
+          "skill_ref": "eaco-skill20",
+          "allocated_sol": 0,
+          "actual_apr_pct": 0.094,
+          "earned_usd": 0.0682,
+          "earned_eaco": 57.0,
+          "earned_sol": 0.000941,
+          "reason_cn": "多语言翻译零风险赚EACO，每日必做",
+          "reason_en": "Translation rewards zero-risk EACO earning, daily must-do"
+        },
+        {
+          "id": "S15",
+          "name_cn": "全球社区推广佣金",
+          "name_en": "Global Community Promo Commission",
+          "skill_ref": "eaco-skill30",
+          "allocated_sol": 0,
+          "actual_apr_pct": 0.07,
+          "earned_usd": 0.051,
+          "earned_eaco": 42.0,
+          "earned_sol": 0.000703,
+          "reason_cn": "社区推广零成本赚佣金，每日必做",
+          "reason_en": "Community promo zero-cost commission, daily must-do"
+        },
+        {
+          "id": "S10",
+          "name_cn": "DePIN节点运行激励",
+          "name_en": "DePIN Node Operation Incentive",
+          "skill_ref": "eaco-skill11",
+          "allocated_sol": 0,
+          "actual_apr_pct": 0.07,
+          "earned_usd": 0.0507,
+          "earned_eaco": 42.0,
+          "earned_sol": 0.0007,
+          "reason_cn": "DePIN节点自动运行，被动收入",
+          "reason_en": "DePIN node auto-running, passive income"
+        },
+        {
+          "id": "S04",
+          "name_cn": "EACO质押生息",
+          "name_en": "EACO Staking Yield",
+          "skill_ref": "eaco-skill05",
+          "allocated_sol": 3,
+          "actual_apr_pct": 0.054,
+          "earned_usd": 0.1185,
+          "earned_eaco": 99.0,
+          "earned_sol": 0.001634,
+          "reason_cn": "SOL上涨趋势，质押EACO吃生态红利",
+          "reason_en": "SOL uptrend, stake EACO for ecosystem dividends"
+        },
+        {
+          "id": "S06",
+          "name_cn": "AI跨DEX自动套利",
+          "name_en": "AI Auto-Arbitrage Bot",
+          "skill_ref": "eaco-skill30",
+          "allocated_sol": 2,
+          "actual_apr_pct": 0.128,
+          "earned_usd": 0.186,
+          "earned_eaco": 155.0,
+          "earned_sol": 0.002565,
+          "reason_cn": "AI自动套利，小额试探",
+          "reason_en": "AI auto-arbitrage, small position probe"
+        }
+      ]
+    },
+    "portfolio": {
+      "days_active": 3,
+      "current_sol": 10.032,
+      "current_eaco": 1934.0,
+      "current_usd": 2.32,
+      "total_earned_usd": 2.32,
+      "total_earned_eaco": 1934.0,
+      "total_earned_sol": 0.032007,
+      "initial_capital_sol": 10.0,
+      "roi_pct": 0.32
+    },
+    "strategy_performance": {
+      "S11": {
+        "runs": 3,
+        "total_usd": 0.7705651564396016,
+        "wins": 3
+      },
+      "S14": {
+        "runs": 3,
+        "total_usd": 0.21280636137121428,
+        "wins": 3
+      },
+      "S15": {
+        "runs": 3,
+        "total_usd": 0.1826885805682091,
+        "wins": 3
+      },
+      "S10": {
+        "runs": 3,
+        "total_usd": 0.162651935622079,
+        "wins": 3
+      },
+      "S04": {
+        "runs": 3,
+        "total_usd": 0.3499690115126415,
+        "wins": 3
+      },
+      "S06": {
+        "runs": 3,
+        "total_usd": 0.6418017717689356,
+        "wins": 3
+      }
+    },
+    "recent_history": [
+      {
+        "date": "2026-08-04",
+        "sol_price": 72.5,
+        "eaco_price": 0.0012,
+        "strategies_run": 6,
+        "earned_usd": 0.7423,
+        "earned_eaco": 619.0,
+        "earned_sol": 0.010238,
+        "portfolio_sol_after": 10.0102,
+        "portfolio_eaco_after": 619.0,
+        "portfolio_usd_after": 0.74,
+        "details": [
+          {
+            "id": "S11",
+            "name_cn": "AI内容工厂自动赚钱",
+            "name_en": "AI Content Factory Auto-Earning",
+            "skill_ref": "eaco-skill01",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.281,
+            "earned_usd": 0.2035,
+            "earned_eaco": 170.0,
+            "earned_sol": 0.002807,
+            "reason_cn": "AI内容工厂零成本24/7产出，每日必选",
+            "reason_en": "AI content factory zero-cost 24/7 output, daily must-run"
+          },
+          {
+            "id": "S14",
+            "name_cn": "多语言翻译奖励",
+            "name_en": "Multilingual Translation Rewards",
+            "skill_ref": "eaco-skill20",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.088,
+            "earned_usd": 0.0639,
+            "earned_eaco": 53.0,
+            "earned_sol": 0.000882,
+            "reason_cn": "多语言翻译零风险赚EACO，每日必做",
+            "reason_en": "Translation rewards zero-risk EACO earning, daily must-do"
+          },
+          {
+            "id": "S15",
+            "name_cn": "全球社区推广佣金",
+            "name_en": "Global Community Promo Commission",
+            "skill_ref": "eaco-skill30",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.095,
+            "earned_usd": 0.0689,
+            "earned_eaco": 57.0,
+            "earned_sol": 0.00095,
+            "reason_cn": "社区推广零成本赚佣金，每日必做",
+            "reason_en": "Community promo zero-cost commission, daily must-do"
+          },
+          {
+            "id": "S10",
+            "name_cn": "DePIN节点运行激励",
+            "name_en": "DePIN Node Operation Incentive",
+            "skill_ref": "eaco-skill11",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.071,
+            "earned_usd": 0.0515,
+            "earned_eaco": 43.0,
+            "earned_sol": 0.000711,
+            "reason_cn": "DePIN节点自动运行，被动收入",
+            "reason_en": "DePIN node auto-running, passive income"
+          },
+          {
+            "id": "S04",
+            "name_cn": "EACO质押生息",
+            "name_en": "EACO Staking Yield",
+            "skill_ref": "eaco-skill05",
+            "allocated_sol": 3,
+            "actual_apr_pct": 0.048,
+            "earned_usd": 0.104,
+            "earned_eaco": 87.0,
+            "earned_sol": 0.001435,
+            "reason_cn": "SOL上涨趋势，质押EACO吃生态红利",
+            "reason_en": "SOL uptrend, stake EACO for ecosystem dividends"
+          },
+          {
+            "id": "S06",
+            "name_cn": "AI跨DEX自动套利",
+            "name_en": "AI Auto-Arbitrage Bot",
+            "skill_ref": "eaco-skill30",
+            "allocated_sol": 2,
+            "actual_apr_pct": 0.173,
+            "earned_usd": 0.2504,
+            "earned_eaco": 209.0,
+            "earned_sol": 0.003454,
+            "reason_cn": "AI自动套利，小额试探",
+            "reason_en": "AI auto-arbitrage, small position probe"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-04",
+        "sol_price": 72.5,
+        "eaco_price": 0.0012,
+        "strategies_run": 6,
+        "earned_usd": 0.8084,
+        "earned_eaco": 674.0,
+        "earned_sol": 0.011151,
+        "portfolio_sol_after": 10.0214,
+        "portfolio_eaco_after": 1292.0,
+        "portfolio_usd_after": 1.55,
+        "details": [
+          {
+            "id": "S11",
+            "name_cn": "AI内容工厂自动赚钱",
+            "name_en": "AI Content Factory Auto-Earning",
+            "skill_ref": "eaco-skill01",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.375,
+            "earned_usd": 0.2717,
+            "earned_eaco": 226.0,
+            "earned_sol": 0.003747,
+            "reason_cn": "AI内容工厂零成本24/7产出，每日必选",
+            "reason_en": "AI content factory zero-cost 24/7 output, daily must-run"
+          },
+          {
+            "id": "S14",
+            "name_cn": "多语言翻译奖励",
+            "name_en": "Multilingual Translation Rewards",
+            "skill_ref": "eaco-skill20",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.111,
+            "earned_usd": 0.0806,
+            "earned_eaco": 67.0,
+            "earned_sol": 0.001112,
+            "reason_cn": "多语言翻译零风险赚EACO，每日必做",
+            "reason_en": "Translation rewards zero-risk EACO earning, daily must-do"
+          },
+          {
+            "id": "S15",
+            "name_cn": "全球社区推广佣金",
+            "name_en": "Global Community Promo Commission",
+            "skill_ref": "eaco-skill30",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.087,
+            "earned_usd": 0.0628,
+            "earned_eaco": 52.0,
+            "earned_sol": 0.000867,
+            "reason_cn": "社区推广零成本赚佣金，每日必做",
+            "reason_en": "Community promo zero-cost commission, daily must-do"
+          },
+          {
+            "id": "S10",
+            "name_cn": "DePIN节点运行激励",
+            "name_en": "DePIN Node Operation Incentive",
+            "skill_ref": "eaco-skill11",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.083,
+            "earned_usd": 0.0604,
+            "earned_eaco": 50.0,
+            "earned_sol": 0.000833,
+            "reason_cn": "DePIN节点自动运行，被动收入",
+            "reason_en": "DePIN node auto-running, passive income"
+          },
+          {
+            "id": "S04",
+            "name_cn": "EACO质押生息",
+            "name_en": "EACO Staking Yield",
+            "skill_ref": "eaco-skill05",
+            "allocated_sol": 3,
+            "actual_apr_pct": 0.059,
+            "earned_usd": 0.1275,
+            "earned_eaco": 106.0,
+            "earned_sol": 0.001758,
+            "reason_cn": "SOL上涨趋势，质押EACO吃生态红利",
+            "reason_en": "SOL uptrend, stake EACO for ecosystem dividends"
+          },
+          {
+            "id": "S06",
+            "name_cn": "AI跨DEX自动套利",
+            "name_en": "AI Auto-Arbitrage Bot",
+            "skill_ref": "eaco-skill30",
+            "allocated_sol": 2,
+            "actual_apr_pct": 0.142,
+            "earned_usd": 0.2054,
+            "earned_eaco": 171.0,
+            "earned_sol": 0.002833,
+            "reason_cn": "AI自动套利，小额试探",
+            "reason_en": "AI auto-arbitrage, small position probe"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-04",
+        "sol_price": 72.5,
+        "eaco_price": 0.0012,
+        "strategies_run": 6,
+        "earned_usd": 0.7698,
+        "earned_eaco": 641.0,
+        "earned_sol": 0.010618,
+        "portfolio_sol_after": 10.032,
+        "portfolio_eaco_after": 1934.0,
+        "portfolio_usd_after": 2.32,
+        "details": [
+          {
+            "id": "S11",
+            "name_cn": "AI内容工厂自动赚钱",
+            "name_en": "AI Content Factory Auto-Earning",
+            "skill_ref": "eaco-skill01",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.407,
+            "earned_usd": 0.2954,
+            "earned_eaco": 246.0,
+            "earned_sol": 0.004074,
+            "reason_cn": "AI内容工厂零成本24/7产出，每日必选",
+            "reason_en": "AI content factory zero-cost 24/7 output, daily must-run"
+          },
+          {
+            "id": "S14",
+            "name_cn": "多语言翻译奖励",
+            "name_en": "Multilingual Translation Rewards",
+            "skill_ref": "eaco-skill20",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.094,
+            "earned_usd": 0.0682,
+            "earned_eaco": 57.0,
+            "earned_sol": 0.000941,
+            "reason_cn": "多语言翻译零风险赚EACO，每日必做",
+            "reason_en": "Translation rewards zero-risk EACO earning, daily must-do"
+          },
+          {
+            "id": "S15",
+            "name_cn": "全球社区推广佣金",
+            "name_en": "Global Community Promo Commission",
+            "skill_ref": "eaco-skill30",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.07,
+            "earned_usd": 0.051,
+            "earned_eaco": 42.0,
+            "earned_sol": 0.000703,
+            "reason_cn": "社区推广零成本赚佣金，每日必做",
+            "reason_en": "Community promo zero-cost commission, daily must-do"
+          },
+          {
+            "id": "S10",
+            "name_cn": "DePIN节点运行激励",
+            "name_en": "DePIN Node Operation Incentive",
+            "skill_ref": "eaco-skill11",
+            "allocated_sol": 0,
+            "actual_apr_pct": 0.07,
+            "earned_usd": 0.0507,
+            "earned_eaco": 42.0,
+            "earned_sol": 0.0007,
+            "reason_cn": "DePIN节点自动运行，被动收入",
+            "reason_en": "DePIN node auto-running, passive income"
+          },
+          {
+            "id": "S04",
+            "name_cn": "EACO质押生息",
+            "name_en": "EACO Staking Yield",
+            "skill_ref": "eaco-skill05",
+            "allocated_sol": 3,
+            "actual_apr_pct": 0.054,
+            "earned_usd": 0.1185,
+            "earned_eaco": 99.0,
+            "earned_sol": 0.001634,
+            "reason_cn": "SOL上涨趋势，质押EACO吃生态红利",
+            "reason_en": "SOL uptrend, stake EACO for ecosystem dividends"
+          },
+          {
+            "id": "S06",
+            "name_cn": "AI跨DEX自动套利",
+            "name_en": "AI Auto-Arbitrage Bot",
+            "skill_ref": "eaco-skill30",
+            "allocated_sol": 2,
+            "actual_apr_pct": 0.128,
+            "earned_usd": 0.186,
+            "earned_eaco": 155.0,
+            "earned_sol": 0.002565,
+            "reason_cn": "AI自动套利，小额试探",
+            "reason_en": "AI auto-arbitrage, small position probe"
+          }
+        ]
+      }
+    ]
+  },
+  "action_plan_cn": [
+    {
+      "id": "S11",
+      "name": "AI内容工厂自动赚钱",
+      "reason": "AI内容工厂零成本24/7产出，每日必选",
+      "steps": [
+        "启动AI Agent，生成3篇EACO相关文章/视频",
+        "自动翻译内容到英语、日语、韩语",
+        "发布到社区，按阅读量获EACO奖励"
+      ],
+      "allocated_sol": 0
+    },
+    {
+      "id": "S14",
+      "name": "多语言翻译奖励",
+      "reason": "多语言翻译零风险赚EACO，每日必做",
+      "steps": [
+        "选择EACO白皮书章节，翻译为目标语言",
+        "提交翻译到社区审核",
+        "审核通过后按字数获EACO奖励"
+      ],
+      "allocated_sol": 0
+    },
+    {
+      "id": "S15",
+      "name": "全球社区推广佣金",
+      "reason": "社区推广零成本赚佣金，每日必做",
+      "steps": [
+        "在社交媒体分享EACO最新动态",
+        "邀请新用户加入Telegram群组",
+        "按邀请人数获EACO佣金"
+      ],
+      "allocated_sol": 0
+    },
+    {
+      "id": "S10",
+      "name": "DePIN节点运行激励",
+      "reason": "DePIN节点自动运行，被动收入",
+      "steps": [
+        "检查DePIN节点运行状态",
+        "确认昨日贡献量达标",
+        "领取EACO节点激励"
+      ],
+      "allocated_sol": 0
+    },
+    {
+      "id": "S04",
+      "name": "EACO质押生息",
+      "reason": "SOL上涨趋势，质押EACO吃生态红利",
+      "steps": [
+        "质押 3 SOL 等值EACO",
+        "确认质押锁定期",
+        "开始每日领取生态分红"
+      ],
+      "allocated_sol": 3
+    },
+    {
+      "id": "S06",
+      "name": "AI跨DEX自动套利",
+      "reason": "AI自动套利，小额试探",
+      "steps": [
+        "分配 2 SOL 到套利资金池",
+        "监控Raydium/Meteora/Orca价差",
+        "价差>0.5%时自动执行套利"
+      ],
+      "allocated_sol": 2
+    }
+  ],
+  "action_plan_en": [
+    {
+      "id": "S11",
+      "name": "AI Content Factory Auto-Earning",
+      "reason": "AI content factory zero-cost 24/7 output, daily must-run",
+      "steps": [
+        "Start AI Agent, generate 3 EACO-related articles/videos",
+        "Auto-translate content to English, Japanese, Korean",
+        "Publish to community, earn EACO per view"
+      ],
+      "allocated_sol": 0
+    },
+    {
+      "id": "S14",
+      "name": "Multilingual Translation Rewards",
+      "reason": "Translation rewards zero-risk EACO earning, daily must-do",
+      "steps": [
+        "Select EACO whitepaper section, translate to target language",
+        "Submit translation for community review",
+        "Earn EACO per word after approval"
+      ],
+      "allocated_sol": 0
+    },
+    {
+      "id": "S15",
+      "name": "Global Community Promo Commission",
+      "reason": "Community promo zero-cost commission, daily must-do",
+      "steps": [
+        "Share EACO updates on social media",
+        "Invite new users to Telegram groups",
+        "Earn EACO commission per invite"
+      ],
+      "allocated_sol": 0
+    },
+    {
+      "id": "S10",
+      "name": "DePIN Node Operation Incentive",
+      "reason": "DePIN node auto-running, passive income",
+      "steps": [
+        "Check DePIN node status",
+        "Verify yesterday's contribution met target",
+        "Claim EACO node incentive"
+      ],
+      "allocated_sol": 0
+    },
+    {
+      "id": "S04",
+      "name": "EACO Staking Yield",
+      "reason": "SOL uptrend, stake EACO for ecosystem dividends",
+      "steps": [
+        "Stake 3 SOL worth of EACO",
+        "Confirm staking lock period",
+        "Start daily ecosystem dividend collection"
+      ],
+      "allocated_sol": 3
+    },
+    {
+      "id": "S06",
+      "name": "AI Auto-Arbitrage Bot",
+      "reason": "AI auto-arbitrage, small position probe",
+      "steps": [
+        "Allocate 2 SOL to arbitrage pool",
+        "Monitor Raydium/Meteora/Orca price spread",
+        "Auto-execute when spread > 0.5%"
+      ],
+      "allocated_sol": 2
+    }
+  ]
 }
