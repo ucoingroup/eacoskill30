@@ -1,24 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-EACO Daily Agent v4.0 - 每日自动运行，监控Solana链上EACO资产数据，估算15策略收益。
+EACO Daily Agent v5.0 - 每日自动运行，监控Solana链上EACO资产数据，模拟每日赚钱过程。
 无需私钥，只读取链上公开数据。
+
+v5.0 新增:
+  - 每日赚钱模拟引擎：选择当日最优策略组合并模拟执行
+  - 投资组合追踪：记录持仓变化和累计收益
+  - 收益历史记录：JSON 文件持久化，每日追加
+  - 双语每日行动计划：CN/EN 具体操作步骤
+  - --test 离线模式：不依赖外部 API，使用模拟数据快速测试
+  - 累计收益仪表盘：总收益、日收益率、策略胜率
+  - 报告复制到 eaco-app 并推送 GitHub Pages 提示
 
 v4.0 改进:
   - 修复导入兼容性（stdlib 模块顶层导入，requests 可选）
-  - 新增 --quiet / --json-only CLI 标志（cron 友好）
-  - 报告自动复制到 eaco-app 目录（网站集成）
-  - 双语摘要（CN/EN）写入报告
+  - --quiet / --json-only CLI 标志（cron 友好）
+  - 报告自动复制到 eaco-app 目录
   - 主函数 try/except 保护，退出码规范化
-  - HTML 报告增加多语言切换链接
-  - 策略表格增加 skill_ref 超链接
-
-v3.0 改进:
-  - GeckoTerminal API 作为价格备用源
-  - Meteora DLMM 池链上数据（E-USDT, E-SOL）
-  - 可视化 HTML 报告
-  - 5 个新策略（S11-S15）
-  - 价格预警功能
-  - 多币种收益展示（USD/USDT/SOL/EACO/CNH）
 
 数据源:
   - Gate.io API: SOL/USDT, USDC 价格
@@ -27,7 +25,7 @@ v3.0 改进:
   - DexScreener / Jupiter Price API（海外备用）
 
 Author: EACO Agent
-Date: 2026-08-03
+Date: 2026-08-04
 """
 import json, datetime, os, sys, time, math, ssl, urllib.request, urllib.error
 
@@ -63,6 +61,8 @@ OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPORT_FILE = os.path.join(OUTPUT_DIR, "eaco_daily_report.json")
 HTML_REPORT = os.path.join(OUTPUT_DIR, "eaco_daily_report.html")
 LOG_FILE = os.path.join(OUTPUT_DIR, "eaco_agent.log")
+PORTFOLIO_FILE = os.path.join(OUTPUT_DIR, "eaco_portfolio.json")
+HISTORY_FILE = os.path.join(OUTPUT_DIR, "eaco_earning_history.json")
 
 # EACO 链上已知信息
 EACO_TOTAL_SUPPLY = 1348368645.63
@@ -354,7 +354,349 @@ def estimate_eaco_price(sol_price, onchain_data):
     log(f"  For real-time price: https://dexscreener.com/solana/{EACO_MINT}")
     return estimated, 0.0, 0.0, [], "Estimated (API unreachable)"
 
-# ===== 15 STRATEGIES (v3.0: +5 new) =====
+# ===== PORTFOLIO & SIMULATION ENGINE (v5.0) =====
+
+def load_portfolio():
+    """Load portfolio state from file, or initialize if not exists."""
+    default_portfolio = {
+        "initial_capital_sol": 10.0,
+        "initial_capital_usd": 700.0,
+        "current_sol": 10.0,
+        "current_eaco": 0.0,
+        "current_usd": 0.0,
+        "total_earned_usd": 0.0,
+        "total_earned_eaco": 0.0,
+        "total_earned_sol": 0.0,
+        "days_active": 0,
+        "last_run": None,
+        "strategy_results": {},  # {"S01": {"runs": 5, "total_usd": 12.5, "wins": 4}}
+        "daily_history": [],     # [{"date": "2026-08-04", "earned_usd": 2.5, ...}]
+    }
+    if os.path.exists(PORTFOLIO_FILE):
+        try:
+            with open(PORTFOLIO_FILE, "r", encoding="utf-8") as f:
+                p = json.load(f)
+            # Merge with defaults to handle new fields
+            for k, v in default_portfolio.items():
+                if k not in p:
+                    p[k] = v
+            return p
+        except Exception as e:
+            log(f"  Warning: could not load portfolio, using default: {e}")
+    return default_portfolio
+
+
+def save_portfolio(portfolio):
+    """Save portfolio state to file."""
+    try:
+        with open(PORTFOLIO_FILE, "w", encoding="utf-8") as f:
+            json.dump(portfolio, f, ensure_ascii=False, indent=2)
+        log(f"  Portfolio saved to {PORTFOLIO_FILE}")
+    except Exception as e:
+        log(f"  Warning: could not save portfolio: {e}")
+
+
+def load_history():
+    """Load earning history from file."""
+    if os.path.exists(HISTORY_FILE):
+        try:
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except:
+            pass
+    return {"records": [], "cumulative_usd": 0.0, "cumulative_eaco": 0.0, "total_days": 0}
+
+
+def save_history(history):
+    """Save earning history to file."""
+    try:
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(history, f, ensure_ascii=False, indent=2)
+        log(f"  History saved to {HISTORY_FILE}")
+    except Exception as e:
+        log(f"  Warning: could not save history: {e}")
+
+
+def select_daily_strategies(sol_price, eaco_price, total_liq, sol_change_24h):
+    """
+    Select today's optimal strategy mix based on market conditions.
+    Returns list of (strategy, allocated_sol, expected_apr_pct, reason_cn, reason_en).
+    """
+    selected = []
+    
+    # Market condition assessment
+    volatile = abs(sol_change_24h) > 5
+    high_liq = total_liq > 50000
+    bullish = sol_change_24h > 2
+    
+    # 1. Always include AI content factory (no capital needed, pure earning)
+    for s in STRATEGIES:
+        if s["id"] == "S11":
+            selected.append((s, 0, s["daily_apr_range"], 
+                "AI内容工厂零成本24/7产出，每日必选",
+                "AI content factory zero-cost 24/7 output, daily must-run"))
+            break
+    
+    # 2. Translation rewards (no capital, no risk)
+    for s in STRATEGIES:
+        if s["id"] == "S14":
+            selected.append((s, 0, s["daily_apr_range"],
+                "多语言翻译零风险赚EACO，每日必做",
+                "Translation rewards zero-risk EACO earning, daily must-do"))
+            break
+    
+    # 3. Community promo (no capital, no risk)
+    for s in STRATEGIES:
+        if s["id"] == "S15":
+            selected.append((s, 0, s["daily_apr_range"],
+                "社区推广零成本赚佣金，每日必做",
+                "Community promo zero-cost commission, daily must-do"))
+            break
+    
+    # 4. DePIN node (low capital, auto)
+    for s in STRATEGIES:
+        if s["id"] == "S10":
+            selected.append((s, 0, s["daily_apr_range"],
+                "DePIN节点自动运行，被动收入",
+                "DePIN node auto-running, passive income"))
+            break
+    
+    # 5. If volatile, add grid trading
+    if volatile:
+        for s in STRATEGIES:
+            if s["id"] == "S05":
+                selected.append((s, 3, s["daily_apr_range"],
+                    "市场波动大，AI网格交易低买高卖",
+                    "High volatility, AI grid trading buy low sell high"))
+                break
+    
+    # 6. If bullish, add staking
+    if bullish:
+        for s in STRATEGIES:
+            if s["id"] == "S04":
+                selected.append((s, 3, s["daily_apr_range"],
+                    "SOL上涨趋势，质押EACO吃生态红利",
+                    "SOL uptrend, stake EACO for ecosystem dividends"))
+                break
+    
+    # 7. Always add cross-DEX arbitrage if liquidity exists
+    if high_liq:
+        for s in STRATEGIES:
+            if s["id"] == "S03":
+                selected.append((s, 2, s["daily_apr_range"],
+                    "流动性充足，跨DEX套利空间大",
+                    "Sufficient liquidity, cross-DEX arbitrage opportunity"))
+                break
+    else:
+        for s in STRATEGIES:
+            if s["id"] == "S06":
+                selected.append((s, 2, s["daily_apr_range"],
+                    "AI自动套利，小额试探",
+                    "AI auto-arbitrage, small position probe"))
+                break
+    
+    return selected
+
+
+def simulate_daily_earning(portfolio, selected, sol_price, eaco_price):
+    """
+    Simulate today's earning based on selected strategies.
+    Returns daily_result dict.
+    """
+    import random
+    
+    total_earned_usd = 0.0
+    total_earned_eaco = 0.0
+    total_earned_sol = 0.0
+    strategy_details = []
+    
+    for strat, allocated_sol, apr_range, reason_cn, reason_en in selected:
+        low_apr, high_apr = apr_range
+        # Use mid-range with some randomness for realism
+        base_apr = (low_apr + high_apr) / 2
+        variance = (high_apr - low_apr) / 4
+        actual_apr = base_apr + random.uniform(-variance, variance)
+        actual_apr = max(low_apr * 0.5, min(high_apr * 1.2, actual_apr))
+        
+        # Capital in USD
+        capital_usd = allocated_sol * sol_price
+        
+        # For zero-capital strategies, use a base effort value
+        if allocated_sol == 0:
+            capital_usd = sol_price * 1.0  # Assume 1 SOL equivalent effort
+        
+        earned_usd = capital_usd * actual_apr / 100
+        earned_eaco = earned_usd / eaco_price if eaco_price > 0 else 0
+        earned_sol = earned_usd / sol_price if sol_price > 0 else 0
+        
+        total_earned_usd += earned_usd
+        total_earned_eaco += earned_eaco
+        total_earned_sol += earned_sol
+        
+        # Track strategy performance
+        sid = strat["id"]
+        if sid not in portfolio["strategy_results"]:
+            portfolio["strategy_results"][sid] = {"runs": 0, "total_usd": 0.0, "wins": 0}
+        portfolio["strategy_results"][sid]["runs"] += 1
+        portfolio["strategy_results"][sid]["total_usd"] += earned_usd
+        if earned_usd > 0:
+            portfolio["strategy_results"][sid]["wins"] += 1
+        
+        strategy_details.append({
+            "id": sid,
+            "name_cn": strat["name_cn"],
+            "name_en": strat["name_en"],
+            "skill_ref": strat["skill_ref"],
+            "allocated_sol": allocated_sol,
+            "actual_apr_pct": round(actual_apr, 3),
+            "earned_usd": round(earned_usd, 4),
+            "earned_eaco": round(earned_eaco, 0),
+            "earned_sol": round(earned_sol, 6),
+            "reason_cn": reason_cn,
+            "reason_en": reason_en,
+        })
+    
+    # Update portfolio
+    portfolio["current_sol"] += total_earned_sol
+    portfolio["current_eaco"] += total_earned_eaco
+    portfolio["current_usd"] += total_earned_usd
+    portfolio["total_earned_usd"] += total_earned_usd
+    portfolio["total_earned_eaco"] += total_earned_eaco
+    portfolio["total_earned_sol"] += total_earned_sol
+    portfolio["days_active"] += 1
+    
+    today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).strftime("%Y-%m-%d")
+    portfolio["last_run"] = today
+    
+    daily_record = {
+        "date": today,
+        "sol_price": round(sol_price, 2),
+        "eaco_price": eaco_price,
+        "strategies_run": len(selected),
+        "earned_usd": round(total_earned_usd, 4),
+        "earned_eaco": round(total_earned_eaco, 0),
+        "earned_sol": round(total_earned_sol, 6),
+        "portfolio_sol_after": round(portfolio["current_sol"], 4),
+        "portfolio_eaco_after": round(portfolio["current_eaco"], 0),
+        "portfolio_usd_after": round(portfolio["current_usd"], 2),
+        "details": strategy_details,
+    }
+    
+    portfolio["daily_history"].append(daily_record)
+    # Keep only last 365 days
+    if len(portfolio["daily_history"]) > 365:
+        portfolio["daily_history"] = portfolio["daily_history"][-365:]
+    
+    return daily_record
+
+
+def generate_action_plan(selected, sol_price, eaco_price):
+    """Generate bilingual daily action plan with concrete steps."""
+    actions_cn = []
+    actions_en = []
+    
+    for strat, allocated_sol, _, reason_cn, reason_en in selected:
+        sid = strat["id"]
+        
+        # Generate concrete steps per strategy
+        if sid == "S11":  # AI Content Factory
+            steps_cn = [
+                f"启动AI Agent，生成3篇EACO相关文章/视频",
+                f"自动翻译内容到英语、日语、韩语",
+                f"发布到社区，按阅读量获EACO奖励",
+            ]
+            steps_en = [
+                f"Start AI Agent, generate 3 EACO-related articles/videos",
+                f"Auto-translate content to English, Japanese, Korean",
+                f"Publish to community, earn EACO per view",
+            ]
+        elif sid == "S14":  # Translation
+            steps_cn = [
+                f"选择EACO白皮书章节，翻译为目标语言",
+                f"提交翻译到社区审核",
+                f"审核通过后按字数获EACO奖励",
+            ]
+            steps_en = [
+                f"Select EACO whitepaper section, translate to target language",
+                f"Submit translation for community review",
+                f"Earn EACO per word after approval",
+            ]
+        elif sid == "S15":  # Community promo
+            steps_cn = [
+                f"在社交媒体分享EACO最新动态",
+                f"邀请新用户加入Telegram群组",
+                f"按邀请人数获EACO佣金",
+            ]
+            steps_en = [
+                f"Share EACO updates on social media",
+                f"Invite new users to Telegram groups",
+                f"Earn EACO commission per invite",
+            ]
+        elif sid == "S10":  # DePIN
+            steps_cn = [
+                f"检查DePIN节点运行状态",
+                f"确认昨日贡献量达标",
+                f"领取EACO节点激励",
+            ]
+            steps_en = [
+                f"Check DePIN node status",
+                f"Verify yesterday's contribution met target",
+                f"Claim EACO node incentive",
+            ]
+        elif sid == "S05":  # Grid trading
+            steps_cn = [
+                f"分配 {allocated_sol} SOL 到AI网格交易",
+                f"设置网格区间（根据波动率自动计算）",
+                f"启动网格机器人24h运行",
+            ]
+            steps_en = [
+                f"Allocate {allocated_sol} SOL to AI grid trading",
+                f"Set grid range (auto-calculated from volatility)",
+                f"Start grid bot for 24h operation",
+            ]
+        elif sid == "S04":  # Staking
+            steps_cn = [
+                f"质押 {allocated_sol} SOL 等值EACO",
+                f"确认质押锁定期",
+                f"开始每日领取生态分红",
+            ]
+            steps_en = [
+                f"Stake {allocated_sol} SOL worth of EACO",
+                f"Confirm staking lock period",
+                f"Start daily ecosystem dividend collection",
+            ]
+        elif sid in ("S03", "S06"):  # Arbitrage
+            steps_cn = [
+                f"分配 {allocated_sol} SOL 到套利资金池",
+                f"监控Raydium/Meteora/Orca价差",
+                f"价差>0.5%时自动执行套利",
+            ]
+            steps_en = [
+                f"Allocate {allocated_sol} SOL to arbitrage pool",
+                f"Monitor Raydium/Meteora/Orca price spread",
+                f"Auto-execute when spread > 0.5%",
+            ]
+        else:
+            steps_cn = [f"执行 {strat['name_cn']}", f"参考 skill: {strat['skill_ref']}"]
+            steps_en = [f"Execute {strat['name_en']}", f"Refer to skill: {strat['skill_ref']}"]
+        
+        actions_cn.append({
+            "id": sid,
+            "name": strat["name_cn"],
+            "reason": reason_cn,
+            "steps": steps_cn,
+            "allocated_sol": allocated_sol,
+        })
+        actions_en.append({
+            "id": sid,
+            "name": strat["name_en"],
+            "reason": reason_en,
+            "steps": steps_en,
+            "allocated_sol": allocated_sol,
+        })
+    
+    return actions_cn, actions_en
+
 
 STRATEGIES = [
     {
@@ -660,6 +1002,73 @@ tr:hover{{background:#162033}}
 </div>
 """
 
+    # v5.0: Earning Simulation Dashboard
+    sim = report.get("simulation", {})
+    if sim:
+        dr = sim.get("daily_result", {})
+        pf = sim.get("portfolio", {})
+        hist = sim.get("recent_history", [])
+        perf = sim.get("strategy_performance", {})
+        today_usd = dr.get("earned_usd", 0)
+        today_eaco = dr.get("earned_eaco", 0)
+        today_sol = dr.get("earned_sol", 0)
+
+        html += f"""
+<div class="section-title">v5.0 Daily Earning Simulation</div>
+<div class="grid">
+<div class="card" style="border-color:#0d4a3f"><h3>Today's Earning (USD)</h3><div class="value" style="color:#00ff9f">+${today_usd:.4f}</div><div class="sub">{today_eaco:,.0f} EACO | {today_sol:.6f} SOL</div></div>
+<div class="card"><h3>Portfolio SOL</h3><div class="value">{pf.get('current_sol', 0):.4f}</div><div class="sub">Initial: {pf.get('initial_capital_sol', 10)}</div></div>
+<div class="card"><h3>Portfolio EACO</h3><div class="value">{pf.get('current_eaco', 0):,.0f}</div><div class="sub">Total earned: {pf.get('total_earned_eaco', 0):,.0f}</div></div>
+<div class="card"><h3>Total Earned (USD)</h3><div class="value" style="color:#00ff9f">${pf.get('total_earned_usd', 0):.2f}</div><div class="sub">ROI: {pf.get('roi_pct', 0):+.2f}% | Day {pf.get('days_active', 1)}</div></div>
+</div>
+"""
+
+        # Today's strategy execution details
+        if dr.get("details"):
+            html += '<div class="section-title">Today\'s Strategy Execution</div>\n'
+            html += '<table><tr><th>ID</th><th>Strategy</th><th>Skill</th><th>Alloc SOL</th><th>APR</th><th>Earned USD</th><th>Earned EACO</th><th>Earned SOL</th><th>Reason</th></tr>\n'
+            for d in dr["details"]:
+                skill_link = f'<a class="skill-link" href="../eaco-agent-skills/{d["skill_ref"]}/SKILL.md">{d["skill_ref"]}</a>'
+                html += f'<tr><td>{d["id"]}</td><td>{d["name_cn"]}<br><span style="color:#8892b0;font-size:0.8em">{d["name_en"]}</span></td>'
+                html += f'<td>{skill_link}</td><td>{d["allocated_sol"]}</td><td>{d["actual_apr_pct"]:.3f}%</td>'
+                html += f'<td style="color:#00ff9f">${d["earned_usd"]:.4f}</td><td>{d["earned_eaco"]:,.0f}</td><td>{d["earned_sol"]:.6f}</td>'
+                html += f'<td style="font-size:0.8em;color:#8892b0">{d["reason_cn"]}</td></tr>\n'
+            html += '</table>\n'
+
+        # Recent 7-day history
+        if hist:
+            html += '<div class="section-title">Recent 7-Day History</div>\n'
+            html += '<table><tr><th>Date</th><th>SOL Price</th><th>EACO Price</th><th>Strategies</th><th>Earned USD</th><th>Earned EACO</th><th>Earned SOL</th><th>Portfolio SOL</th><th>Portfolio EACO</th></tr>\n'
+            for h in hist:
+                html += f'<tr><td>{h["date"]}</td><td>${h["sol_price"]:.2f}</td><td>${h["eaco_price"]}</td>'
+                html += f'<td>{h["strategies_run"]}</td><td style="color:#00ff9f">${h["earned_usd"]:.4f}</td>'
+                html += f'<td>{h["earned_eaco"]:,.0f}</td><td>{h["earned_sol"]:.6f}</td>'
+                html += f'<td>{h["portfolio_sol_after"]:.4f}</td><td>{h["portfolio_eaco_after"]:,.0f}</td></tr>\n'
+            html += '</table>\n'
+
+        # Strategy performance summary
+        if perf:
+            html += '<div class="section-title">Strategy Performance (Cumulative)</div>\n'
+            html += '<table><tr><th>Strategy ID</th><th>Runs</th><th>Wins</th><th>Win Rate</th><th>Total USD</th></tr>\n'
+            for sid, sp in sorted(perf.items()):
+                wr = (sp["wins"] / sp["runs"] * 100) if sp["runs"] > 0 else 0
+                html += f'<tr><td>{sid}</td><td>{sp["runs"]}</td><td>{sp["wins"]}</td><td>{wr:.0f}%</td><td>${sp["total_usd"]:.4f}</td></tr>\n'
+            html += '</table>\n'
+
+    # v5.0: Daily Action Plan
+    action_cn = report.get("action_plan_cn", [])
+    action_en = report.get("action_plan_en", [])
+    if action_cn:
+        html += '<div class="section-title">Daily Action Plan / 每日行动计划</div>\n'
+        for i, (ac, ae) in enumerate(zip(action_cn, action_en)):
+            html += f'<div class="card" style="margin-bottom:10px">'
+            html += f'<h3 style="color:#00d4ff">[{ac["id"]}] {ac["name"]} / {ae["name"]}</h3>'
+            html += f'<div class="sub" style="margin-bottom:8px">Alloc: {ac["allocated_sol"]} SOL | {ac["reason"]} / {ae["reason"]}</div>'
+            html += '<table><tr><th>#</th><th>中文步骤</th><th>English Steps</th></tr>'
+            for j, (sc, se) in enumerate(zip(ac["steps"], ae["steps"]), 1):
+                html += f'<tr><td>{j}</td><td>{sc}</td><td>{se}</td></tr>'
+            html += '</table></div>\n'
+
     # Alerts
     if alerts:
         html += '<div class="section-title">Price Alerts</div>\n'
@@ -741,34 +1150,54 @@ tr:hover{{background:#162033}}
         f.write(html)
     log(f"HTML report saved to {HTML_REPORT}")
 
-def generate_report(quiet=False, json_only=False):
-    """Main agent function. v4.0 with CLI flags."""
+def generate_report(quiet=False, json_only=False, test_mode=False):
+    """Main agent function. v5.0 with simulation engine and test mode."""
     log("=" * 70)
-    log("EACO Daily Agent v4.0 - Starting daily run")
+    log("EACO Daily Agent v5.0 - Starting daily run" + (" [TEST MODE]" if test_mode else ""))
     log("=" * 70)
 
-    # 1. Fetch SOL price
-    log("Step 1: Fetching SOL price from Gate.io...")
-    sol_data = get_sol_price_gateio()
-    if sol_data:
-        sol_price = sol_data["price"]
-        log(f"  SOL/USDT: ${sol_price:.2f} | 24h Vol: ${sol_data['vol_24h']:,.0f} | Change: {sol_data['change_24h']:+.2f}%")
+    if test_mode:
+        # Use mock data for offline testing
+        log("Step 1: [TEST] Using mock market data...")
+        sol_price = 72.50
+        sol_change_24h = 3.5
+        usdc_price = 1.0
+        eaco_price = 0.0012
+        total_liq = 35000.0
+        total_vol = 5000.0
+        dex_pairs = []
+        price_source = "Mock (test mode)"
+        onchain = {"supply": EACO_TOTAL_SUPPLY, "slot": 290000000, "holders_estimated": 1850, "epoch": 720}
+        meteora_pools = {"E-USDT": {"address": METEORA_E_USDT_POOL, "exists": True}, "E-SOL": {"address": METEORA_E_SOL_POOL, "exists": True}}
+        log(f"  SOL/USDT: ${sol_price:.2f} (mock)")
+        log(f"  EACO Price: ${eaco_price} (mock)")
+        log(f"  EACO Supply: {onchain['supply']:,.2f}")
+        log(f"  EACO MCap: ${eaco_price * onchain['supply']:,.2f}")
     else:
-        sol_price = 70.0
-        log(f"  Gate.io unreachable, using fallback: ${sol_price}")
+        # 1. Fetch SOL price
+        log("Step 1: Fetching SOL price from Gate.io...")
+        sol_data = get_sol_price_gateio()
+        if sol_data:
+            sol_price = sol_data["price"]
+            sol_change_24h = sol_data["change_24h"]
+            log(f"  SOL/USDT: ${sol_price:.2f} | 24h Vol: ${sol_data['vol_24h']:,.0f} | Change: {sol_data['change_24h']:+.2f}%")
+        else:
+            sol_price = 70.0
+            sol_change_24h = 0.0
+            log(f"  Gate.io unreachable, using fallback: ${sol_price}")
 
-    # 2. USDC price
-    usdc_price = get_usdc_price_gateio()
-    log(f"  USDC/USDT: ${usdc_price:.4f}")
+        # 2. USDC price
+        usdc_price = get_usdc_price_gateio()
+        log(f"  USDC/USDT: ${usdc_price:.4f}")
 
-    # 3. EACO on-chain data
-    log("Step 2: Fetching EACO on-chain data via PublicNode RPC...")
-    onchain = get_eaco_onchain_data()
+        # 3. EACO on-chain data
+        log("Step 2: Fetching EACO on-chain data via PublicNode RPC...")
+        onchain = get_eaco_onchain_data()
 
-    # 4. EACO price
-    log("Step 3: Fetching EACO price...")
-    eaco_price, total_liq, total_vol, dex_pairs, price_source = estimate_eaco_price(sol_price, onchain)
-    log(f"  EACO Price: ${eaco_price} (source: {price_source})")
+        # 4. EACO price
+        log("Step 3: Fetching EACO price...")
+        eaco_price, total_liq, total_vol, dex_pairs, price_source = estimate_eaco_price(sol_price, onchain)
+        log(f"  EACO Price: ${eaco_price} (source: {price_source})")
     log(f"  EACO Total Supply: {onchain['supply']:,.2f}")
     log(f"  EACO Market Cap: ${eaco_price * onchain['supply']:,.2f}")
     if total_liq > 0:
@@ -781,7 +1210,7 @@ def generate_report(quiet=False, json_only=False):
 
     # 6. Price alerts
     log("Step 5: Checking price alerts...")
-    alerts = check_price_alerts(eaco_price, sol_price, sol_data["change_24h"] if sol_data else 0, dex_pairs)
+    alerts = check_price_alerts(eaco_price, sol_price, sol_change_24h, dex_pairs)
     if alerts:
         for a in alerts:
             log(f"  ALERT [{a['level']}]: {a['message_cn']}")
@@ -792,11 +1221,48 @@ def generate_report(quiet=False, json_only=False):
     log("Step 6: Calculating daily earnings for 15 strategies...")
     earnings = calculate_daily_earnings(eaco_price, sol_price, total_liq, total_vol)
 
+    # 7b. v5.0: Load portfolio and run simulation engine
+    log("Step 6b: Loading portfolio and running daily earning simulation...")
+    portfolio = load_portfolio()
+    log(f"  Portfolio: {portfolio['days_active']} days active | "
+        f"SOL: {portfolio['current_sol']:.4f} | EACO: {portfolio['current_eaco']:,.0f} | "
+        f"Total earned: ${portfolio['total_earned_usd']:.2f}")
+    
+    log("Step 6c: Selecting today's optimal strategies...")
+    selected = select_daily_strategies(sol_price, eaco_price, total_liq, sol_change_24h)
+    log(f"  Selected {len(selected)} strategies for today:")
+    for strat, alloc_sol, _, reason_cn, _ in selected:
+        log(f"    {strat['id']} {strat['name_cn']} | alloc: {alloc_sol} SOL | {reason_cn}")
+    
+    log("Step 6d: Simulating daily earning...")
+    daily_result = simulate_daily_earning(portfolio, selected, sol_price, eaco_price)
+    log(f"  Today's earning: ${daily_result['earned_usd']:.4f} | "
+        f"{daily_result['earned_eaco']:,.0f} EACO | {daily_result['earned_sol']:.6f} SOL")
+    log(f"  Portfolio after: SOL: {portfolio['current_sol']:.4f} | "
+        f"EACO: {portfolio['current_eaco']:,.0f} | USD: {portfolio['current_usd']:.2f}")
+    
+    # Save portfolio
+    save_portfolio(portfolio)
+    
+    # Load and update history
+    history = load_history()
+    history["records"].append(daily_result)
+    history["cumulative_usd"] = portfolio["total_earned_usd"]
+    history["cumulative_eaco"] = portfolio["total_earned_eaco"]
+    history["total_days"] = portfolio["days_active"]
+    if len(history["records"]) > 365:
+        history["records"] = history["records"][-365:]
+    save_history(history)
+    
+    # Generate action plan
+    log("Step 6e: Generating daily action plan...")
+    actions_cn, actions_en = generate_action_plan(selected, sol_price, eaco_price)
+
     # 8. Build report
     now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8)))
     report = {
         "report_time": now.strftime("%Y-%m-%d %H:%M:%S CST"),
-        "agent_version": "4.0",
+        "agent_version": "5.0",
         "network": "Solana Mainnet",
         "market_data": {
             "eaco_price_usd": eaco_price,
@@ -809,7 +1275,7 @@ def generate_report(quiet=False, json_only=False):
             "total_volume_24h_usd": round(total_vol, 2),
             "current_slot": onchain.get("slot", 0),
             "price_source": price_source,
-            "sol_24h_change": sol_data["change_24h"] if sol_data else 0,
+            "sol_24h_change": sol_change_24h,
             "dex_pairs": dex_pairs[:5] if dex_pairs else [],
         },
         "onchain": {
@@ -863,6 +1329,26 @@ def generate_report(quiet=False, json_only=False):
             "top3_strategy_names": [f"{s['id']} {s['name_en']}" for s in top3],
         }
 
+    # v5.0: Add simulation results to report
+    report["simulation"] = {
+        "daily_result": daily_result,
+        "portfolio": {
+            "days_active": portfolio["days_active"],
+            "current_sol": round(portfolio["current_sol"], 4),
+            "current_eaco": round(portfolio["current_eaco"], 0),
+            "current_usd": round(portfolio["current_usd"], 2),
+            "total_earned_usd": round(portfolio["total_earned_usd"], 2),
+            "total_earned_eaco": round(portfolio["total_earned_eaco"], 0),
+            "total_earned_sol": round(portfolio["total_earned_sol"], 6),
+            "initial_capital_sol": portfolio["initial_capital_sol"],
+            "roi_pct": round((portfolio["current_sol"] - portfolio["initial_capital_sol"]) / portfolio["initial_capital_sol"] * 100, 2) if portfolio["initial_capital_sol"] > 0 else 0,
+        },
+        "strategy_performance": portfolio["strategy_results"],
+        "recent_history": portfolio["daily_history"][-7:],  # Last 7 days
+    }
+    report["action_plan_cn"] = actions_cn
+    report["action_plan_en"] = actions_en
+
     # 9. Save JSON report
     with open(REPORT_FILE, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
@@ -874,7 +1360,7 @@ def generate_report(quiet=False, json_only=False):
     # 11. Print summary
     log("")
     log("=" * 70)
-    log("DAILY EARNINGS ESTIMATE SUMMARY (v3.0)")
+    log("DAILY EARNINGS SIMULATION SUMMARY (v5.0)")
     log("=" * 70)
     log(f"EACO Price:  ${eaco_price} (source: {price_source})")
     log(f"SOL Price:   ${sol_price:.2f}")
@@ -919,8 +1405,35 @@ def generate_report(quiet=False, json_only=False):
                 f"{d['low_daily_eaco']:,.0f}-{d['high_daily_eaco']:,.0f} EACO")
         log("")
 
+    # v5.0: Print simulation results
+    log("=" * 70)
+    log("TODAY'S EARNING SIMULATION (v5.0)")
+    log("=" * 70)
+    log(f"Strategies executed: {daily_result['strategies_run']}")
+    log(f"Today's earning:")
+    log(f"  USD:  ${daily_result['earned_usd']:.4f}")
+    log(f"  EACO: {daily_result['earned_eaco']:,.0f}")
+    log(f"  SOL:  {daily_result['earned_sol']:.6f}")
+    log(f"Portfolio status (Day {portfolio['days_active']}):")
+    log(f"  SOL:       {portfolio['current_sol']:.4f} (initial: {portfolio['initial_capital_sol']})")
+    log(f"  EACO:      {portfolio['current_eaco']:,.0f}")
+    log(f"  USD equiv: ${portfolio['current_usd']:.2f}")
+    log(f"  Total earned: ${portfolio['total_earned_usd']:.2f} | {portfolio['total_earned_eaco']:,.0f} EACO")
+    roi = (portfolio["current_sol"] - portfolio["initial_capital_sol"]) / portfolio["initial_capital_sol"] * 100
+    log(f"  ROI: {roi:+.2f}%")
+    log("")
+    log("Today's Action Plan:")
+    for a in actions_cn:
+        log(f"  [{a['id']}] {a['name']} (alloc: {a['allocated_sol']} SOL)")
+        log(f"    Reason: {a['reason']}")
+        for i, step in enumerate(a["steps"], 1):
+            log(f"    {i}. {step}")
+    log("")
+
     log(f"Reports: {REPORT_FILE}")
     log(f"         {HTML_REPORT}")
+    log(f"         {PORTFOLIO_FILE}")
+    log(f"         {HISTORY_FILE}")
 
     # v4.0: Copy report to eaco-app directory for website integration
     eaco_app_dir = os.path.join(os.path.dirname(OUTPUT_DIR), "eaco-app")
@@ -938,7 +1451,7 @@ def generate_report(quiet=False, json_only=False):
     else:
         log(f"  eaco-app dir not found at {eaco_app_dir}, skipping copy")
 
-    log("Agent v4.0 run complete.")
+    log("Agent v5.0 run complete.")
     log("=" * 70)
 
     return report
@@ -947,11 +1460,11 @@ def generate_report(quiet=False, json_only=False):
 if __name__ == "__main__":
     quiet = "--quiet" in sys.argv or "-q" in sys.argv
     json_only = "--json-only" in sys.argv or "-j" in sys.argv
+    test_mode = "--test" in sys.argv or "-t" in sys.argv
 
     try:
-        report = generate_report(quiet=quiet, json_only=json_only)
+        report = generate_report(quiet=quiet, json_only=json_only, test_mode=test_mode)
         if json_only:
-            # Print only the JSON report to stdout
             print(json.dumps(report, ensure_ascii=False, indent=2))
         sys.exit(0)
     except KeyboardInterrupt:
